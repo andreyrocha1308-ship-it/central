@@ -1,0 +1,518 @@
+/* Estilos para o Filtro de Múltipla Seleção e Tabela de Revisão */
+.multiselect-container { position: relative; display: inline-block; width: 220px; align-items: center; }
+.select-box { 
+    cursor: pointer; 
+    background: white; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    padding: 5px 10px; 
+    font-size: 13px; 
+    display: flex; 
+    justify-content: center; /* Centraliza o texto (Ex: 2 SELECIONADOS) */
+    align-items: center; 
+    color: #333;
+    gap: 10px;
+    position: relative;
+    height: 28px;
+}
+.select-box span:last-child {
+    position: absolute;
+    right: 10px;
+    align-items: center; 
+}
+.checkboxes-list { 
+    display: none; position: absolute; background: white; border: 1px solid #ccc; 
+    width: 100%; z-index: 1000; max-height: 180px; overflow-y: auto;align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+.checkboxes-list label { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; /* Centraliza os números das frotas na lista */
+    padding: 8px 10px; 
+    cursor: pointer; 
+    font-size: 13px; 
+    border-bottom: 1px solid #eee; 
+    color: #333; 
+}
+.checkboxes-list input { 
+    margin-right: 10px; 
+    align-items: center; 
+}
+.checkboxes-list label:hover { background: #f1f1f1; }
+.show-list { display: block !important; }
+.revisao-table { width: 100%; border-collapse: collapse; font-size: 11px;text-align: center; }
+.revisao-table th { background: #004A2F; color: white; padding: 8px 4px; font-weight: normal; border: 1px solid #003622; text-align: center; }
+.revisao-table td:nth-child(2) { 
+    text-align: center !important; 
+    padding-left: 5px; 
+}
+.revisao-table td { 
+    padding: 8px 5px; 
+    border: 1px solid #ddd; 
+    text-align: center; /* Isso centraliza todas as colunas, incluindo a descrição */
+    vertical-align: middle;
+}
+.input-revisao-clean { width: 90%; border: 1px solid #eee; padding: 3px; font-size: 11px; text-align: center; }   
+.revisao-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 20px; /* Garante que a tabela não grude no card */
+    text-align: center;
+}
+.table-responsive-revisao {
+    width: 100%;
+    overflow-x: auto;
+    text-align: center;
+}
+/* Classe para linha de veículo indisponível */
+.linha-indisponivel {
+    background-color: #ffcccc !important;
+}
+.linha-indisponivel td {
+    color: #990000 !important;
+}
+.revisao-table th {
+    background-color: #004A2F;
+    color: white;
+    padding: 8px 4px;
+    font-weight: normal;
+    border: 1px solid #003622;
+}
+
+.revisao-table td {
+    padding: 6px 4px;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #333;
+}
+
+.select-filtro-revisao {
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    outline: none;
+    background: white;
+    color: #333;
+    min-width: 150px;
+}
+
+.input-revisao-clean { 
+    width: 95%; 
+    border: 1px solid #ccc; 
+    padding: 5px; 
+    font-size: 13px; 
+    text-align: center; 
+    border-radius: 3px;
+}
+.select-manutencao {
+    width: 95%;
+    padding: 4px;
+    font-size: 12px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+.input-revisao-clean:focus {
+    border-color: #004A2F;
+}
+
+.km-restante {
+    font-weight: bold;
+    color: #c62828;
+}
+/* Estilo para os botões de mover e excluir na tabela */
+.btn-acao-tabela {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.btn-move-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.btn-move {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    color: #2c3e50;
+    font-size: 9px;
+    padding: 1px 4px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background 0.2s;
+}
+
+.btn-move:hover {
+    background-color: #e2e6ea;
+}
+
+.btn-delete-boletim {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #c62828;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+}
+
+.prefixo-texto {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-left: 4px;
+}
+/* Estilo da Tabela de Boletins */
+.boletim-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 13px;
+}
+
+.boletim-table th {
+    background-color: #2c3e50;
+    color: white;
+    padding: 12px;
+    text-transform: uppercase;
+    font-size: 11px;
+    border: 1px solid #34495e;
+}
+
+.boletim-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+
+/* Status dinâmicos */
+.status-ok {
+    background-color: #d4edda !important;
+    color: #155724;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.status-pendente {
+    background-color: #f8d7da !important;
+    color: #721c24;
+    font-style: italic;
+    border-radius: 4px;
+}
+
+.btn-add-equip {
+    background: var(--usa-verde-medio);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.input-data-boletim {
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: bold;
+    color: var(--usa-verde-escuro);
+    outline: none;
+    transition: 0.3s;
+}
+.input-data-boletim:focus {
+    border-color: var(--usa-verde-medio);
+    box-shadow: 0 0 0 3px rgba(45, 122, 76, 0.2);
+}
+#modalHistorico th, #modalHistorico td {
+    padding: 12px 8px;
+    text-align: left; /* Alinhamento à esquerda geralmente fica melhor para nomes */
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+}
+
+/* Define larguras específicas para colunas que não variam muito */
+#modalHistorico th:nth-child(1), 
+#modalHistorico td:nth-child(1) { width: 140px; } /* Fim Real */
+
+#modalHistorico th:nth-child(2), 
+#modalHistorico td:nth-child(2) { width: 150px; } /* Prancha */
+#corpo-frota tr {
+    border-left: 6px solid var(--usa-verde-medio); /* Mesma lógica da azul */
+}
+
+/* Garante que as células preencham o espaço e a borda apareça correta */
+table {
+    width: 100%;
+    border-collapse: separate; /* Alterado de collapse para não cortar bordas laterais */
+    border-spacing: 0;
+}
+
+#corpo-frota td, #corpo-andamento td {
+    border-bottom: 1px solid #eee; /* Linha sutil entre registros */
+}
+/* Borda lateral evidente e separação de grupos */
+.indicador-laranja {
+    border-left: 6px solid #ef6c00 !important;
+}
+
+/* Linhas pares dentro do grupo com fundo levemente cinza para destacar */
+.linha-par {
+    background-color: #fcfcfc;
+}
+
+/* Linha de divisão superior mais forte entre horários diferentes */
+.divisor-grupo {
+    border-top: 2px solid #ef6c009f !important;
+}
+
+/* Efeito de destaque ao passar o mouse */
+tbody tr:hover {
+    background-color: #fff3e0 !important; /* Laranja bem clarinho no hover */
+}
+
+.indicador-laranja {
+    border-left: 5px solid #f06c00 !important;
+}
+/* Estilo para destacar a linha em manutenção */
+.linha-manutencao {
+    background-color: #ffebee !important; /* Fundo da linha mais suave */
+    color: #c62828 !important;
+}
+
+.linha-manutencao td {
+    font-weight: bold;
+    border-bottom: 1px solid #ffcdd2 !important;
+}
+@media print {
+    header, .nav-buttons, button, .header-frota { display: none !important; }
+    .section-card { border: none; box-shadow: none; margin-bottom: 10px; }
+    table { font-size: 10px; min-width: 100%; }
+}
+
+/* Classe para o "Modo Print Screen" */
+.modo-print {
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+.modo-print header, .modo-print .nav-buttons, .modo-print button:not(.btn-concluir) {
+    display: none !important;
+}
+:root {
+    --usa-verde-escuro: #004A2F;
+    --usa-verde-medio: #2D7A4C;
+    --usa-verde-claro: #B2D969;
+    --bg-gray: #f0f2f5;
+    --white: #ffffff;
+    --shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+body { 
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+    background-color: var(--bg-gray); 
+    margin: 0; 
+    padding: 0; 
+    color: #333;
+}
+
+header {
+    background: var(--white);
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+    border-bottom: 4px solid var(--usa-verde-claro);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-container img {
+    height: 50px;
+    width: auto;
+}
+
+.main-nav {
+    display: flex;
+    gap: 15px;
+    margin-left: 20px;
+    flex: 1;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--usa-verde-escuro);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: 0.2s;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.nav-link:hover { background: rgba(0, 74, 47, 0.05); }
+.nav-link.active {
+    background: var(--usa-verde-escuro);
+    color: white;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* Impede que os botões quebrem o header */
+    justify-content: flex-end;
+}
+
+.btn {
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn-verde-escuro { background: var(--usa-verde-escuro); }
+.btn-verde-medio { background: var(--usa-verde-medio); }
+.btn-cinza { background: #546e7a; }
+.btn-danger { background: #c62828; }
+
+.content {
+    max-width: 1400px;
+    margin: 25px auto;
+    padding: 0 20px;
+}
+
+.page-content { display: none; }
+.page-content.active { display: block; }
+
+.section-card {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.section-header {
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-frota { background: var(--usa-verde-escuro); color: white; }
+.header-andamento { background: #1976d2; color: white; }
+.header-pendente { background: #ef6c00; color: white; }
+.header-docs { background: #455a64; color: white; }
+
+.table-responsive { overflow-x: auto; width: 100%; }
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    table-layout: fixed; /* Força o alinhamento das colunas */
+}
+th, td { 
+    padding: 12px 8px; 
+    text-align: center; 
+    font-size: 12px; 
+    word-wrap: break-word; 
+}
+th:nth-child(1), td:nth-child(1) { width: 80px; } /* Botões */
+th:nth-child(2), td:nth-child(2) { width: 140px; } /* Datas */
+.modo-compacto table { font-size: 10px; }
+.modo-compacto td, .modo-compacto th { padding: 4px; }
+
+
+.badge { padding: 4px 10px; border-radius: 20px; font-weight: bold; font-size: 10px; }
+.bg-success { background: #c8e6c9; color: #2e7d32; }
+.bg-warning { background: #fff9c4; color: #f57f17; }
+.bg-danger { 
+    background: #ffcdd2 !important; 
+    color: #c62828 !important; 
+}
+
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 25px;
+}
+
+.download-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.3s;
+}
+
+.download-card:hover { border-color: var(--usa-verde-claro); box-shadow: var(--shadow); }
+.download-icon { font-size: 30px; }
+.download-info { flex: 1; }
+.download-info strong { display: block; color: var(--usa-verde-escuro); margin-bottom: 4px; }
+.download-info span { font-size: 11px; color: #888; }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(3px);
+    overflow-y: auto;
+    padding: 20px 0;
+}
+
+.modal-content {
+    background: var(--white);
+    width: 90%;
+    max-width: 700px;
+    margin: auto;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border-top: 8px solid var(--usa-verde-medio);
+}
+
+.modal-body { padding: 25px; }
+.modal-footer { padding: 15px 25px; background: #f8f9fa; border-radius: 0 0 12px 12px; display: flex; gap: 10px; justify-content: flex-end; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.full-col { grid-column: span 2; }
+.input-group { display: flex; flex-direction: column; margin-bottom: 10px; }
+.input-group label { font-size: 11px; font-weight: bold; margin-bottom: 5px; color: var(--usa-verde-escuro); }
+.input-group input, .input-group select { padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 13px; }
+
+.tabs { display: flex; border-bottom: 1px solid #eee; margin-bottom: 15px; }
+.tab-link { padding: 10px 20px; cursor: pointer; border-bottom: 3px solid transparent; font-size: 13px; font-weight: 600; color: #666; }
+.tab-link.active { border-color: var(--usa-verde-medio); color: var(--usa-verde-medio); }

@@ -1,0 +1,343 @@
+/* Abas de Turno dentro do Popup */
+.prog-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+.prog-tab-btn {
+    background: #222;
+    color: #aaa;
+    border: 1px solid #444;
+    padding: 8px 16px;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+}
+.prog-tab-btn.active {
+    background: var(--usa-azul);
+    color: white;
+    border-color: var(--usa-azul);
+}
+
+/* Containers da Grid */
+.prog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 20px;
+    margin-top: 10px;
+}
+.prog-col {
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+.prog-col label {
+    display: block;
+    font-weight: bold;
+    color: var(--usa-verde-claro);
+    margin-bottom: 8px;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+/* Cards de visualização rápida */
+.card-prog-mini {
+    background: #252525;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+.card-prog-mini b { color: var(--usa-verde-claro); }
+.card-prog-mini .detalhes { font-size: 11px; color: #aaa; margin-top: 2px; }
+      /* Força o modal de motoristas a ser a camada mais alta de todas */
+#modalMotoristas {
+    display: none;
+    position: fixed !important;
+    z-index: 9999 !important; /* Valor extremo para ganhar de qualquer outro */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9) !important; /* Fundo mais escuro para focar no cadastro */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Garante que o conteúdo do modal também suba */
+#modalMotoristas .modal-content {
+    z-index: 10000 !important;
+}  
+/* Container da linha para evitar sobreposição */
+.item-frota-grid {
+    display: flex; /* Flex é mais seguro aqui para garantir o alinhamento horizontal */
+    align-items: center;
+    gap: 8px;
+    padding: 6px 4px;
+    border-bottom: 1px solid #333;
+    width: 100%;
+}
+
+/* Número da frota com largura fixa para não empurrar o resto */
+.item-frota-grid b {
+    font-size: 12px;
+    color: var(--usa-verde-claro);
+    min-width: 50px; 
+    flex-shrink: 0;
+}
+
+/* Campo de modelo ocupando o máximo de espaço possível */
+.input-modelo-lista {
+    background: #121212;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 4px;
+    font-size: 11px;
+    padding: 4px 6px;
+    flex-grow: 1; /* Faz o input ocupar o centro */
+    min-width: 0; /* Essencial para o flex-grow funcionar sem estourar */
+    height: 24px;
+}
+
+/* Botão de excluir fixo no canto direito */
+.btn-del-mini {
+    color: #ff4444;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0 4px;
+    flex-shrink: 0;
+}
+
+/* Ajuste no container pai para não apertar os itens */
+#list-v {
+    padding: 0;
+    overflow-x: hidden;
+}
+.tabela-viva {
+    page-break-inside: avoid; /* Impede que a tabela quebre entre páginas */
+    margin-bottom: 2px !important; /* Reduz o espaço entre tabelas */
+}
+:root {
+    --usa-verde-escuro: #004A2F;
+    --usa-verde-medio: #2D7A4C;
+    --usa-verde-claro: #B2D969;
+    --usa-amarelo: #FFD700;
+    --usa-azul: #1976D2;
+    --usa-qru: #ff4444;
+    --bg-body: #121212;
+    --card-bg: #1e1e1e;
+    --border-color: #333;
+}
+
+* { box-sizing: border-box; }
+body { font-family: 'Segoe UI', sans-serif; background: var(--bg-body); color: #e0e0e0; margin: 0; overflow-x: hidden; }
+
+header {
+    background: var(--usa-verde-escuro);
+    padding: 10px 30px; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 3px solid var(--usa-verde-claro); position: sticky; top: 0; z-index: 100;
+}
+
+.btn {
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.btn-config { 
+    background: rgba(255, 255, 255, 0.05); 
+    color: var(--usa-verde-claro); 
+    border: 1px solid rgba(178, 217, 105, 0.3) !important;
+}
+.btn:active {
+    transform: translateY(0);
+}
+.btn-pasta { 
+    background: linear-gradient(135deg, #FFD700, #FBC02D); 
+    color: #000; 
+}
+.btn-reset { 
+    background: linear-gradient(135deg, #2D7A4C, #1e5233); 
+    color: white; 
+}
+.btn-config:hover {
+    background: rgba(178, 217, 105, 0.1);
+    border-color: var(--usa-verde-claro) !important;
+}
+
+.monitor-container { padding: 20px; }
+.veiculo-row { 
+    display: grid; grid-template-columns: 180px 1fr; gap: 15px; 
+    background: var(--card-bg); margin-bottom: 10px; border-radius: 8px;
+    border: 1px solid var(--border-color); min-height: 130px;
+}
+
+.veiculo-info {
+    background: #252525; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    border-radius: 8px 0 0 8px; border-right: 2px solid var(--usa-verde-medio); padding: 15px 10px;
+    position: relative;
+}
+
+.controles-ordem { position: absolute; top: 8px; left: 8px; display: flex; flex-direction: column; gap: 4px; }
+.controles-acoes { position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column; gap: 4px; text-align: right; }
+
+.btn-mini { background: none; border: none; color: #666; cursor: pointer; font-size: 11px; padding: 2px; transition: 0.2s; }
+.btn-mini:hover { color: var(--usa-verde-claro); transform: scale(1.2); }
+.btn-del-veic:hover { color: var(--usa-qru) !important; }
+
+.veiculo-info h3 { margin: 8px 0; font-size: 20px; color: var(--usa-verde-claro); }
+.veiculo-info select { width: 100%; font-size: 11px; background: #333; color: white; border: 1px solid #444; padding: 6px; cursor: pointer; border-radius: 4px; }
+
+.viagens-timeline { display: flex; align-items: center; gap: 15px; padding: 10px; overflow-x: auto; min-height: 120px; }
+
+.trip-card {
+    min-width: 210px; background: #2d2d2d; border-radius: 6px; padding: 12px;
+    border-top: 4px solid #555; position: relative; transition: 0.3s;
+}
+.status-pendente { border-top-color: var(--usa-amarelo); }
+.status-rodando { border-top-color: var(--usa-azul); background: #1a2a3a; box-shadow: 0 0 10px rgba(25, 118, 210, 0.3); }
+.status-ok { border-top-color: var(--usa-verde-medio); opacity: 0.7; }
+
+.card-header-actions { position: absolute; top: 5px; right: 5px; display: flex; gap: 5px; }
+.trip-card .moto { font-size: 10px; font-weight: bold; color: var(--usa-verde-claro); text-transform: uppercase; margin-bottom: 4px; }
+.trip-card .serv { font-size: 13px; margin: 5px 0; height: 35px; font-weight: 600; line-height: 1.2; }
+.trip-card .times { display: flex; justify-content: space-between; font-size: 10px; color: #aaa; border-top: 1px solid #444; padding-top: 6px; margin-bottom: 8px; }
+
+.btn-status-dynamic { 
+    width: 100%; border: none; border-radius: 4px; padding: 8px; 
+    font-size: 10px; font-weight: 800; text-transform: uppercase; 
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.3s;
+}
+.btn-status-start { background: var(--usa-amarelo); color: #000; }
+.btn-status-finish { background: var(--usa-azul); color: #fff; }
+.btn-status-clear { background: #444; color: #ccc; }
+
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 1000; /* A base de dados usará este valor padrão */
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.8); 
+    align-items: center; 
+    justify-content: center; 
+}
+.modal-content { 
+    background: #252525; 
+    width: 95%; 
+    max-width: 900px; /* Aumentei um pouco para acomodar melhor as 3 colunas */
+    max-height: 90vh; /* Não ultrapassa 90% da altura da tela */
+    padding: 25px; 
+    border-radius: 12px; 
+    border-top: 5px solid var(--usa-verde-medio); 
+    color: white; 
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Cria rolagem se o conteúdo crescer demais */
+}
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-size: 11px; color: var(--usa-verde-claro); margin-bottom: 5px; }
+.form-group input, .form-group select { width: 100%; padding: 10px; background: #333; border: 1px solid #444; color: white; border-radius: 4px; }
+
+.base-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 20px; 
+    margin-top: 15px;
+    flex: 1; /* Permite que a grid ocupe o espaço disponível */
+}
+.base-col { background: #1a1a1a; padding: 15px; border-radius: 8px; border: 1px solid #333; }
+.base-col label { display: block; font-weight: bold; color: var(--usa-verde-claro); margin-bottom: 10px; font-size: 12px; }
+.input-group {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+    width: 100%; /* Garante que ocupe toda a largura da coluna */
+}
+.input-group input {
+    min-width: 0; /* Permite que o flex-grow funcione corretamente */
+    flex: 1;      /* Distribui o espaço igualmente entre os dois inputs */
+    padding: 8px;
+    background: #333;
+    border: 1px solid #444;
+    color: white;
+    border-radius: 4px;
+    font-size: 12px;
+}
+.btn-add-base {
+    background: var(--usa-verde-medio);
+    color: white;
+    border: none;
+    padding: 0 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    flex-shrink: 0; /* IMPEDE que o botão diminua ou suma */
+    height: 34px;   /* Alinha com a altura dos inputs */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.list-container { 
+    max-height: 300px; /* Aumentado para melhor visualização */
+    overflow-y: auto; 
+    background: #222; 
+    border-radius: 4px; 
+    padding: 5px; 
+}
+
+.btn-novo-frete-linha {
+    min-width: 120px; height: 40px; background: rgba(255,255,255,0.05); color: #666;
+    border: 1px dashed #444; border-radius: 6px; cursor: pointer; font-size: 10px;
+    font-weight: bold; transition: 0.3s; display: flex; align-items: center; justify-content: center;
+}
+.btn-novo-frete-linha:hover { background: rgba(178, 217, 105, 0.1); color: var(--usa-verde-claro); border-color: var(--usa-verde-claro); }
+
+.input-controlador { background: rgba(0,0,0,0.3); border: 1px solid var(--usa-verde-claro); color: white; padding: 5px 10px; border-radius: 4px; font-size: 12px; width: 180px; text-transform: uppercase; }
+
+#print-area { display: none; }
+
+.pranchas-form-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr auto; 
+    gap: 8px; 
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+.pranchas-form-grid input { width: 100%; padding: 8px; background: #333; color: white; border: 1px solid #444; border-radius: 4px; font-size: 12px; }
+
+.row-editavel:hover { background: rgba(178, 217, 105, 0.1) !important; cursor: pointer; }
+
+@media print {
+    .monitor-container, header, .btn, #modalBase, #modalPranchas {
+        display: none !important;
+    }
+    @page { size: A4 portrait; margin: 0.8cm; }
+    body * { visibility: hidden; }
+    #print-area, #print-area * { visibility: visible; }
+    #print-area { display: block !important;overflow: hidden; position: absolute; left: 0; top: 0; width: 100%; background: white; color: black; }
+    .tabela-viva { width: 100%; border-collapse: collapse; margin-top: 5px; table-layout: fixed; border: 1px solid black; }
+    .tabela-viva th, .tabela-viva td { border: 1px solid black; padding: 2px 4px; text-align: center; font-size: 9px; text-transform: uppercase; color: black; }
+    .header-viva { background: #CCCCCC !important; font-weight: bold; -webkit-print-color-adjust: exact; }
+    .qru-row td { background: #ffff00 !important; -webkit-print-color-adjust: exact; }
+    .footer-print { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; border: 1px solid black; padding: 5px; font-size: 10px; }
+}

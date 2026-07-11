@@ -4,87 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logística Unificada - Santa Adélia</title>
-    <style>
-        :root {
-            --usa-verde-escuro: #004A2F;
-            --usa-verde-medio: #2D7A4C;
-            --usa-verde-claro: #B2D969;
-            --bg-gray: #f0f2f5;
-        }
-
-        body, html {
-            margin: 0; padding: 0;
-            height: 100%; width: 100%;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: var(--bg-gray);
-            overflow: hidden; /* Evita barras de rolagem duplas */
-        }
-
-        /* BARRA DE NAVEGAÇÃO SUPERIOR */
-        .top-nav {
-            background: #ffffff;
-            height: 65px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            border-bottom: 4px solid var(--usa-verde-claro);
-            position: relative;
-            z-index: 9999;
-        }
-
-        .logo img { height: 42px; }
-
-        .tabs-container {
-            display: flex;
-            gap: 12px;
-            height: 100%;
-            align-items: center;
-        }
-
-        .tab-btn {
-            padding: 12px 24px;
-            border: none;
-            background: #f8f9fa;
-            font-weight: bold;
-            color: var(--usa-verde-escuro);
-            cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-size: 13px;
-            border: 1px solid #ddd;
-        }
-
-        .tab-btn.active {
-            background: var(--usa-verde-escuro);
-            color: white;
-            border-color: var(--usa-verde-escuro);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .tab-btn:hover:not(.active) {
-            background: #e9ecef;
-        }
-
-        /* ÁREA DOS SISTEMAS */
-        .viewport {
-            height: calc(100vh - 69px); /* Altura total menos o header */
-            width: 100%;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: none; /* Esconde por padrão */
-        }
-
-        iframe.active {
-            display: block; /* Mostra o selecionado */
-        }
-    </style>
+    <!-- Firebase Compat SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 
@@ -109,22 +33,7 @@
     <iframe id="iframe-direcionados" src="CENTRAL PRANCHAS copy.html"></iframe>
 </main>
 
-<script>
-    function switchTab(id, btn) {
-        // 1. Atualiza os botões
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        // 2. Atualiza a visibilidade dos sistemas
-        document.querySelectorAll('iframe').forEach(frame => frame.classList.remove('active'));
-        const targetFrame = document.getElementById('iframe-' + id);
-        targetFrame.classList.add('active');
-
-        // 3. Opcional: Recarrega o frame ao clicar para atualizar dados do LocalStorage
-        // Isso garante que se você mudar algo em uma aba, a outra veja a mudança ao ser aberta.
-        targetFrame.contentWindow.location.reload();
-    }
-</script>
+<script src="js/index.js"></script>
 
 </body>
 </html>
