@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logística Unificada - Santa Adélia</title>
-    <!-- Firebase Compat SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
     <script src="firebase-config.js"></script>
     <style>
         :root {
@@ -17,16 +16,12 @@
             --bg-gray: #f0f2f5;
         }
 
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
+        body, html {
+            margin: 0; padding: 0;
+            height: 100%; width: 100%;
             font-family: 'Segoe UI', sans-serif;
             background-color: var(--bg-gray);
-            overflow: hidden;
-            /* Evita barras de rolagem duplas */
+            overflow: hidden; /* Evita barras de rolagem duplas */
         }
 
         /* BARRA DE NAVEGAÇÃO SUPERIOR */
@@ -37,15 +32,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 25px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
             border-bottom: 4px solid var(--usa-verde-claro);
             position: relative;
             z-index: 9999;
         }
 
-        .logo img {
-            height: 42px;
-        }
+        .logo img { height: 42px; }
 
         .tabs-container {
             display: flex;
@@ -72,7 +65,7 @@
             background: var(--usa-verde-escuro);
             color: white;
             border-color: var(--usa-verde-escuro);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .tab-btn:hover:not(.active) {
@@ -81,8 +74,7 @@
 
         /* ÁREA DOS SISTEMAS */
         .viewport {
-            height: calc(100vh - 69px);
-            /* Altura total menos o header */
+            height: calc(100vh - 69px); /* Altura total menos o header */
             width: 100%;
         }
 
@@ -90,57 +82,53 @@
             width: 100%;
             height: 100%;
             border: none;
-            display: none;
-            /* Esconde por padrão */
+            display: none; /* Esconde por padrão */
         }
 
         iframe.active {
-            display: block;
-            /* Mostra o selecionado */
+            display: block; /* Mostra o selecionado */
         }
     </style>
 </head>
-
 <body>
 
-    <header class="top-nav">
-        <div class="logo">
-            <img src="https://site.usinasantaadelia.com.br/wp-content/uploads/2018/05/img_logo.png" alt="Santa Adélia">
-        </div>
+<header class="top-nav">
+    <div class="logo">
+        <img src="https://site.usinasantaadelia.com.br/wp-content/uploads/2018/05/img_logo.png" alt="Santa Adélia">
+    </div>
 
-        <nav class="tabs-container">
-            <button class="tab-btn active" onclick="switchTab('pesada', this)">🚛 Frota Pesada (Pranchas)</button>
-            <button class="tab-btn" onclick="switchTab('direcionados', this)">🚗 Logística Direcionada (Carros)</button>
-        </nav>
+    <nav class="tabs-container">
+        <button class="tab-btn active" onclick="switchTab('pesada', this)">🚛 Frota Pesada (Pranchas)</button>
+        <button class="tab-btn" onclick="switchTab('direcionados', this)">🚗 Logística Direcionada (Carros)</button>
+    </nav>
 
-        <div style="font-weight: bold; color: var(--usa-verde-escuro); font-size: 14px;">
-            PAINEL CENTRAL
-        </div>
-    </header>
+    <div style="font-weight: bold; color: var(--usa-verde-escuro); font-size: 14px;">
+        PAINEL CENTRAL
+    </div>
+</header>
 
-    <main class="viewport">
-        <iframe id="iframe-pesada" src="Dashboard.html" class="active"></iframe>
+<main class="viewport">
+    <iframe id="iframe-pesada" src="Dashboard.html" class="active"></iframe>
+    
+    <iframe id="iframe-direcionados" src="CENTRAL PRANCHAS copy.html"></iframe>
+</main>
 
-        <iframe id="iframe-direcionados" src="CENTRAL PRANCHAS copy.html"></iframe>
-    </main>
+<script>
+    function switchTab(id, btn) {
+        // 1. Atualiza os botões
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
 
-    <script>
-        function switchTab(id, btn) {
-            // 1. Atualiza os botões
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        // 2. Atualiza a visibilidade dos sistemas
+        document.querySelectorAll('iframe').forEach(frame => frame.classList.remove('active'));
+        const targetFrame = document.getElementById('iframe-' + id);
+        targetFrame.classList.add('active');
 
-            // 2. Atualiza a visibilidade dos sistemas
-            document.querySelectorAll('iframe').forEach(frame => frame.classList.remove('active'));
-            const targetFrame = document.getElementById('iframe-' + id);
-            targetFrame.classList.add('active');
-
-            // 3. Opcional: Recarrega o frame ao clicar para atualizar dados do LocalStorage
-            // Isso garante que se você mudar algo em uma aba, a outra veja a mudança ao ser aberta.
-            targetFrame.contentWindow.location.reload();
-        }
-    </script>
+        // 3. Opcional: Recarrega o frame ao clicar para atualizar dados do LocalStorage
+        // Isso garante que se você mudar algo em uma aba, a outra veja a mudança ao ser aberta.
+        targetFrame.contentWindow.location.reload();
+    }
+</script>
 
 </body>
-
 </html>
