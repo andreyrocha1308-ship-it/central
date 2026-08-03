@@ -291,7 +291,7 @@
 
         .veiculo-row { 
             display: grid; 
-            grid-template-columns: 210px minmax(0, 1fr); 
+            grid-template-columns: 220px minmax(0, 1fr); 
             gap: 0; 
             background: var(--card-bg); 
             margin-bottom: 16px; 
@@ -305,58 +305,6 @@
         .veiculo-row:hover {
             border-color: var(--border-glow);
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
-        }
-
-        @media (max-width: 768px) {
-            .monitor-container {
-                padding: 10px;
-            }
-
-            .veiculo-row {
-                grid-template-columns: 1fr;
-                min-height: auto;
-            }
-
-            .veiculo-info {
-                border-radius: 14px 14px 0 0;
-                border-right: none;
-                border-bottom: 3px solid var(--usa-verde-medio);
-                padding: 16px;
-            }
-
-            .viagens-timeline {
-                padding: 12px;
-                min-height: auto;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .trip-card {
-                min-width: 200px;
-            }
-
-            header {
-                padding: 10px 12px;
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-
-            header .btn span, header .btn-pranchas span, header .btn-pasta span, header .btn-config span {
-                display: none !important;
-            }
-
-            header .btn, header .btn-pranchas, header .btn-pasta, header .btn-config {
-                padding: 8px 10px !important;
-                min-width: 38px;
-                height: 36px;
-                justify-content: center;
-            }
-
-            .input-controlador {
-                width: 140px !important;
-                font-size: 11px !important;
-                padding: 6px 10px;
-            }
         }
 
         .veiculo-info {

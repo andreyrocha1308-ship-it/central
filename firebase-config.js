@@ -27,14 +27,9 @@ try {
     if (typeof firebase.firestore === 'function') {
         firestoreDb = firebase.firestore();
         
-        // Ativar persistência offline multi-abas (synchronizeTabs: true) para funcionamento em iframes/múltiplas abas
-        firestoreDb.enablePersistence({ synchronizeTabs: true }).catch((err) => {
-            if (err.code === 'failed-precondition') {
-                // Múltiplas abas abertas ou mudança de versão - o Firestore opera normalmente com persistência desativada para abas secundárias
-                console.log('Firestore: Operando em modo multi-aba (persistência compartilhada/suavizada).');
-            } else if (err.code === 'unimplemented') {
-                console.log('Firestore: Persistência offline não suportada por este navegador.');
-            }
+        // Tenta ativar a persistência offline sem interromper o sistema em caso de incompatibilidade de versão ou abas simultâneas
+        firestoreDb.enablePersistence({ synchronizeTabs: true }).catch(() => {
+            // Silencioso: O Firestore opera 100% normalmente em modo online/memória sem afetar o sistema
         });
     }
 } catch (e) {
