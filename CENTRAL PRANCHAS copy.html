@@ -727,23 +727,44 @@
             <button onclick="fecharModal('modalQRUPra')" class="btn" style="background:#444; color:white;">SAIR</button>
         </div>
     </div>
-</div>
-    <div style="display:flex; align-items:center; gap:15px;">
-        <img src="https://site.usinasantaadelia.com.br/wp-content/uploads/2018/05/img_logo.png" height="30" style="filter: brightness(0) invert(1);">
-        <h2 style="margin:0; font-size:16px;">LOGÍSTICA <span id="clock" style="margin-left:10px; font-weight:300; color:var(--usa-verde-claro)">00:00:00</span></h2>
+<header>
+    <div style="display:flex; align-items:center; gap:16px; flex-wrap: wrap;">
+        <div style="display:flex; align-items:center; gap:8px; background: rgba(0,0,0,0.3); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);">
+            <span class="pulse-dot"></span>
+            <span style="font-weight: 800; font-size: 12px; color: #ffffff; letter-spacing: 0.5px;">LOGÍSTICA</span>
+            <span id="clock" style="font-weight: 600; color: var(--usa-verde-claro); font-size: 13px; margin-left: 4px;">00:00:00</span>
+        </div>
         <input type="text" id="ctrl_name" class="input-controlador" placeholder="NOME DO CONTROLADOR" oninput="db.controlador=this.value.toUpperCase(); save();">
     </div>
-<div>
-    <button class="btn btn-config" onclick="aplicarTurno('A')">A</button>
-    <button class="btn btn-config" onclick="aplicarTurno('B')">B</button>
-    <button class="btn btn-config" onclick="aplicarTurno('C')">C</button>
-        <button class="btn btn-config" onclick="abrirPopupProgramacao()" class="btn" style="background: #004A2F; color: white; font-weight: bold; margin: 10px;">
-    📸 ESCALA
-</button>
-    <button class="btn btn-pranchas" onclick="abrirPranchas()">🚛 PRANCHAS</button>
-    <button class="btn btn-pasta" onclick="gerarPastaViva()">📄 GERAR PASTA VIVA</button>
-    <button class="btn btn-config" onclick="abrirConfig()">⚙️ BASE DE DADOS</button>
-</div>
+
+    <div style="display:flex; align-items:center; gap:10px; flex-wrap: wrap;">
+        <!-- SELETOR DE TURNO EM PILULA -->
+        <div style="display:flex; gap:4px; background: rgba(0,0,0,0.3); padding: 4px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);">
+            <button class="btn btn-config" style="padding: 6px 14px; font-size: 11px;" onclick="aplicarTurno('A')">TURNO A</button>
+            <button class="btn btn-config" style="padding: 6px 14px; font-size: 11px;" onclick="aplicarTurno('B')">TURNO B</button>
+            <button class="btn btn-config" style="padding: 6px 14px; font-size: 11px;" onclick="aplicarTurno('C')">TURNO C</button>
+        </div>
+
+        <button class="btn btn-pranchas" onclick="abrirPopupProgramacao()">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <span>ESCALA</span>
+        </button>
+
+        <button class="btn btn-pranchas" onclick="abrirPranchas()">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+            <span>PRANCHAS</span>
+        </button>
+
+        <button class="btn btn-pasta" onclick="gerarPastaViva()">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            <span>GERAR PASTA VIVA</span>
+        </button>
+
+        <button class="btn btn-config" onclick="abrirConfig()">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M21 19c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14"></path><path d="M21 5v14"></path></svg>
+            <span>BASE DE DADOS</span>
+        </button>
+    </div>
 </header>
 <div class="monitor-container" style="padding-bottom: 0;">
     <div style="background: #1e1e1e; padding: 15px; border-radius: 8px; border: 1px solid #333;">
