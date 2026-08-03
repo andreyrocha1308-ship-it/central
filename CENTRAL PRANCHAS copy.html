@@ -39,6 +39,22 @@
             overflow-x: hidden; 
         }
 
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(178, 217, 105, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--usa-verde-claro);
+        }
+
         header {
             background: linear-gradient(135deg, #041f14 0%, #004A2F 60%, #0b3824 100%);
             padding: 12px 30px; 
@@ -753,20 +769,7 @@
         <button onclick="fecharModal('modalNovaProgramacao')" class="btn" style="width:100%; margin-top:20px; background:#444; color:white;">FECHAR CENTRAL</button>
     </div>
 </div>
-<div id="modalEditarFrete" class="modal">
-    <div class="modal-content" style="max-width: 400px;">
-        <h3>Editar Programação</h3>
-        <input type="hidden" id="edit_f_id">
-        <div class="form-group"><label>HORÁRIO</label><input type="time" id="edit_f_hora_escala"></div>
-        <div class="form-group"><label>CIDADE</label><input type="text" id="edit_f_cidade" style="text-transform: uppercase;"></div>
-        <div class="form-group"><label>SERVIÇO</label><input type="text" id="edit_f_serv" style="text-transform: uppercase;"></div>
-        <div class="form-group"><label>CONTATOS</label><input type="text" id="edit_f_contatos" style="text-transform: uppercase;"></div>
-        <div style="display:flex; gap:10px; margin-top:10px;">
-            <button onclick="confirmarEdicaoFrete()" class="btn" style="flex:1; background:var(--usa-azul); color:white;">SALVAR ALTERAÇÕES</button>
-            <button onclick="fecharModal('modalEditarFrete')" class="btn" style="background:#666; color:white;">CANCELAR</button>
-        </div>
-    </div>
-</div>
+
 
 <div id="modalQRUPra" class="modal" style="z-index: 2000 !important; background: rgba(0,0,0,0.9);">
     <div class="modal-content" style="border-top-color: var(--usa-qru); max-width: 450px;">
@@ -1567,31 +1570,7 @@ function confirmarEdicaoFrete() {
     }
 }
 
-    function confirmarEdicaoFrete() {
-    const idStr = document.getElementById('edit_f_id').value;
-    if (!idStr) return;
-    
-    const id = Number(idStr);
-    const item = db.viagens.find(x => x.id === id);
 
-    if (item) {
-        // Atribuindo os valores do modal para o objeto no banco
-        item.hora_escala = document.getElementById('edit_f_hora_escala').value;
-        item.cidade = document.getElementById('edit_f_cidade').value.toUpperCase();
-        item.serv = document.getElementById('edit_f_serv').value.toUpperCase();
-        item.contatos = document.getElementById('edit_f_contatos').value.toUpperCase();
-
-        save(); // Grava no LocalStorage
-        fecharModal('modalEditarFrete');
-        
-        // REFRESH TOTAL: Isso garante que o card mude na tela na hora
-        render(); 
-        
-        console.log("Card " + id + " atualizado com sucesso.");
-    } else {
-        alert("Erro: Card não encontrado para edição.");
-    }
-}
 function prepararDadosParaEscala() {
     let conteudoEscala = [];
 
