@@ -287,7 +287,7 @@
         }
 
         #modalHistorico th, #modalHistorico td {
-            padding: 12px 10px;
+            padding: 14px 12px;
             text-align: left;
             vertical-align: middle;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -301,11 +301,55 @@
 
         table {
             width: 100%;
-            border-collapse: separate;
+            border-collapse: collapse;
             border-spacing: 0;
+            font-size: 13px;
         }
 
-        #corpo-frota td, #corpo-andamento td {
+        th {
+            padding: 16px 14px;
+            font-weight: 800;
+            font-size: 11px;
+            color: var(--usa-verde-claro);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        td {
+            padding: 14px 12px;
+            vertical-align: middle;
+            font-size: 13px;
+            color: #f1f5f9;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .btn-tbl-action {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        .btn-tbl-action:hover {
+            background: rgba(178, 217, 105, 0.2);
+            border-color: var(--usa-verde-claro);
+            transform: scale(1.1);
+        }
+        .btn-tbl-action-del:hover {
+            background: rgba(239, 68, 68, 0.25);
+            border-color: #ef4444;
+            color: #fca5a5;
+        }
+
+        #corpo-frota td, #corpo-andamento td, #corpo-pendente td {
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
         .indicador-laranja {
@@ -691,21 +735,22 @@
             <div class="section-card">
                 <div class="section-header header-frota">
                     <span>ESTADO ATUAL DA FROTA (CAVALOS E PRANCHAS)</span>
-                    <button class="btn btn-verde-claro" style="color:#004A2F; padding: 4px 10px; font-size:11px;" onclick="prepararNovaFrota()">+ ADICIONAR VEÍCULO</button>
+                    <button class="btn btn-config" style="padding: 6px 14px; font-size: 11px;" onclick="prepararNovaFrota()">+ ADICIONAR VEÍCULO</button>
                 </div>
                 <div class="table-responsive">
-                    <table>
-<thead>
-    <tr>
-        <th style="width: 100px;"></th>
-        <th style="width: 120px;">FROTA (CAVALO)</th>
-        <th style="width: 100px;">RÁDIO</th> <th style="width: 120px;">MANUTENÇÃO</th>
-        <th>MOTORISTA</th>
-        <th>SITUAÇÃO</th>
-        <th>PRANCHA</th> 
-        <th style="width: 50px;"></th>
-    </tr>
-</thead>
+                    <table class="tabela-frota">
+                        <thead>
+                            <tr>
+                                <th style="width: 70px; text-align: center;">AÇÕES</th>
+                                <th style="width: 140px; text-align: center;">FROTA (CAVALO)</th>
+                                <th style="width: 120px; text-align: center;">RÁDIO</th> 
+                                <th style="width: 140px; text-align: center;">MANUTENÇÃO</th>
+                                <th style="text-align: left; padding-left: 20px;">MOTORISTA</th>
+                                <th style="width: 150px; text-align: center;">SITUAÇÃO</th>
+                                <th style="width: 140px; text-align: center;">PRANCHA</th> 
+                                <th style="width: 70px; text-align: center;">EXCLUIR</th>
+                            </tr>
+                        </thead>
                         <tbody id="corpo-frota"></tbody>
                     </table>
                 </div>
@@ -1546,6 +1591,7 @@ function renderAll() {
 
 function renderFrota() {
     const tbody = document.getElementById('corpo-frota');
+    if (!tbody) return;
     tbody.innerHTML = db.frota.map((f, i) => {
         const classeManutencao = f.manut === 'SIM' ? 'linha-manutencao' : '';
         const badgeSituacao = f.manut === 'SIM' ? 'bg-danger' : (f.situ === 'EM FRETE' ? 'bg-warning' : 'bg-success');
@@ -1556,13 +1602,14 @@ function renderFrota() {
 
         return `
             <tr class="${classeManutencao}">
-                <td><button onclick="prepararEdicaoFrota(${i})">📝</button></td>
-                <td style="font-weight:bold;">${f.veic}</td>
-                <td style="color: #667; font-size: 12px;"; style="font-weight:bold;">📻 ${radioInfo}</td> <td><span class="badge ${f.manut === 'SIM' ? 'bg-danger' : 'bg-success'}">${f.manut}</span></td>
-                <td>${f.moto || '-'}</td>
+                <td style="text-align: center;"><button class="btn-tbl-action" title="Editar" onclick="prepararEdicaoFrota(${i})">✏️</button></td>
+                <td style="font-weight: 800; color: var(--usa-verde-claro); font-size: 14px;">${f.veic}</td>
+                <td style="font-weight: 700; color: #94a3b8; font-size: 12px;">📻 ${radioInfo}</td>
+                <td><span class="badge ${f.manut === 'SIM' ? 'bg-danger' : 'bg-success'}">${f.manut}</span></td>
+                <td style="text-align: left; padding-left: 20px; font-weight: 600; color: #f8fafc;">${f.moto || '-'}</td>
                 <td><span class="badge ${badgeSituacao}">${f.situ}</span></td>
-                <td>${f.imp || '-'}</td>
-                <td><button onclick="deleteFrota(${i})">🗑️</button></td>
+                <td style="font-weight: 700; color: #cbd5e1;">${f.imp || '-'}</td>
+                <td style="text-align: center;"><button class="btn-tbl-action btn-tbl-action-del" title="Excluir" onclick="deleteFrota(${i})">🗑️</button></td>
             </tr>
         `;
     }).join('');
@@ -1571,6 +1618,7 @@ function renderFrota() {
 function renderAgendamentos() {
     const pend = document.getElementById('corpo-pendente');
     const and = document.getElementById('corpo-andamento');
+    if (!pend || !and) return;
     pend.innerHTML = ""; and.innerHTML = "";
     
     const agendamentosOrdenados = [...db.agendamentos].sort((a, b) => {
@@ -1600,23 +1648,23 @@ function renderAgendamentos() {
             const classif = diff >= 8 ? 'PROGRAMADO' : 'NÃO PROGRAMADO';
             
             // TRAJETO AGENDADO: ">" em NEGRITO e LARANJA
-            const trajetoAgendado = `${a.emb} <span style="color: #ef6c00; font-weight: 900; font-size: 14px;">&gt;</span> ${a.des}`;
+            const trajetoAgendado = `${a.emb} <span style="color: #fb8500; font-weight: 900; font-size: 14px;">&gt;</span> ${a.des}`;
 
             tr.innerHTML = `
                 <td>
-                    <button onclick="prepararSaida(${a.id})">▶️</button> 
-                    <button onclick="editAgendamento(${a.id})">📝</button>
+                    <button class="btn-tbl-action" title="Iniciar" onclick="prepararSaida(${a.id})">▶️</button> 
+                    <button class="btn-tbl-action" title="Editar" onclick="editAgendamento(${a.id})">✏️</button>
                 </td>
-                <td style="color: #666;">${formatarDataBR(a.hora_solic)}</td>
-                <td style="font-weight: bold; color: #ef6c00;">
-                    ${index === 0 ? formatarDataBR(a.hora_frete) : '<span style="color: #ccc; font-weight: bold;">↳ (mesmo horário)</span>'} 
+                <td style="color: #94a3b8; font-size: 12px;">${formatarDataBR(a.hora_solic)}</td>
+                <td style="font-weight: 800; color: #fb8500;">
+                    ${index === 0 ? formatarDataBR(a.hora_frete) : '<span style="color: #64748b; font-weight: bold;">↳ (mesmo horário)</span>'} 
                 </td>
                 <td><span class="badge ${classif==='PROGRAMADO'?'bg-success':'bg-warning'}">${classif}</span></td>
-                <td>${a.solicitante}</td> 
-                <td>${a.carga}</td>
+                <td style="font-weight: 600; color: #f8fafc;">${a.solicitante}</td> 
+                <td style="font-weight: 600; color: #f8fafc;">${a.carga}</td>
                 
                 <td class="coluna-tipo-prancha">
-                    <select onchange="atualizarTipoPranchaAgendado(${a.id}, this.value)" style="padding: 2px; font-size: 11px; border-radius: 4px; border: 1px solid #ccc; max-width: 120px;">
+                    <select onchange="atualizarTipoPranchaAgendado(${a.id}, this.value)" style="padding: 6px; font-size: 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.15); background: #0f172a; color: white; width: 100%;">
                         <option value="">-</option>
                         <option value="Prancha Larga" ${a.tipo_prancha === 'Prancha Larga' ? 'selected' : ''}>Prancha Larga</option>
                         <option value="Prancha Baixa" ${a.tipo_prancha === 'Prancha Baixa' ? 'selected' : ''}>Prancha Baixa</option>
@@ -1625,8 +1673,8 @@ function renderAgendamentos() {
                     </select>
                 </td>
 
-                <td>${trajetoAgendado}</td>
-                <td><button onclick="deleteAgend(${a.id})">🗑️</button></td>
+                <td style="font-weight: 600;">${trajetoAgendado}</td>
+                <td><button class="btn-tbl-action btn-tbl-action-del" title="Excluir" onclick="deleteAgend(${a.id})">🗑️</button></td>
             `;
             pend.appendChild(tr);
         });
@@ -1635,21 +1683,21 @@ function renderAgendamentos() {
     // Renderização de Andamento
     agendamentosOrdenados.filter(a => a.status === 'ANDAMENTO').forEach(a => {
         const tr = document.createElement('tr');
-        tr.style.borderLeft = "6px solid #1976d2";
+        tr.style.borderLeft = "5px solid #0284c7";
         
         // TRAJETO ANDAMENTO: ">" em NEGRITO e AZUL
-        const trajetoAndamento = `${a.emb} <span style="color: #1976d2; font-weight: 900; font-size: 14px;">&gt;</span> ${a.des}`;
+        const trajetoAndamento = `${a.emb} <span style="color: #0284c7; font-weight: 900; font-size: 14px;">&gt;</span> ${a.des}`;
 
         tr.innerHTML = `
             <td>
-                <button onclick="finalizar(${a.id})">✅</button>
-                <button onclick="prepararTrocaExecucao(${a.id})">📝</button>
+                <button class="btn-tbl-action" title="Concluir" onclick="finalizar(${a.id})">✅</button>
+                <button class="btn-tbl-action" title="Editar" onclick="prepararTrocaExecucao(${a.id})">✏️</button>
             </td>
-            <td style="color:#1976d2; font-weight:bold;">${formatarDataBR(a.hora_real)}</td>
-            <td>${a.moto_real}</td>
-            <td>${a.solicitante}</td> 
-            <td>${a.carga}</td>
-            <td>${trajetoAndamento}</td>
+            <td style="color:#38bdf8; font-weight:bold;">${formatarDataBR(a.hora_real)}</td>
+            <td style="font-weight:600; color:#f8fafc;">${a.moto_real}</td>
+            <td style="font-weight:600; color:#f8fafc;">${a.solicitante}</td> 
+            <td style="font-weight:600; color:#f8fafc;">${a.carga}</td>
+            <td style="font-weight:600;">${trajetoAndamento}</td>
         `;
         and.appendChild(tr);
     });

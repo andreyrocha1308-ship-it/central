@@ -19,7 +19,7 @@
             --usa-verde-claro: #B2D969;
             --usa-verde-glow: #8bc34a;
             --bg-dark: #0f172a;
-            --bg-nav: #09261a;
+            --sidebar-width: 270px;
             --border-glass: rgba(178, 217, 105, 0.2);
         }
 
@@ -35,86 +35,143 @@
             overflow: hidden;
         }
 
-        /* BARRA DE NAVEGAÇÃO SUPERIOR */
-        .top-nav {
-            background: linear-gradient(135deg, #041f14 0%, #004A2F 60%, #0b3824 100%);
-            min-height: 65px;
+        /* LAYOUT PRINCIPAL */
+        .app-container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            border-bottom: 2px solid var(--usa-verde-claro);
+            height: 100vh;
+            width: 100vw;
             position: relative;
+        }
+
+        /* MENU LATERAL (DESKTOP) */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: linear-gradient(180deg, #03170e 0%, #004A2F 60%, #08291a 100%);
+            border-right: 2px solid var(--usa-verde-claro);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 18px;
+            box-shadow: 6px 0 25px rgba(0, 0, 0, 0.4);
             z-index: 9999;
-            flex-wrap: wrap;
-            gap: 15px;
+            flex-shrink: 0;
         }
 
-        .logo {
+        .sidebar-brand {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 12px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .logo img {
-            height: 40px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        .sidebar-brand img {
+            height: 48px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+            margin-bottom: 10px;
         }
 
-        .tabs-container {
+        .sidebar-brand-title {
+            font-weight: 800;
+            font-size: 13px;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-brand-sub {
+            font-size: 10px;
+            color: var(--usa-verde-claro);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-menu-label {
+            font-size: 10px;
+            font-weight: 800;
+            color: #94a3b8;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin: 20px 0 10px 8px;
+        }
+
+        .sidebar-nav {
             display: flex;
+            flex-direction: column;
             gap: 10px;
-            align-items: center;
-            flex-wrap: wrap;
-            background: rgba(0, 0, 0, 0.35);
-            padding: 5px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
+            flex: 1;
         }
 
-        .tab-btn {
-            padding: 10px 22px;
-            border: none;
-            background: transparent;
+        .nav-item {
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(0, 0, 0, 0.2);
             font-weight: 700;
             color: #cbd5e1;
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 12px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-transform: uppercase;
             font-size: 12px;
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+            font-family: inherit;
+            width: 100%;
+            text-align: left;
         }
 
-        .tab-btn.active {
-            background: linear-gradient(135deg, var(--usa-verde-claro), #8bc34a);
-            color: #002e1c;
-            box-shadow: 0 4px 15px rgba(178, 217, 105, 0.35);
-            transform: translateY(-1px);
-        }
-
-        .tab-btn:hover:not(.active) {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-        }
-
-        .header-title {
-            font-weight: 800;
-            color: #ffffff;
-            font-size: 13px;
-            letter-spacing: 1px;
+        .nav-item .nav-icon {
+            font-size: 18px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 6px 14px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            justify-content: center;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--usa-verde-claro), #8bc34a);
+            color: #002e1c;
+            border-color: transparent;
+            box-shadow: 0 4px 20px rgba(178, 217, 105, 0.35);
+            transform: translateX(4px);
+        }
+
+        .nav-item:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-color: rgba(178, 217, 105, 0.3);
+            transform: translateX(3px);
+        }
+
+        .btn-add-section {
+            border: 1px dashed rgba(178, 217, 105, 0.4);
+            background: rgba(178, 217, 105, 0.05);
+            color: var(--usa-verde-claro);
+            margin-top: 5px;
+        }
+
+        .btn-add-section:hover {
+            background: rgba(178, 217, 105, 0.15);
+            color: #ffffff;
+        }
+
+        .sidebar-footer {
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .status-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 11px;
+            color: #ffffff;
         }
 
         .pulse-dot {
@@ -124,6 +181,7 @@
             border-radius: 50%;
             box-shadow: 0 0 10px var(--usa-verde-claro);
             animation: pulse 2s infinite;
+            flex-shrink: 0;
         }
 
         @keyframes pulse {
@@ -132,11 +190,12 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(178, 217, 105, 0); }
         }
 
-        /* ÁREA DOS SISTEMAS */
+        /* ÁREA PRINCIPAL DOS SISTEMAS */
         .viewport {
-            height: calc(100vh - 69px);
-            width: 100%;
+            flex: 1;
+            height: 100vh;
             background: var(--bg-dark);
+            position: relative;
         }
 
         iframe {
@@ -150,61 +209,208 @@
             display: block;
         }
 
+        /* ESCONDER COMPONENTES MOBILE POR PADRÃO */
+        .mobile-header, .bottom-nav {
+            display: none;
+        }
+
+        /* ADAPTAÇÃO PARA DISPOSITIVOS MÓVEIS (CELULARES & TABLETS) */
         @media (max-width: 768px) {
-            .top-nav {
-                padding: 10px 15px;
-                justify-content: center;
+            .app-container {
+                flex-direction: column;
             }
-            .logo img { height: 32px; }
-            .header-title { display: none; }
-            .tabs-container {
+
+            /* ESCONDE A SIDEBAR DO DESKTOP */
+            .sidebar {
+                display: none;
+            }
+
+            /* CABEÇALHO SUPERIOR FIXO NO MOBILE */
+            .mobile-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 56px;
+                background: linear-gradient(135deg, #03170e 0%, #004A2F 100%);
+                border-bottom: 2px solid var(--usa-verde-claro);
+                padding: 0 16px;
+                position: fixed;
+                top: 0;
+                left: 0;
                 width: 100%;
-                justify-content: center;
+                z-index: 10000;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             }
-            .tab-btn {
-                padding: 8px 12px;
+
+            .mobile-header img {
+                height: 32px;
+            }
+
+            .mobile-header-title {
+                font-weight: 800;
                 font-size: 11px;
-                flex: 1;
-                justify-content: center;
+                color: #ffffff;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                background: rgba(255, 255, 255, 0.1);
+                padding: 4px 10px;
+                border-radius: 15px;
             }
+
+            /* VIEWPORT EM DISPOSITIVOS MÓVEIS */
             .viewport {
-                height: calc(100vh - 110px);
+                height: calc(100vh - 120px);
+                margin-top: 56px;
+                width: 100%;
+            }
+
+            /* MENU NATIVO FIXADO NA PARTE INFERIOR (BOTTOM NAV BAR) */
+            .bottom-nav {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 64px;
+                background: rgba(4, 31, 20, 0.95);
+                backdrop-filter: blur(12px);
+                border-top: 2px solid var(--usa-verde-claro);
+                z-index: 10000;
+                justify-content: space-around;
+                align-items: center;
+                padding: 0 8px;
+                box-shadow: 0 -6px 20px rgba(0,0,0,0.5);
+            }
+
+            .bottom-nav-item {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 3px;
+                color: #94a3b8;
+                text-decoration: none;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 6px 4px;
+                border-radius: 10px;
+                transition: all 0.2s ease;
+                font-family: inherit;
+            }
+
+            .bottom-nav-item .b-icon {
+                font-size: 20px;
+                line-height: 1;
+            }
+
+            .bottom-nav-item .b-label {
+                font-size: 10px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+            }
+
+            .bottom-nav-item.active {
+                color: #002e1c;
+                background: linear-gradient(135deg, var(--usa-verde-claro), #8bc34a);
+                box-shadow: 0 4px 12px rgba(178, 217, 105, 0.35);
+                transform: translateY(-2px);
             }
         }
     </style>
 </head>
 <body>
 
-<header class="top-nav">
-    <div class="logo">
+<div class="app-container">
+
+    <!-- MENU LATERAL (DESKTOP) -->
+    <aside class="sidebar">
+        <div>
+            <div class="sidebar-brand">
+                <img src="https://site.usinasantaadelia.com.br/wp-content/uploads/2018/05/img_logo.png" alt="Santa Adélia">
+                <div class="sidebar-brand-title">Santa Adélia</div>
+                <div class="sidebar-brand-sub">LOGÍSTICA UNIFICADA</div>
+            </div>
+
+            <div class="sidebar-menu-label">Navegação Principal</div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item active" onclick="switchTab('pesada', this)">
+                    <span class="nav-icon">🚛</span>
+                    <span>Frota Pesada (Pranchas)</span>
+                </button>
+                <button class="nav-item" onclick="switchTab('direcionados', this)">
+                    <span class="nav-icon">🚗</span>
+                    <span>Logística Direcionada</span>
+                </button>
+                
+                <!-- ESPAÇO PREPARADO PARA NOVAS SEÇÕES -->
+                <button class="nav-item btn-add-section" onclick="alert('Espaço reservado para adicionar novos módulos e seções!')">
+                    <span class="nav-icon">➕</span>
+                    <span>Adicionar Seção</span>
+                </button>
+            </nav>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="status-card">
+                <span class="pulse-dot"></span>
+                <span>PAINEL CENTRAL ATIVO</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- CABEÇALHO FIXO NO MOBILE -->
+    <div class="mobile-header">
         <img src="https://site.usinasantaadelia.com.br/wp-content/uploads/2018/05/img_logo.png" alt="Santa Adélia">
+        <div class="mobile-header-title">
+            <span class="pulse-dot"></span> CENTRAL
+        </div>
     </div>
 
-    <nav class="tabs-container">
-        <button class="tab-btn active" onclick="switchTab('pesada', this)">🚛 Frota Pesada (Pranchas)</button>
-        <button class="tab-btn" onclick="switchTab('direcionados', this)">🚗 Logística Direcionada (Carros)</button>
+    <!-- ÁREA DE EXIBIÇÃO DOS SISTEMAS -->
+    <main class="viewport">
+        <iframe id="iframe-pesada" src="Dashboard.html" class="active"></iframe>
+        <iframe id="iframe-direcionados" src="CENTRAL PRANCHAS copy.html"></iframe>
+    </main>
+
+    <!-- MENU NATIVO FIXADO NA PARTE INFERIOR (MOBILE) -->
+    <nav class="bottom-nav">
+        <button class="bottom-nav-item active" onclick="switchTab('pesada', this)">
+            <span class="b-icon">🚛</span>
+            <span class="b-label">Pranchas</span>
+        </button>
+        <button class="bottom-nav-item" onclick="switchTab('direcionados', this)">
+            <span class="b-icon">🚗</span>
+            <span class="b-label">Carros</span>
+        </button>
+        <button class="bottom-nav-item" onclick="alert('Espaço reservado para adicionar novos módulos!')">
+            <span class="b-icon">➕</span>
+            <span class="b-label">Novo</span>
+        </button>
     </nav>
 
-    <div class="header-title">
-        <span class="pulse-dot"></span> PAINEL CENTRAL
-    </div>
-</header>
-
-<main class="viewport">
-    <iframe id="iframe-pesada" src="Dashboard.html" class="active"></iframe>
-    <iframe id="iframe-direcionados" src="CENTRAL PRANCHAS copy.html"></iframe>
-</main>
+</div>
 
 <script>
     function switchTab(id, btn) {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        // Remove estado ativo de todos os botões (desktop e mobile)
+        document.querySelectorAll('.nav-item, .bottom-nav-item').forEach(b => b.classList.remove('active'));
+        
+        // Ativa os botões correspondentes à id selecionada
+        const targetButtons = document.querySelectorAll(`[onclick*="'${id}'"]`);
+        targetButtons.forEach(b => b.classList.add('active'));
 
+        // Alterna a visibilidade dos sistemas
         document.querySelectorAll('iframe').forEach(frame => frame.classList.remove('active'));
         const targetFrame = document.getElementById('iframe-' + id);
-        targetFrame.classList.add('active');
-
-        targetFrame.contentWindow.location.reload();
+        if (targetFrame) {
+            targetFrame.classList.add('active');
+            targetFrame.contentWindow.location.reload();
+        }
     }
 </script>
 
