@@ -699,16 +699,28 @@
         /* RESPONSIVIDADE (MOBILE & TABLETS) */
         @media (max-width: 768px) {
             header {
-                padding: 10px 15px;
-                justify-content: center;
+                padding: 10px 12px;
+                justify-content: space-between;
+                gap: 8px;
             }
             .main-nav {
                 margin-left: 0;
-                width: 100%;
-                justify-content: center;
+                width: auto;
+                justify-content: flex-start;
+                gap: 6px;
             }
             .nav-buttons {
-                width: 100%;
+                width: auto;
+                justify-content: flex-end;
+                gap: 6px;
+            }
+            header .btn span, header .nav-link span {
+                display: none !important;
+            }
+            header .btn, header .nav-link {
+                padding: 8px 10px !important;
+                min-width: 36px;
+                height: 36px;
                 justify-content: center;
             }
             .content {
@@ -723,10 +735,6 @@
             }
             .modal-content {
                 width: 96%;
-            }
-            .btn {
-                padding: 8px 12px;
-                font-size: 11px;
             }
         }
     </style>
@@ -869,7 +877,7 @@
                                 <th style="width: 120px; text-align: center;">RÁDIO</th> 
                                 <th style="width: 140px; text-align: center;">MANUTENÇÃO</th>
                                 <th style="text-align: left; padding-left: 20px;">MOTORISTA</th>
-                                <th style="width: 150px; text-align: center;">SITUAÇÃO</th>
+                                <th style="min-width: 170px; width: 170px; text-align: center;">SITUAÇÃO</th>
                                 <th style="width: 140px; text-align: center;">PRANCHA</th> 
                                 <th style="width: 70px; text-align: center;">EXCLUIR</th>
                             </tr>
@@ -951,7 +959,12 @@
                         </div>
                         <a href="#" class="btn btn-verde-medio" onclick="alert('Link do arquivo não configurado')">BAIXAR</a>
                     </div>
-                </div><div id="page-boletins" class="page-content">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-boletins" class="page-content">
     <div class="content">
         <div class="section-card">
             <div class="section-header header-docs" style="display: flex; justify-content: space-between; align-items: center;">
@@ -1724,7 +1737,7 @@ function renderFrota() {
                 <td style="font-weight: 700; color: #94a3b8; font-size: 12px;">📻 ${radioInfo}</td>
                 <td><span class="badge ${f.manut === 'SIM' ? 'bg-danger' : 'bg-success'}">${f.manut}</span></td>
                 <td style="text-align: left; padding-left: 20px; font-weight: 600; color: #f8fafc;">${f.moto || '-'}</td>
-                <td><span class="badge ${badgeSituacao}">${f.situ}</span></td>
+                <td><span class="badge ${badgeSituacao}" style="white-space: nowrap; display: inline-block; padding: 6px 14px; font-size: 11px;">${f.situ}</span></td>
                 <td style="font-weight: 700; color: #cbd5e1;">${f.imp || '-'}</td>
                 <td style="text-align: center;"><button class="btn-tbl-action btn-tbl-action-del" title="Excluir" onclick="deleteFrota(${i})">🗑️</button></td>
             </tr>
