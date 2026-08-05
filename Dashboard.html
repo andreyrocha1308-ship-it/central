@@ -653,12 +653,13 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 200;
+            z-index: 2000;
             left: 0; top: 0; width: 100%; height: 100%;
             background: rgba(15, 23, 42, 0.5);
             backdrop-filter: blur(8px);
             overflow-y: auto;
-            padding: 20px 0;
+            padding: 15px 0;
+            box-sizing: border-box;
         }
 
         .modal-content {
@@ -672,10 +673,35 @@
             border: 1px solid #e2e8f0;
             border-top: 6px solid #004A2F;
             color: #0f172a;
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
         }
 
-        .modal-body { padding: 25px; }
-        .modal-footer { padding: 18px 25px; background: #f8fafc; border-radius: 0 0 16px 16px; display: flex; gap: 10px; justify-content: flex-end; border-top: 1px solid var(--border-color); }
+        .modal-body {
+            padding: 22px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            flex: 1;
+        }
+
+        .modal-footer {
+            padding: 14px 22px;
+            background: #f8fafc;
+            border-radius: 0 0 16px 16px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            border-top: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .equipe-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+        }
 
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .full-col { grid-column: span 2; }
@@ -697,10 +723,10 @@
             box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
         }
 
-        .tabs { display: flex; border-bottom: 1px solid var(--border-color); margin-bottom: 18px; }
-        .tab-link { padding: 10px 20px; cursor: pointer; border-bottom: 3px solid transparent; font-size: 13px; font-weight: 700; color: #94a3b8; transition: all 0.2s ease; }
-        .tab-link:hover { color: #ffffff; }
-        .tab-link.active { border-color: var(--usa-verde-claro); color: var(--usa-verde-claro); }
+        .tabs { display: flex; border-bottom: 1px solid var(--border-color); margin-bottom: 18px; flex-wrap: wrap; }
+        .tab-link { padding: 10px 16px; cursor: pointer; border-bottom: 3px solid transparent; font-size: 12px; font-weight: 700; color: #64748b; transition: all 0.2s ease; }
+        .tab-link:hover { color: #004A2F; }
+        .tab-link.active { border-color: var(--usa-verde-claro); color: #004A2F; }
 
         /* RESPONSIVIDADE (MOBILE & TABLETS) */
         @media (max-width: 768px) {
@@ -734,13 +760,32 @@
                 margin: 15px auto;
             }
             .form-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
             }
             .full-col {
-                grid-column: span 1;
+                grid-column: span 1 !important;
+            }
+            .equipe-grid {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important;
             }
             .modal-content {
-                width: 96%;
+                width: 96% !important;
+                max-height: 94vh !important;
+                margin: auto;
+            }
+            .modal-body {
+                padding: 16px 12px !important;
+            }
+            .modal-footer {
+                padding: 12px 14px !important;
+                flex-direction: column !important;
+                gap: 8px !important;
+            }
+            .modal-footer .btn {
+                width: 100% !important;
+                justify-content: center;
+                min-height: 42px;
             }
         }
     </style>
@@ -810,7 +855,7 @@
                 <button class="btn btn-cinza" onclick="fecharModal('modalEquipe')">✕</button>
             </div>
             
-            <div style="display: grid; grid-template-columns: 280px 1fr; gap: 30px;">
+            <div class="equipe-grid">
                 
                 <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 1px solid #e0e0e0;">
                     <h4 style="margin-top: 0; color: var(--usa-verde-medio); border-bottom: 2px solid #ddd; padding-bottom: 8px;">Novo Funcionário</h4>
@@ -1553,18 +1598,16 @@ function atualizarFiltroMultiplo() {
 }
 
 function salvarRev(prefixo, campo, valor) {
+    if (!db.revisoes) db.revisoes = {};
     if (!db.revisoes[prefixo]) db.revisoes[prefixo] = { prox: 0, status: "DISPONIVEL" };
-    db.revisoes[prefixo][campo] = campo === 'prox' ? parseInt(valor) : valor;
-    localStorage.setItem('central_revisoes', JSON.stringify(db.revisoes));
-    renderRevisoes();
+    db.revisoes[prefixo][campo] = campo === 'prox' ? (parseInt(valor) || 0) : valor;
+    save();
 }
 function atualizarDadosRevisao(prefixo, campo, valor) {
     if (!db.revisoes) db.revisoes = {};
-    if (!db.revisoes[prefixo]) db.revisoes[prefixo] = { prox_km: 0, manut: "" };
-
-    db.revisoes[prefixo][campo] = campo === 'prox_km' ? parseInt(valor) : valor;
-    localStorage.setItem('usa_revisoes', JSON.stringify(db.revisoes));
-    renderRevisoes(); 
+    if (!db.revisoes[prefixo]) db.revisoes[prefixo] = { prox: 0, status: "DISPONIVEL" };
+    db.revisoes[prefixo][campo] = campo === 'prox' || campo === 'prox_km' ? (parseInt(valor) || 0) : valor;
+    save();
 }
 function salvarFuncionario() {
     const i = document.getElementById('eq_idx').value;
