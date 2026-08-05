@@ -1716,6 +1716,10 @@ function renderAll() {
 function renderFrota() {
     const tbody = document.getElementById('corpo-frota');
     if (!tbody) return;
+    if (!db.frota || db.frota.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #64748b; padding: 25px; font-weight: 600;">Nenhum veículo cadastrado na frota. Clique em "+ ADICIONAR VEÍCULO" acima para cadastrar.</td></tr>';
+        return;
+    }
     tbody.innerHTML = db.frota.map((f, i) => {
         const classeManutencao = f.manut === 'SIM' ? 'linha-manutencao' : '';
         const badgeSituacao = f.manut === 'SIM' ? 'bg-danger' : (f.situ === 'EM FRETE' ? 'bg-warning' : 'bg-success');
@@ -1749,82 +1753,92 @@ function renderAgendamentos() {
         return new Date(a.hora_frete) - new Date(b.hora_frete);
     });
 
-    const grupos = {};
-    agendamentosOrdenados.filter(a => a.status === 'PENDENTE').forEach(a => {
-        if (!grupos[a.hora_frete]) grupos[a.hora_frete] = [];
-        grupos[a.hora_frete].push(a);
-    });
+    const pendentes = agendamentosOrdenados.filter(a => a.status === 'PENDENTE');
+    if (pendentes.length === 0) {
+        pend.innerHTML = '<tr><td colspan="9" style="text-align: center; color: #64748b; padding: 20px; font-weight: 600;">Nenhum agendamento pendente no momento.</td></tr>';
+    } else {
+        const grupos = {};
+        pendentes.forEach(a => {
+            if (!grupos[a.hora_frete]) grupos[a.hora_frete] = [];
+            grupos[a.hora_frete].push(a);
+        });
 
-    Object.keys(grupos).forEach((horario) => {
-        const itens = grupos[horario];
-        
-        itens.forEach((a, index) => {
-            const tr = document.createElement('tr');
-            tr.classList.add('indicador-laranja');
-
-            if (index === 0) {
-                tr.classList.add('divisor-grupo');
-            } else {
-                tr.classList.add('linha-par');
-            }
-
-            const diff = (new Date(a.hora_frete) - new Date(a.hora_solic)) / (1000*60*60);
-            const classif = diff >= 8 ? 'PROGRAMADO' : 'NÃO PROGRAMADO';
+        Object.keys(grupos).forEach((horario) => {
+            const itens = grupos[horario];
             
-            // TRAJETO AGENDADO: ">" em NEGRITO e LARANJA
-            const trajetoAgendado = `${a.emb} <span style="color: #d97706; font-weight: 900; font-size: 14px;">&gt;</span> ${a.des}`;
+            itens.forEach((a, index) => {
+                const tr = document.createElement('tr');
+                tr.classList.add('indicador-laranja');
+
+                if (index === 0) {
+                    tr.classList.add('divisor-grupo');
+                } else {
+                    tr.classList.add('linha-par');
+                }
+
+                const diff = (new Date(a.hora_frete) - new Date(a.hora_solic)) / (1000*60*60);
+                const classif = diff >= 8 ? 'PROGRAMADO' : 'NÃO PROGRAMADO';
+                
+                // TRAJETO AGENDADO: ">" em NEGRITO e LARANJA
+                const trajetoAgendado = `${a.emb} <span style="color: #d97706; font-weight: 900; font-size: 14px;">&gt;</span> ${a.des}`;
+
+                tr.innerHTML = `
+                    <td>
+                        <button class="btn-tbl-action" title="Iniciar" onclick="prepararSaida(${a.id})">▶️</button> 
+                        <button class="btn-tbl-action" title="Editar" onclick="editAgendamento(${a.id})">✏️</button>
+                    </td>
+                    <td style="color: #64748b; font-size: 12px;">${formatarDataBR(a.hora_solic)}</td>
+                    <td style="font-weight: 800; color: #d97706;">
+                        ${index === 0 ? formatarDataBR(a.hora_frete) : '<span style="color: #64748b; font-weight: bold;">↳ (mesmo horário)</span>'} 
+                    </td>
+                    <td><span class="badge ${classif==='PROGRAMADO'?'bg-success':'bg-warning'}">${classif}</span></td>
+                    <td style="font-weight: 600; color: #0f172a;">${a.solicitante}</td> 
+                    <td style="font-weight: 600; color: #0f172a;">${a.carga}</td>
+                    
+                    <td class="coluna-tipo-prancha">
+                        <select onchange="atualizarTipoPranchaAgendado(${a.id}, this.value)" style="padding: 6px; font-size: 12px; border-radius: 6px; border: 1px solid #cbd5e1; background: #ffffff; color: #0f172a; width: 100%;">
+                            <option value="">-</option>
+                            <option value="Prancha Larga" ${a.tipo_prancha === 'Prancha Larga' ? 'selected' : ''}>Prancha Larga</option>
+                            <option value="Prancha Baixa" ${a.tipo_prancha === 'Prancha Baixa' ? 'selected' : ''}>Prancha Baixa</option>
+                            <option value="Prancha Munck" ${a.tipo_prancha === 'Prancha Munck' ? 'selected' : ''}>Prancha Munck</option>
+                            <option value="Caminhão Munck" ${a.tipo_prancha === 'Caminhão Munck' ? 'selected' : ''}>Caminhão Munck</option>
+                        </select>
+                    </td>
+
+                    <td style="font-weight: 600; color: #0f172a;">${trajetoAgendado}</td>
+                    <td><button class="btn-tbl-action btn-tbl-action-del" title="Excluir" onclick="deleteAgend(${a.id})">🗑️</button></td>
+                `;
+                pend.appendChild(tr);
+            });
+        });
+    }
+
+    // Renderização de Andamento
+    const andamentos = agendamentosOrdenados.filter(a => a.status === 'ANDAMENTO');
+    if (andamentos.length === 0) {
+        and.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 20px; font-weight: 600;">Nenhum frete em andamento no momento.</td></tr>';
+    } else {
+        andamentos.forEach(a => {
+            const tr = document.createElement('tr');
+            tr.style.borderLeft = "5px solid #0284c7";
+            
+            // TRAJETO ANDAMENTO: ">" em NEGRITO e AZUL
+            const trajetoAndamento = `${a.emb} <span style="color: #0284c7; font-weight: 900; font-size: 14px;">&gt;</span> ${a.des}`;
 
             tr.innerHTML = `
                 <td>
-                    <button class="btn-tbl-action" title="Iniciar" onclick="prepararSaida(${a.id})">▶️</button> 
-                    <button class="btn-tbl-action" title="Editar" onclick="editAgendamento(${a.id})">✏️</button>
+                    <button class="btn-tbl-action" title="Concluir" onclick="finalizar(${a.id})">✅</button>
+                    <button class="btn-tbl-action" title="Editar" onclick="prepararTrocaExecucao(${a.id})">✏️</button>
                 </td>
-                <td style="color: #64748b; font-size: 12px;">${formatarDataBR(a.hora_solic)}</td>
-                <td style="font-weight: 800; color: #d97706;">
-                    ${index === 0 ? formatarDataBR(a.hora_frete) : '<span style="color: #64748b; font-weight: bold;">↳ (mesmo horário)</span>'} 
-                </td>
-                <td><span class="badge ${classif==='PROGRAMADO'?'bg-success':'bg-warning'}">${classif}</span></td>
-                <td style="font-weight: 600; color: #0f172a;">${a.solicitante}</td> 
-                <td style="font-weight: 600; color: #0f172a;">${a.carga}</td>
-                
-                <td class="coluna-tipo-prancha">
-                    <select onchange="atualizarTipoPranchaAgendado(${a.id}, this.value)" style="padding: 6px; font-size: 12px; border-radius: 6px; border: 1px solid #cbd5e1; background: #ffffff; color: #0f172a; width: 100%;">
-                        <option value="">-</option>
-                        <option value="Prancha Larga" ${a.tipo_prancha === 'Prancha Larga' ? 'selected' : ''}>Prancha Larga</option>
-                        <option value="Prancha Baixa" ${a.tipo_prancha === 'Prancha Baixa' ? 'selected' : ''}>Prancha Baixa</option>
-                        <option value="Prancha Munck" ${a.tipo_prancha === 'Prancha Munck' ? 'selected' : ''}>Prancha Munck</option>
-                        <option value="Caminhão Munck" ${a.tipo_prancha === 'Caminhão Munck' ? 'selected' : ''}>Caminhão Munck</option>
-                    </select>
-                </td>
-
-                <td style="font-weight: 600; color: #0f172a;">${trajetoAgendado}</td>
-                <td><button class="btn-tbl-action btn-tbl-action-del" title="Excluir" onclick="deleteAgend(${a.id})">🗑️</button></td>
+                <td style="color:#0284c7; font-weight:bold;">${formatarDataBR(a.hora_real)}</td>
+                <td style="font-weight:600; color:#0f172a;">${a.moto_real}</td>
+                <td style="font-weight:600; color:#0f172a;">${a.solicitante}</td> 
+                <td style="font-weight:600; color:#0f172a;">${a.carga}</td>
+                <td style="font-weight:600; color:#0f172a;">${trajetoAndamento}</td>
             `;
-            pend.appendChild(tr);
+            and.appendChild(tr);
         });
-    });
-
-    // Renderização de Andamento
-    agendamentosOrdenados.filter(a => a.status === 'ANDAMENTO').forEach(a => {
-        const tr = document.createElement('tr');
-        tr.style.borderLeft = "5px solid #0284c7";
-        
-        // TRAJETO ANDAMENTO: ">" em NEGRITO e AZUL
-        const trajetoAndamento = `${a.emb} <span style="color: #0284c7; font-weight: 900; font-size: 14px;">&gt;</span> ${a.des}`;
-
-        tr.innerHTML = `
-            <td>
-                <button class="btn-tbl-action" title="Concluir" onclick="finalizar(${a.id})">✅</button>
-                <button class="btn-tbl-action" title="Editar" onclick="prepararTrocaExecucao(${a.id})">✏️</button>
-            </td>
-            <td style="color:#0284c7; font-weight:bold;">${formatarDataBR(a.hora_real)}</td>
-            <td style="font-weight:600; color:#0f172a;">${a.moto_real}</td>
-            <td style="font-weight:600; color:#0f172a;">${a.solicitante}</td> 
-            <td style="font-weight:600; color:#0f172a;">${a.carga}</td>
-            <td style="font-weight:600; color:#0f172a;">${trajetoAndamento}</td>
-        `;
-        and.appendChild(tr);
-    });
+    }
 }
 function atualizarTipoPranchaAgendado(id, valor) {
     const idx = db.agendamentos.findIndex(x => x.id == id);
@@ -2180,7 +2194,12 @@ function salvarStatusFrota() {
             }
         }
 
-        window.onload = inicializarFirebase;
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            inicializarFirebase();
+        } else {
+            document.addEventListener('DOMContentLoaded', inicializarFirebase);
+        }
+        window.addEventListener('load', inicializarFirebase);
     </script>
 </body>
 </html>

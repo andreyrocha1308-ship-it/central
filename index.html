@@ -421,7 +421,11 @@
         const targetFrame = document.getElementById('iframe-' + id);
         if (targetFrame) {
             targetFrame.classList.add('active');
-            targetFrame.contentWindow.location.reload();
+            try {
+                targetFrame.contentWindow.location.reload();
+            } catch (e) {
+                targetFrame.src = targetFrame.src;
+            }
         }
     }
 </script>
