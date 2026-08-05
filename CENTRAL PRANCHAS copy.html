@@ -1879,26 +1879,43 @@ function limparQRUPra() {
     fecharModal('modalQRUPra'); 
     abrirPranchas(); // Reabre a lista de pranchas
 }
+function safeGetStorage(key, fallback) {
+    try {
+        const item = localStorage.getItem(key);
+        if (!item) return fallback;
+        if (typeof fallback === 'object') return JSON.parse(item);
+        return item;
+    } catch(e) {
+        return fallback;
+    }
+}
+
+function safeSetStorage(key, val) {
+    try {
+        localStorage.setItem(key, typeof val === 'string' ? val : JSON.stringify(val));
+    } catch(e) {}
+}
+
     let db = {
-        veiculos: JSON.parse(localStorage.getItem('v6_veics')) || [],
-        motos: JSON.parse(localStorage.getItem('v6_motos')) || [],
-        servicos: JSON.parse(localStorage.getItem('v6_servs')) || [],
-        viagens: JSON.parse(localStorage.getItem('v6_viagens')) || [],
-        v_motos: JSON.parse(localStorage.getItem('v6_vmotos')) || {},
-        controlador: localStorage.getItem('v6_controlador') || '',
-        pranchas: JSON.parse(localStorage.getItem('v6_pranchas')) || [],
-        obs_turno: localStorage.getItem('v6_obs_turno') || ''
+        veiculos: safeGetStorage('v6_veics', []),
+        motos: safeGetStorage('v6_motos', []),
+        servicos: safeGetStorage('v6_servs', []),
+        viagens: safeGetStorage('v6_viagens', []),
+        v_motos: safeGetStorage('v6_vmotos', {}),
+        controlador: safeGetStorage('v6_controlador', ''),
+        pranchas: safeGetStorage('v6_pranchas', []),
+        obs_turno: safeGetStorage('v6_obs_turno', '')
     };
 
     function save(skipFirebase = false) {
-        localStorage.setItem('v6_veics', JSON.stringify(db.veiculos));
-        localStorage.setItem('v6_motos', JSON.stringify(db.motos));
-        localStorage.setItem('v6_servs', JSON.stringify(db.servicos));
-        localStorage.setItem('v6_viagens', JSON.stringify(db.viagens));
-        localStorage.setItem('v6_vmotos', JSON.stringify(db.v_motos));
-        localStorage.setItem('v6_controlador', db.controlador);
-        localStorage.setItem('v6_pranchas', JSON.stringify(db.pranchas));
-        localStorage.setItem('v6_obs_turno', db.obs_turno);
+        safeSetStorage('v6_veics', db.veiculos);
+        safeSetStorage('v6_motos', db.motos);
+        safeSetStorage('v6_servs', db.servicos);
+        safeSetStorage('v6_viagens', db.viagens);
+        safeSetStorage('v6_vmotos', db.v_motos);
+        safeSetStorage('v6_controlador', db.controlador);
+        safeSetStorage('v6_pranchas', db.pranchas);
+        safeSetStorage('v6_obs_turno', db.obs_turno);
         render();
 
         if (!skipFirebase && typeof firestoreDb !== 'undefined') {

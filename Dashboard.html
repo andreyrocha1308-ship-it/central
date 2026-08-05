@@ -1290,8 +1290,10 @@ function toggleCheckboxes() {
 
 // Fecha o menu ao clicar fora
 window.addEventListener('click', function(e) {
-    if (!document.querySelector('.multiselect-container').contains(e.target)) {
-        document.getElementById('lista-checkboxes').classList.remove('show-list');
+    const container = document.querySelector('.multiselect-container');
+    const list = document.getElementById('lista-checkboxes');
+    if (container && list && !container.contains(e.target)) {
+        list.classList.remove('show-list');
     }
 });       
 function adicionarFrotaAoBoletim() {
@@ -1319,11 +1321,13 @@ function confirmarAdicaoBoletim() {
     fecharModal('modalAddFrotaBoletim');
     renderBoletins();
 }
-        // Inicializa a data de conferência com hoje
-document.getElementById('filtro_data_boletim').value = new Date().toISOString().split('T')[0];
 
 function renderBoletins() {
-    const dataFiltro = document.getElementById('filtro_data_boletim').value;
+    const filtroInput = document.getElementById('filtro_data_boletim');
+    if (filtroInput && !filtroInput.value) {
+        filtroInput.value = new Date().toISOString().split('T')[0];
+    }
+    const dataFiltro = filtroInput ? filtroInput.value : new Date().toISOString().split('T')[0];
     const corpo = document.getElementById('corpo-boletins-conferencia');
     if(!corpo) return;
     corpo.innerHTML = "";
@@ -1671,32 +1675,63 @@ function irPara(pagina) {
     }
 }
 
+function safeGetStorage(key, fallback) {
+    try {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : fallback;
+    } catch(e) {
+        return fallback;
+    }
+}
+
+function safeSetStorage(key, val) {
+    try {
+        localStorage.setItem(key, typeof val === 'string' ? val : JSON.stringify(val));
+    } catch(e) {}
+}
+
 let db = {
-    motos: JSON.parse(localStorage.getItem('usa_motos') || '[]'),
-    veics: JSON.parse(localStorage.getItem('usa_veics') || '[]'), // Cavalos (Frotas)
-    imps: JSON.parse(localStorage.getItem('usa_imps') || '[]'),
-    agendamentos: JSON.parse(localStorage.getItem('usa_agendamentos') || '[]'),
-    frota: JSON.parse(localStorage.getItem('usa_frota') || '[]'),
-    historico: JSON.parse(localStorage.getItem('usa_historico') || '[]'),
-    boletins: JSON.parse(localStorage.getItem('usa_boletins') || '[]'),
-    frota_boletins: JSON.parse(localStorage.getItem('usa_frota_boletins') || '[]'),
-    equipamentos_boletim: JSON.parse(localStorage.getItem('usa_equipamentos_boletim') || '[]'),
-    revisoes: JSON.parse(localStorage.getItem('central_revisoes') || '{}'), // NOVO BANCO
-    equipe: JSON.parse(localStorage.getItem('usa_equipe') || '[]')
+    motos: safeGetStorage('usa_motos', []),
+    veics: safeGetStorage('usa_veics', []), // Cavalos (Frotas)
+    imps: safeGetStorage('usa_imps', []),
+    agendamentos: safeGetStorage('usa_agendamentos', []),
+    frota: safeGetStorage('usa_frota', []),
+    historico: safeGetStorage('usa_historico', []),
+    boletins: safeGetStorage('usa_boletins', []),
+    frota_boletins: safeGetStorage('usa_frota_boletins', []),
+    equipamentos_boletim: safeGetStorage('usa_equipamentos_boletim', []),
+    revisoes: safeGetStorage('central_revisoes', {}), // NOVO BANCO
+    equipe: safeGetStorage('usa_equipe', [])
 };
 
+// Garante dados padrão caso a base local esteja vazia
+if (!db.frota || db.frota.length === 0) {
+    db.frota = [
+        { veic: "5010", situ: "AG. PROGRAMAÇÃO", manut: "NÃO", moto: "-", imp: "PRANCHA 01" },
+        { veic: "5012", situ: "AG. PROGRAMAÇÃO", manut: "NÃO", moto: "-", imp: "PRANCHA 02" },
+        { veic: "5015", situ: "AG. PROGRAMAÇÃO", manut: "NÃO", moto: "-", imp: "PRANCHA 03" }
+    ];
+}
+if (!db.veics || db.veics.length === 0) {
+    db.veics = [
+        { prefixo: "5010", radio: "01" },
+        { prefixo: "5012", radio: "02" },
+        { prefixo: "5015", radio: "03" }
+    ];
+}
+
 const save = (skipFirebase = false) => {
-    localStorage.setItem('usa_motos', JSON.stringify(db.motos));
-    localStorage.setItem('usa_veics', JSON.stringify(db.veics));
-    localStorage.setItem('usa_imps', JSON.stringify(db.imps));
-    localStorage.setItem('usa_agendamentos', JSON.stringify(db.agendamentos));
-    localStorage.setItem('usa_frota', JSON.stringify(db.frota));
-    localStorage.setItem('usa_historico', JSON.stringify(db.historico));
-    localStorage.setItem('usa_equipe', JSON.stringify(db.equipe)); // Salva equipe
-    localStorage.setItem('usa_boletins', JSON.stringify(db.boletins));
-    localStorage.setItem('usa_frota_boletins', JSON.stringify(db.frota_boletins)); // Salva a lista da tabela
-    localStorage.setItem('usa_equipamentos_boletim', JSON.stringify(db.equipamentos_boletim));
-    localStorage.setItem('central_revisoes', JSON.stringify(db.revisoes));
+    safeSetStorage('usa_motos', db.motos);
+    safeSetStorage('usa_veics', db.veics);
+    safeSetStorage('usa_imps', db.imps);
+    safeSetStorage('usa_agendamentos', db.agendamentos);
+    safeSetStorage('usa_frota', db.frota);
+    safeSetStorage('usa_historico', db.historico);
+    safeSetStorage('usa_equipe', db.equipe);
+    safeSetStorage('usa_boletins', db.boletins);
+    safeSetStorage('usa_frota_boletins', db.frota_boletins);
+    safeSetStorage('usa_equipamentos_boletim', db.equipamentos_boletim);
+    safeSetStorage('central_revisoes', db.revisoes);
     renderAll();
     renderRevisoes();
 
