@@ -19,16 +19,16 @@
         :root {
             --usa-verde-escuro: #004A2F;
             --usa-verde-medio: #1b5e39;
-            --usa-verde-claro: #B2D969;
-            --usa-verde-glow: rgba(178, 217, 105, 0.4);
-            --usa-amarelo: #ffb703;
+            --usa-verde-claro: #16a34a;
+            --usa-verde-glow: rgba(22, 163, 74, 0.2);
+            --usa-amarelo: #d97706;
             --usa-azul: #0284c7;
-            --usa-qru: #ef4444;
-            --bg-body: #0b1329;
-            --card-bg: #131f37;
-            --card-inner: #1a2947;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --border-glow: rgba(178, 217, 105, 0.25);
+            --usa-qru: #dc2626;
+            --bg-body: #f1f5f9;
+            --card-bg: #ffffff;
+            --card-inner: #f8fafc;
+            --border-color: #e2e8f0;
+            --border-glow: rgba(22, 163, 74, 0.3);
         }
 
         * { box-sizing: border-box; }
@@ -38,22 +38,22 @@
             background-color: var(--bg-body); 
             margin: 0; 
             padding: 0; 
-            color: #f1f5f9;
+            color: #0f172a;
         }
 
         /* FILTROS E TABELA DE REVISÃO */
         .multiselect-container { position: relative; display: inline-block; width: 220px; align-items: center; }
         .select-box { 
             cursor: pointer; 
-            background: #0f172a; 
-            border: 1px solid rgba(255, 255, 255, 0.15); 
+            background: #ffffff; 
+            border: 1px solid #cbd5e1; 
             border-radius: 6px; 
             padding: 5px 10px; 
             font-size: 13px; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            color: #f1f5f9;
+            color: #0f172a;
             gap: 10px;
             position: relative;
             height: 32px;
@@ -65,8 +65,8 @@
             align-items: center; 
         }
         .checkboxes-list { 
-            display: none; position: absolute; background: #131f37; border: 1px solid rgba(255, 255, 255, 0.15); 
-            width: 100%; z-index: 1000; max-height: 180px; overflow-y: auto; align-items: center; box-shadow: 0 8px 24px rgba(0,0,0,0.5); 
+            display: none; position: absolute; background: #ffffff; border: 1px solid #cbd5e1; 
+            width: 100%; z-index: 1000; max-height: 180px; overflow-y: auto; align-items: center; box-shadow: 0 8px 24px rgba(0,0,0,0.12); 
             border-radius: 6px;
         }
         .checkboxes-list label { 
@@ -76,14 +76,14 @@
             padding: 8px 10px; 
             cursor: pointer; 
             font-size: 13px; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
-            color: #cbd5e1; 
+            border-bottom: 1px solid #f1f5f9; 
+            color: #334155; 
         }
         .checkboxes-list input { 
             margin-right: 10px; 
             align-items: center; 
         }
-        .checkboxes-list label:hover { background: rgba(255, 255, 255, 0.08); color: #ffffff; }
+        .checkboxes-list label:hover { background: #f1f5f9; color: #0f172a; }
         .show-list { display: block !important; }
 
         .revisao-table { 
@@ -94,8 +94,8 @@
             margin-bottom: 20px;
         }
         .revisao-table th { 
-            background: linear-gradient(180deg, #182848 0%, #101c33 100%); 
-            color: var(--usa-verde-claro); 
+            background: linear-gradient(180deg, #004A2F 0%, #1b5e39 100%); 
+            color: #ffffff; 
             padding: 10px 6px; 
             font-weight: 700; 
             border: 1px solid var(--border-color); 
@@ -107,7 +107,7 @@
             border: 1px solid var(--border-color); 
             text-align: center; 
             vertical-align: middle;
-            color: #e2e8f0;
+            color: #1e293b;
         }
         .table-responsive-revisao {
             width: 100%;
@@ -115,29 +115,29 @@
             text-align: center;
         }
         .linha-indisponivel {
-            background-color: rgba(239, 68, 68, 0.2) !important;
+            background-color: #fee2e2 !important;
         }
         .linha-indisponivel td {
-            color: #fca5a5 !important;
+            color: #dc2626 !important;
         }
 
         .select-filtro-revisao {
             padding: 6px;
             border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid #cbd5e1;
             font-size: 12px;
             outline: none;
-            background: #0f172a;
-            color: white;
+            background: #ffffff;
+            color: #0f172a;
             min-width: 150px;
             font-family: inherit;
         }
 
         .input-revisao-clean { 
             width: 95%; 
-            border: 1px solid rgba(255, 255, 255, 0.15); 
-            background: #0f172a;
-            color: white;
+            border: 1px solid #cbd5e1; 
+            background: #ffffff;
+            color: #0f172a;
             padding: 6px; 
             font-size: 12px; 
             text-align: center; 
@@ -149,9 +149,9 @@
             padding: 6px;
             font-size: 12px;
             border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            background: #0f172a;
-            color: white;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: #0f172a;
             font-family: inherit;
         }
         .input-revisao-clean:focus, .select-manutencao:focus {
@@ -161,7 +161,7 @@
 
         .km-restante {
             font-weight: 800;
-            color: #fca5a5;
+            color: #dc2626;
         }
 
         /* Botões de Ação */
@@ -177,9 +177,9 @@
             gap: 2px;
         }
         .btn-move {
-            background-color: #1e293b;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #e2e8f0;
+            background-color: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            color: #1e293b;
             font-size: 10px;
             padding: 2px 6px;
             cursor: pointer;
@@ -195,7 +195,7 @@
             border: none;
             cursor: pointer;
             font-size: 15px;
-            color: #ef4444;
+            color: #dc2626;
             padding: 0 5px;
             display: flex;
             align-items: center;
@@ -207,7 +207,7 @@
 
         .prefixo-texto {
             font-weight: bold;
-            color: var(--usa-verde-claro);
+            color: var(--usa-verde-medio);
             margin-left: 4px;
         }
 
@@ -219,8 +219,8 @@
             font-size: 12px;
         }
         .boletim-table th {
-            background: linear-gradient(180deg, #182848 0%, #101c33 100%);
-            color: var(--usa-verde-claro);
+            background: linear-gradient(180deg, #004A2F 0%, #1b5e39 100%);
+            color: #ffffff;
             padding: 12px;
             text-transform: uppercase;
             font-size: 11px;
@@ -233,19 +233,19 @@
             border-bottom: 1px solid var(--border-color);
             text-align: center;
             transition: all 0.2s;
-            color: #cbd5e1;
+            color: #1e293b;
         }
 
         /* Status dinâmicos */
         .status-ok {
-            background-color: rgba(34, 197, 94, 0.2) !important;
-            color: #4ade80 !important;
+            background-color: #dcfce7 !important;
+            color: #15803d !important;
             font-weight: bold;
             border-radius: 6px;
         }
         .status-pendente {
-            background-color: rgba(239, 68, 68, 0.2) !important;
-            color: #fca5a5 !important;
+            background-color: #fee2e2 !important;
+            color: #dc2626 !important;
             font-style: italic;
             border-radius: 6px;
         }
@@ -253,7 +253,7 @@
         .btn-add-equip {
             background: linear-gradient(135deg, #1b5e39, #004A2F);
             color: white;
-            border: 1px solid rgba(178, 217, 105, 0.4);
+            border: 1px solid rgba(0, 74, 47, 0.4);
             padding: 10px 20px;
             border-radius: 10px;
             cursor: pointer;
@@ -263,21 +263,21 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .btn-add-equip:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
         }
 
         .input-data-boletim {
             padding: 8px 14px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            background: #0f172a;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
             border-radius: 8px;
             font-family: inherit;
             font-weight: bold;
-            color: #ffffff;
+            color: #0f172a;
             outline: none;
             transition: all 0.3s;
         }
@@ -290,7 +290,7 @@
             padding: 14px 12px;
             text-align: left;
             vertical-align: middle;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid #e2e8f0;
         }
 
         #modalHistorico th:nth-child(1), #modalHistorico td:nth-child(1) { width: 140px; }
@@ -310,24 +310,27 @@
             padding: 16px 14px;
             font-weight: 800;
             font-size: 11px;
-            color: var(--usa-verde-claro);
+            color: #004A2F;
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 2px solid #cbd5e1;
+            background: #f8fafc;
+            text-align: center;
         }
 
         td {
             padding: 14px 12px;
             vertical-align: middle;
             font-size: 13px;
-            color: #f1f5f9;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            color: #1e293b;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
         }
 
         .btn-tbl-action {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #ffffff;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            color: #0f172a;
             padding: 6px 10px;
             border-radius: 8px;
             font-size: 12px;
@@ -339,20 +342,21 @@
             gap: 4px;
         }
         .btn-tbl-action:hover {
-            background: rgba(178, 217, 105, 0.2);
-            border-color: var(--usa-verde-claro);
+            background: #dcfce7;
+            border-color: #16a34a;
+            color: #15803d;
             transform: scale(1.1);
         }
         .btn-tbl-action-del:hover {
-            background: rgba(239, 68, 68, 0.25);
-            border-color: #ef4444;
-            color: #fca5a5;
+            background: #fee2e2;
+            border-color: #dc2626;
+            color: #dc2626;
         }
 
         .input-revisao-clean {
-            background: #0f172a;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #ffffff;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #0f172a;
             border-radius: 6px;
             padding: 6px 10px;
             font-size: 12px;
@@ -363,13 +367,13 @@
         }
         .input-revisao-clean:focus {
             border-color: var(--usa-verde-claro);
-            box-shadow: 0 0 0 2px rgba(178, 217, 105, 0.2);
+            box-shadow: 0 0 0 2px var(--usa-verde-glow);
         }
 
         .select-manutencao {
-            background: #0f172a;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #ffffff;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #0f172a;
             border-radius: 6px;
             padding: 6px 10px;
             font-size: 11px;
@@ -386,9 +390,9 @@
             display: inline-block;
         }
         .select-box {
-            background: #0f172a;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #f8fafc;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #0f172a;
             padding: 6px 12px;
             border-radius: 8px;
             font-size: 11px;
@@ -403,14 +407,14 @@
             position: absolute;
             top: 100%;
             right: 0;
-            background: #152238;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
             border-radius: 8px;
             padding: 10px;
             max-height: 200px;
             overflow-y: auto;
             z-index: 100;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
         }
         .checkboxes-list.show-list {
             display: block;
@@ -419,36 +423,36 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #e2e8f0;
+            color: #334155;
             font-size: 12px;
             padding: 4px 0;
             cursor: pointer;
         }
 
         #corpo-frota td, #corpo-andamento td, #corpo-pendente td, #corpo-boletins-conferencia td, #corpo-revisoes td {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid #e2e8f0;
         }
         .indicador-laranja {
-            border-left: 5px solid #fb8500 !important;
+            border-left: 5px solid #d97706 !important;
         }
         .linha-par {
-            background-color: rgba(255, 255, 255, 0.02);
+            background-color: #f8fafc;
         }
         .divisor-grupo {
-            border-top: 2px solid rgba(251, 133, 0, 0.5) !important;
+            border-top: 2px solid rgba(217, 119, 6, 0.5) !important;
         }
 
         tbody tr:hover {
-            background-color: rgba(178, 217, 105, 0.08) !important;
+            background-color: #f1f5f9 !important;
         }
 
         .linha-manutencao {
-            background-color: rgba(239, 68, 68, 0.15) !important;
-            color: #fca5a5 !important;
+            background-color: #fee2e2 !important;
+            color: #dc2626 !important;
         }
         .linha-manutencao td {
             font-weight: bold;
-            border-bottom: 1px solid rgba(239, 68, 68, 0.3) !important;
+            border-bottom: 1px solid #fca5a5 !important;
         }
 
         header {
@@ -457,8 +461,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            border-bottom: 2px solid var(--usa-verde-claro);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-bottom: 3px solid #82b638;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -469,7 +473,7 @@
         .logo-container img {
             height: 42px;
             width: auto;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
         .btn-svg {
@@ -493,7 +497,7 @@
 
         .nav-link {
             text-decoration: none;
-            color: #cbd5e1;
+            color: #ffffff;
             font-weight: 700;
             font-size: 11px;
             padding: 8px 14px;
@@ -502,8 +506,8 @@
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            background: rgba(0, 0, 0, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -511,18 +515,19 @@
         }
 
         .nav-link:hover { 
-            background: rgba(255, 255, 255, 0.1); 
+            background: rgba(255, 255, 255, 0.25); 
             color: #ffffff;
         }
         .nav-link.active {
-            background: linear-gradient(135deg, var(--usa-verde-claro), #8bc34a);
-            color: #002e1c;
-            box-shadow: 0 4px 15px rgba(178, 217, 105, 0.35);
+            background: #ffffff;
+            color: #004A2F;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
             border-color: transparent;
+            font-weight: 800;
         }
 
         .nav-link.active .btn-svg {
-            stroke: #002e1c;
+            stroke: #004A2F;
         }
 
         .nav-buttons {
@@ -552,7 +557,7 @@
         }
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
         .btn:active {
             transform: translateY(0);
@@ -560,7 +565,7 @@
 
         .btn-verde-escuro { background: linear-gradient(135deg, #1b5e39, #004A2F); border: 1px solid rgba(178, 217, 105, 0.3); }
         .btn-verde-medio { background: linear-gradient(135deg, #237a4a, #1b5e39); }
-        .btn-cinza { background: #334155; color: #cbd5e1; }
+        .btn-cinza { background: #475569; color: #ffffff; }
         .btn-danger { background: linear-gradient(135deg, #ef4444, #dc2626); }
 
         .content {
@@ -573,9 +578,9 @@
         .page-content.active { display: block; }
 
         .section-card {
-            background: var(--card-bg);
+            background: #ffffff;
             border-radius: 14px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
             margin-bottom: 30px;
             overflow: hidden;
             border: 1px solid var(--border-color);
@@ -593,20 +598,20 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .header-frota { background: linear-gradient(135deg, #004A2F, #1b5e39); color: var(--usa-verde-claro); }
+        .header-frota { background: linear-gradient(135deg, #004A2F, #1b5e39); color: #ffffff; }
         .header-andamento { background: linear-gradient(135deg, #0284c7, #0369a1); color: white; }
-        .header-pendente { background: linear-gradient(135deg, #fb8500, #d97706); color: white; }
-        .header-docs { background: linear-gradient(135deg, #334155, #1e293b); color: white; }
+        .header-pendente { background: linear-gradient(135deg, #d97706, #b45309); color: white; }
+        .header-docs { background: linear-gradient(135deg, #004A2F, #1b5e39); color: white; }
 
         .table-responsive { overflow-x: auto; width: 100%; }
 
         .badge { padding: 5px 12px; border-radius: 20px; font-weight: 800; font-size: 10px; letter-spacing: 0.5px; }
-        .bg-success { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); }
-        .bg-warning { background: rgba(251, 133, 0, 0.2); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+        .bg-success { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+        .bg-warning { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
         .bg-danger { 
-            background: rgba(239, 68, 68, 0.2) !important; 
-            color: #fca5a5 !important; 
-            border: 1px solid rgba(248, 113, 113, 0.3);
+            background: #fee2e2 !important; 
+            color: #dc2626 !important; 
+            border: 1px solid #fca5a5;
         }
 
         .download-grid {
@@ -617,7 +622,7 @@
         }
 
         .download-card {
-            background: var(--card-inner);
+            background: #f8fafc;
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 20px;
@@ -627,57 +632,57 @@
             transition: all 0.3s ease;
         }
 
-        .download-card:hover { border-color: var(--usa-verde-claro); box-shadow: 0 6px 20px rgba(0,0,0,0.3); transform: translateY(-2px); }
+        .download-card:hover { border-color: var(--usa-verde-medio); box-shadow: 0 6px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
         .download-icon { font-size: 32px; }
         .download-info { flex: 1; }
-        .download-info strong { display: block; color: var(--usa-verde-claro); margin-bottom: 4px; font-size: 14px; }
-        .download-info span { font-size: 11px; color: #94a3b8; }
+        .download-info strong { display: block; color: #004A2F; margin-bottom: 4px; font-size: 14px; }
+        .download-info span { font-size: 11px; color: #64748b; }
 
         .modal {
             display: none;
             position: fixed;
             z-index: 200;
             left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(11, 19, 41, 0.85);
+            background: rgba(15, 23, 42, 0.5);
             backdrop-filter: blur(8px);
             overflow-y: auto;
             padding: 20px 0;
         }
 
         .modal-content {
-            background: #152238;
+            background: #ffffff;
             width: 92%;
             max-width: 750px;
             margin: auto;
             border-radius: 16px;
             position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-top: 6px solid var(--usa-verde-claro);
-            color: white;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2);
+            border: 1px solid #e2e8f0;
+            border-top: 6px solid #004A2F;
+            color: #0f172a;
         }
 
         .modal-body { padding: 25px; }
-        .modal-footer { padding: 18px 25px; background: #0f172a; border-radius: 0 0 16px 16px; display: flex; gap: 10px; justify-content: flex-end; border-top: 1px solid var(--border-color); }
+        .modal-footer { padding: 18px 25px; background: #f8fafc; border-radius: 0 0 16px 16px; display: flex; gap: 10px; justify-content: flex-end; border-top: 1px solid var(--border-color); }
 
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .full-col { grid-column: span 2; }
         .input-group { display: flex; flex-direction: column; margin-bottom: 12px; }
-        .input-group label { font-size: 11px; font-weight: 700; margin-bottom: 6px; color: var(--usa-verde-claro); letter-spacing: 0.5px; text-transform: uppercase; }
+        .input-group label { font-size: 11px; font-weight: 700; margin-bottom: 6px; color: #004A2F; letter-spacing: 0.5px; text-transform: uppercase; }
         .input-group input, .input-group select { 
             padding: 10px 12px; 
-            border: 1px solid rgba(255, 255, 255, 0.12); 
+            border: 1px solid #cbd5e1; 
             border-radius: 8px; 
             font-size: 13px; 
-            background: #0f172a;
-            color: white;
+            background: #ffffff;
+            color: #0f172a;
             font-family: inherit;
             outline: none;
             transition: all 0.2s ease;
         }
         .input-group input:focus, .input-group select:focus {
-            border-color: var(--usa-verde-claro);
-            box-shadow: 0 0 0 3px rgba(178, 217, 105, 0.2);
+            border-color: #16a34a;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
         }
 
         .tabs { display: flex; border-bottom: 1px solid var(--border-color); margin-bottom: 18px; }
@@ -865,7 +870,7 @@
                                 <th style="width: 140px; text-align: center;">FROTA (CAVALO)</th>
                                 <th style="width: 120px; text-align: center;">RÁDIO</th> 
                                 <th style="width: 140px; text-align: center;">MANUTENÇÃO</th>
-                                <th style="text-align: left; padding-left: 20px;">MOTORISTA</th>
+                                <th style="text-align: center;">MOTORISTA</th>
                                 <th style="min-width: 170px; width: 170px; text-align: center;">SITUAÇÃO</th>
                                 <th style="width: 140px; text-align: center;">PRANCHA</th> 
                                 <th style="width: 70px; text-align: center;">EXCLUIR</th>
@@ -968,7 +973,7 @@
                     <thead>
                         <tr>
                             <th rowspan="2" style="width: 180px;">FROTA</th>
-                            <th rowspan="2" style="width: 180px; text-align: left; padding-left: 15px;">DESCRIÇÃO</th>
+                            <th rowspan="2" style="width: 180px; text-align: center;">DESCRIÇÃO</th>
                             <th colspan="2" style="background: rgba(0, 74, 47, 0.6); color: var(--usa-verde-claro);">TURNO A</th>
                             <th colspan="2" style="background: rgba(0, 74, 47, 0.6); color: var(--usa-verde-claro);">TURNO B</th>
                             <th colspan="2" style="background: rgba(0, 74, 47, 0.6); color: var(--usa-verde-claro);">TURNO C</th>
@@ -1341,18 +1346,18 @@ function renderBoletins() {
                     <span style="font-weight: 800; color: var(--usa-verde-claro); font-size: 14px; margin-left: 4px;">${prefixo}</span>
                 </div>
             </td>
-            <td style="font-weight: 600; color: #cbd5e1; text-align: left; padding-left: 15px;">${desc}</td>`;
+            <td style="font-weight: 600; color: #475569; text-align: center;">${desc}</td>`;
         
         ['A', 'B', 'C'].forEach(turno => {
             const registro = db.boletins.find(b => b.frota === prefixo && b.data === dataFiltro && b.turno === turno);
             if (registro) {
                 html += `
-                    <td style="background: rgba(34, 197, 94, 0.2); color: #4ade80; cursor:pointer; font-weight:800; font-size:12px; border-radius: 6px; border: 1px solid rgba(74, 222, 128, 0.3);" onclick="abrirPopupBoletim('${prefixo}', '${turno}')">OK</td>
-                    <td style="font-weight:800; color: #f8fafc; background: rgba(15, 23, 42, 0.6);">${registro.numero}</td>`;
+                    <td style="background: #dcfce7; color: #15803d; cursor:pointer; font-weight:800; font-size:12px; border-radius: 6px; border: 1px solid #bbf7d0;" onclick="abrirPopupBoletim('${prefixo}', '${turno}')">OK</td>
+                    <td style="font-weight:800; color: #0f172a; background: #f8fafc; border: 1px solid #e2e8f0;">${registro.numero}</td>`;
             } else {
                 html += `
-                    <td style="background: rgba(239, 68, 68, 0.2); color: #fca5a5; font-size:11px; cursor:pointer; font-weight:800; border: 1px dashed rgba(248, 113, 113, 0.4); border-radius: 6px;" onclick="abrirPopupBoletim('${prefixo}', '${turno}')">PENDENTE</td>
-                    <td style="color: #64748b; background: rgba(15, 23, 42, 0.6); font-weight: 600;">-</td>`;
+                    <td style="background: #fee2e2; color: #dc2626; font-size:11px; cursor:pointer; font-weight:800; border: 1px dashed #fca5a5; border-radius: 6px;" onclick="abrirPopupBoletim('${prefixo}', '${turno}')">PENDENTE</td>
+                    <td style="color: #64748b; background: #ffffff; font-weight: 600;">-</td>`;
             }
         });
         
@@ -1722,12 +1727,12 @@ function renderFrota() {
         return `
             <tr class="${classeManutencao}">
                 <td style="text-align: center;"><button class="btn-tbl-action" title="Editar" onclick="prepararEdicaoFrota(${i})">✏️</button></td>
-                <td style="font-weight: 800; color: var(--usa-verde-claro); font-size: 14px;">${f.veic}</td>
-                <td style="font-weight: 700; color: #94a3b8; font-size: 12px;">📻 ${radioInfo}</td>
+                <td style="font-weight: 800; color: #004A2F; font-size: 14px;">${f.veic}</td>
+                <td style="font-weight: 700; color: #64748b; font-size: 12px;">📻 ${radioInfo}</td>
                 <td><span class="badge ${f.manut === 'SIM' ? 'bg-danger' : 'bg-success'}">${f.manut}</span></td>
-                <td style="text-align: left; padding-left: 20px; font-weight: 600; color: #f8fafc;">${f.moto || '-'}</td>
+                <td style="text-align: center; font-weight: 600; color: #0f172a;">${f.moto || '-'}</td>
                 <td><span class="badge ${badgeSituacao}" style="white-space: nowrap; display: inline-block; padding: 6px 14px; font-size: 11px;">${f.situ}</span></td>
-                <td style="font-weight: 700; color: #cbd5e1;">${f.imp || '-'}</td>
+                <td style="font-weight: 700; color: #475569;">${f.imp || '-'}</td>
                 <td style="text-align: center;"><button class="btn-tbl-action btn-tbl-action-del" title="Excluir" onclick="deleteFrota(${i})">🗑️</button></td>
             </tr>
         `;
@@ -1767,23 +1772,23 @@ function renderAgendamentos() {
             const classif = diff >= 8 ? 'PROGRAMADO' : 'NÃO PROGRAMADO';
             
             // TRAJETO AGENDADO: ">" em NEGRITO e LARANJA
-            const trajetoAgendado = `${a.emb} <span style="color: #fb8500; font-weight: 900; font-size: 14px;">&gt;</span> ${a.des}`;
+            const trajetoAgendado = `${a.emb} <span style="color: #d97706; font-weight: 900; font-size: 14px;">&gt;</span> ${a.des}`;
 
             tr.innerHTML = `
                 <td>
                     <button class="btn-tbl-action" title="Iniciar" onclick="prepararSaida(${a.id})">▶️</button> 
                     <button class="btn-tbl-action" title="Editar" onclick="editAgendamento(${a.id})">✏️</button>
                 </td>
-                <td style="color: #94a3b8; font-size: 12px;">${formatarDataBR(a.hora_solic)}</td>
-                <td style="font-weight: 800; color: #fb8500;">
+                <td style="color: #64748b; font-size: 12px;">${formatarDataBR(a.hora_solic)}</td>
+                <td style="font-weight: 800; color: #d97706;">
                     ${index === 0 ? formatarDataBR(a.hora_frete) : '<span style="color: #64748b; font-weight: bold;">↳ (mesmo horário)</span>'} 
                 </td>
                 <td><span class="badge ${classif==='PROGRAMADO'?'bg-success':'bg-warning'}">${classif}</span></td>
-                <td style="font-weight: 600; color: #f8fafc;">${a.solicitante}</td> 
-                <td style="font-weight: 600; color: #f8fafc;">${a.carga}</td>
+                <td style="font-weight: 600; color: #0f172a;">${a.solicitante}</td> 
+                <td style="font-weight: 600; color: #0f172a;">${a.carga}</td>
                 
                 <td class="coluna-tipo-prancha">
-                    <select onchange="atualizarTipoPranchaAgendado(${a.id}, this.value)" style="padding: 6px; font-size: 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.15); background: #0f172a; color: white; width: 100%;">
+                    <select onchange="atualizarTipoPranchaAgendado(${a.id}, this.value)" style="padding: 6px; font-size: 12px; border-radius: 6px; border: 1px solid #cbd5e1; background: #ffffff; color: #0f172a; width: 100%;">
                         <option value="">-</option>
                         <option value="Prancha Larga" ${a.tipo_prancha === 'Prancha Larga' ? 'selected' : ''}>Prancha Larga</option>
                         <option value="Prancha Baixa" ${a.tipo_prancha === 'Prancha Baixa' ? 'selected' : ''}>Prancha Baixa</option>
@@ -1792,7 +1797,7 @@ function renderAgendamentos() {
                     </select>
                 </td>
 
-                <td style="font-weight: 600;">${trajetoAgendado}</td>
+                <td style="font-weight: 600; color: #0f172a;">${trajetoAgendado}</td>
                 <td><button class="btn-tbl-action btn-tbl-action-del" title="Excluir" onclick="deleteAgend(${a.id})">🗑️</button></td>
             `;
             pend.appendChild(tr);
@@ -1812,11 +1817,11 @@ function renderAgendamentos() {
                 <button class="btn-tbl-action" title="Concluir" onclick="finalizar(${a.id})">✅</button>
                 <button class="btn-tbl-action" title="Editar" onclick="prepararTrocaExecucao(${a.id})">✏️</button>
             </td>
-            <td style="color:#38bdf8; font-weight:bold;">${formatarDataBR(a.hora_real)}</td>
-            <td style="font-weight:600; color:#f8fafc;">${a.moto_real}</td>
-            <td style="font-weight:600; color:#f8fafc;">${a.solicitante}</td> 
-            <td style="font-weight:600; color:#f8fafc;">${a.carga}</td>
-            <td style="font-weight:600;">${trajetoAndamento}</td>
+            <td style="color:#0284c7; font-weight:bold;">${formatarDataBR(a.hora_real)}</td>
+            <td style="font-weight:600; color:#0f172a;">${a.moto_real}</td>
+            <td style="font-weight:600; color:#0f172a;">${a.solicitante}</td> 
+            <td style="font-weight:600; color:#0f172a;">${a.carga}</td>
+            <td style="font-weight:600; color:#0f172a;">${trajetoAndamento}</td>
         `;
         and.appendChild(tr);
     });

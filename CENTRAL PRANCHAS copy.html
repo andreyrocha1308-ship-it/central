@@ -18,23 +18,23 @@
         :root {
             --usa-verde-escuro: #004A2F;
             --usa-verde-medio: #1b5e39;
-            --usa-verde-claro: #B2D969;
-            --usa-verde-glow: rgba(178, 217, 105, 0.4);
-            --usa-amarelo: #ffb703;
+            --usa-verde-claro: #16a34a;
+            --usa-verde-glow: rgba(22, 163, 74, 0.2);
+            --usa-amarelo: #d97706;
             --usa-azul: #0284c7;
-            --usa-qru: #ef4444;
-            --bg-body: #0b1329;
-            --card-bg: #131f37;
-            --card-inner: #1a2947;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --border-glow: rgba(178, 217, 105, 0.25);
+            --usa-qru: #dc2626;
+            --bg-body: #f1f5f9;
+            --card-bg: #ffffff;
+            --card-inner: #f8fafc;
+            --border-color: #e2e8f0;
+            --border-glow: rgba(22, 163, 74, 0.3);
         }
 
         * { box-sizing: border-box; }
         body { 
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; 
             background: var(--bg-body); 
-            color: #f1f5f9; 
+            color: #0f172a; 
             margin: 0; 
             overflow-x: hidden; 
         }
@@ -44,15 +44,15 @@
             height: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: rgba(15, 23, 42, 0.6);
+            background: #e2e8f0;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(178, 217, 105, 0.3);
+            background: #cbd5e1;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--usa-verde-claro);
+            background: var(--usa-verde-medio);
         }
 
         header {
@@ -61,11 +61,11 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            border-bottom: 2px solid var(--usa-verde-claro); 
+            border-bottom: 3px solid #82b638; 
             position: sticky; 
             top: 0; 
             z-index: 100;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             backdrop-filter: blur(10px);
         }
 
@@ -83,26 +83,26 @@
             gap: 8px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
         .btn:active {
             transform: translateY(0);
         }
         .btn-config { 
-            background: rgba(255, 255, 255, 0.08); 
-            color: var(--usa-verde-claro); 
-            border: 1px solid rgba(178, 217, 105, 0.3) !important;
+            background: rgba(255, 255, 255, 0.15); 
+            color: #ffffff; 
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
             backdrop-filter: blur(5px);
         }
         .btn-config:hover {
-            background: rgba(178, 217, 105, 0.2);
-            border-color: var(--usa-verde-claro) !important;
+            background: rgba(255, 255, 255, 0.25);
+            border-color: #ffffff !important;
             color: #ffffff;
-            box-shadow: 0 0 15px rgba(178, 217, 105, 0.3);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
         }
         .btn-pranchas {
             background: linear-gradient(135deg, #1b5e39, #004A2F);
@@ -114,18 +114,18 @@
             box-shadow: 0 0 15px rgba(45, 122, 76, 0.4);
         }
         .btn-pasta { 
-            background: linear-gradient(135deg, #ffb703, #fb8500); 
-            color: #0b1329; 
+            background: linear-gradient(135deg, #d97706, #b45309); 
+            color: #ffffff; 
             font-weight: 800;
         }
         .btn-pasta:hover {
-            box-shadow: 0 0 20px rgba(255, 183, 3, 0.4);
+            box-shadow: 0 0 20px rgba(217, 119, 6, 0.4);
         }
 
         .input-controlador { 
-            background: rgba(0, 0, 0, 0.4); 
-            border: 1px solid var(--usa-verde-claro); 
-            color: #ffffff; 
+            background: #ffffff; 
+            border: 1px solid #cbd5e1; 
+            color: #0f172a; 
             padding: 8px 14px; 
             border-radius: 8px; 
             font-size: 12px; 
@@ -137,8 +137,8 @@
             transition: all 0.3s ease;
         }
         .input-controlador:focus {
-            box-shadow: 0 0 15px var(--usa-verde-glow);
-            border-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+            border-color: var(--usa-verde-claro);
         }
 
         /* Abas de Turno dentro do Popup */
@@ -146,13 +146,13 @@
             display: flex;
             gap: 8px;
             margin-bottom: 18px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid #e2e8f0;
             padding-bottom: 8px;
         }
         .prog-tab-btn {
-            background: rgba(255, 255, 255, 0.05);
-            color: #94a3b8;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #f1f5f9;
+            color: #64748b;
+            border: 1px solid #cbd5e1;
             padding: 10px 20px;
             border-radius: 8px 8px 0 0;
             cursor: pointer;
@@ -162,14 +162,14 @@
             transition: all 0.2s ease;
         }
         .prog-tab-btn:hover {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.1);
+            color: #0f172a;
+            background: #e2e8f0;
         }
         .prog-tab-btn.active {
             background: linear-gradient(135deg, var(--usa-azul), #0284c7);
             color: white;
             border-color: var(--usa-azul);
-            box-shadow: 0 -2px 10px rgba(2, 132, 199, 0.3);
+            box-shadow: 0 -2px 10px rgba(2, 132, 199, 0.2);
         }
 
         /* Containers da Grid */
@@ -184,12 +184,12 @@
             padding: 18px;
             border-radius: 12px;
             border: 1px solid var(--border-color);
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
         }
         .prog-col label {
             display: block;
             font-weight: 800;
-            color: var(--usa-verde-claro);
+            color: #004A2F;
             margin-bottom: 10px;
             font-size: 11px;
             letter-spacing: 0.5px;
@@ -198,20 +198,21 @@
 
         /* Cards de visualização rápida */
         .card-prog-mini {
-            background: rgba(15, 23, 42, 0.6);
+            background: #ffffff;
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 12px;
             margin-bottom: 10px;
             font-size: 12px;
             transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         .card-prog-mini:hover {
-            border-color: rgba(178, 217, 105, 0.4);
+            border-color: var(--usa-verde-claro);
             transform: translateX(3px);
         }
-        .card-prog-mini b { color: var(--usa-verde-claro); }
-        .card-prog-mini .detalhes { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+        .card-prog-mini b { color: #004A2F; }
+        .card-prog-mini .detalhes { font-size: 11px; color: #64748b; margin-top: 4px; }
 
         /* Modal Motoristas */
         #modalMotoristas {
@@ -220,7 +221,7 @@
             z-index: 9999 !important;
             left: 0; top: 0;
             width: 100%; height: 100%;
-            background-color: rgba(11, 19, 41, 0.85) !important;
+            background-color: rgba(15, 23, 42, 0.5) !important;
             backdrop-filter: blur(8px);
             align-items: center;
             justify-content: center;
@@ -234,19 +235,19 @@
             align-items: center;
             gap: 8px;
             padding: 8px 6px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #e2e8f0;
             width: 100%;
         }
         .item-frota-grid b {
             font-size: 12px;
-            color: var(--usa-verde-claro);
+            color: #004A2F;
             min-width: 50px; 
             flex-shrink: 0;
         }
         .input-modelo-lista {
-            background: #0f172a;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #ffffff;
+            color: #0f172a;
+            border: 1px solid #cbd5e1;
             border-radius: 6px;
             font-size: 11px;
             font-family: inherit;
@@ -256,7 +257,7 @@
             height: 28px;
         }
         .btn-del-mini {
-            color: #ef4444;
+            color: #dc2626;
             cursor: pointer;
             font-weight: bold;
             font-size: 16px;
@@ -298,17 +299,17 @@
             border-radius: 14px;
             border: 1px solid var(--border-color); 
             min-height: 140px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             overflow: hidden;
         }
         .veiculo-row:hover {
             border-color: var(--border-glow);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
         }
 
         .veiculo-info {
-            background: linear-gradient(180deg, #182848 0%, #101c33 100%);
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -323,25 +324,25 @@
         .controles-acoes { position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; gap: 4px; text-align: right; }
         
         .btn-mini { background: none; border: none; color: #64748b; cursor: pointer; font-size: 12px; padding: 3px; transition: 0.2s; }
-        .btn-mini:hover { color: var(--usa-verde-claro); transform: scale(1.2); }
+        .btn-mini:hover { color: #004A2F; transform: scale(1.2); }
         .btn-del-veic:hover { color: var(--usa-qru) !important; }
 
         .veiculo-info h3 { 
             margin: 10px 0 6px 0; 
             font-size: 22px; 
             font-weight: 800;
-            color: var(--usa-verde-claro); 
+            color: #004A2F; 
             letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-shadow: none;
         }
         .veiculo-info select { 
             width: 100%; 
             font-size: 11px; 
             font-weight: 600;
             font-family: inherit;
-            background: #0f172a; 
-            color: white; 
-            border: 1px solid rgba(255, 255, 255, 0.15); 
+            background: #ffffff; 
+            color: #0f172a; 
+            border: 1px solid #cbd5e1; 
             padding: 8px; 
             cursor: pointer; 
             border-radius: 8px; 
@@ -363,38 +364,40 @@
 
         .trip-card {
             min-width: 220px; 
-            background: var(--card-inner); 
+            background: #ffffff; 
             border-radius: 10px; 
             padding: 14px;
-            border-top: 4px solid #475569; 
+            border-top: 4px solid #94a3b8; 
             border-left: 1px solid var(--border-color);
             border-right: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
             position: relative; 
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         .trip-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
         }
         .status-pendente { 
             border-top-color: var(--usa-amarelo); 
+            background: #fffbe6;
         }
         .status-rodando { 
             border-top-color: var(--usa-azul); 
-            background: linear-gradient(180deg, #0f2744 0%, #13243a 100%); 
-            box-shadow: 0 0 15px rgba(2, 132, 199, 0.25); 
+            background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%); 
+            box-shadow: 0 0 15px rgba(2, 132, 199, 0.15); 
         }
         .status-ok { 
             border-top-color: var(--usa-verde-medio); 
-            opacity: 0.8; 
+            background: #f0fdf4;
+            opacity: 0.95; 
         }
 
         .card-header-actions { position: absolute; top: 6px; right: 6px; display: flex; gap: 6px; }
-        .trip-card .moto { font-size: 11px; font-weight: 800; color: var(--usa-verde-claro); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.3px; }
-        .trip-card .serv { font-size: 13px; margin: 6px 0; min-height: 36px; font-weight: 600; line-height: 1.3; color: #f8fafc; }
-        .trip-card .times { display: flex; justify-content: space-between; font-size: 10px; font-weight: 600; color: #94a3b8; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 8px; margin-bottom: 10px; }
+        .trip-card .moto { font-size: 11px; font-weight: 800; color: #004A2F; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.3px; }
+        .trip-card .serv { font-size: 13px; margin: 6px 0; min-height: 36px; font-weight: 600; line-height: 1.3; color: #0f172a; }
+        .trip-card .times { display: flex; justify-content: space-between; font-size: 10px; font-weight: 600; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 8px; margin-bottom: 10px; }
 
         .btn-status-dynamic { 
             width: 100%; border: none; border-radius: 8px; padding: 8px; 
@@ -402,11 +405,11 @@
             cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.3s ease;
             letter-spacing: 0.5px;
         }
-        .btn-status-start { background: linear-gradient(135deg, #ffb703, #fb8500); color: #000; box-shadow: 0 2px 8px rgba(255, 183, 3, 0.3); }
-        .btn-status-finish { background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3); }
-        .btn-status-clear { background: #334155; color: #cbd5e1; }
-        .btn-status-start:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(255, 183, 3, 0.4); }
-        .btn-status-finish:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4); }
+        .btn-status-start { background: linear-gradient(135deg, #d97706, #b45309); color: #ffffff; box-shadow: 0 2px 8px rgba(217, 119, 6, 0.2); }
+        .btn-status-finish { background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.2); }
+        .btn-status-clear { background: #e2e8f0; color: #334155; }
+        .btn-status-start:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3); }
+        .btn-status-finish:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); }
 
         .modal { 
             display: none; 
@@ -414,40 +417,41 @@
             z-index: 1000; 
             left: 0; top: 0; 
             width: 100%; height: 100%; 
-            background: rgba(11, 19, 41, 0.8); 
+            background: rgba(15, 23, 42, 0.5); 
             backdrop-filter: blur(8px);
             align-items: center; 
             justify-content: center; 
         }
         .modal-content { 
-            background: #152238; 
+            background: #ffffff; 
             width: 95%; 
             max-width: 900px; 
             max-height: 90vh; 
             padding: 28px; 
             border-radius: 16px; 
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-top: 5px solid var(--usa-verde-claro); 
-            color: white; 
+            border: 1px solid #e2e8f0;
+            border-top: 5px solid #004A2F; 
+            color: #0f172a; 
             display: flex;
             flex-direction: column;
             overflow-y: auto; 
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
         }
         .modal-content h3 {
             font-size: 18px;
             font-weight: 800;
             margin-top: 0;
             letter-spacing: 0.5px;
+            color: #004A2F;
         }
 
         .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--usa-verde-claro); margin-bottom: 6px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .form-group label { display: block; font-size: 11px; font-weight: 700; color: #004A2F; margin-bottom: 6px; letter-spacing: 0.5px; text-transform: uppercase; }
         .form-group input, .form-group select { 
             width: 100%; padding: 10px 12px; 
-            background: #0f172a; 
-            border: 1px solid rgba(255, 255, 255, 0.12); 
-            color: white; 
+            background: #ffffff; 
+            border: 1px solid #cbd5e1; 
+            color: #0f172a; 
             border-radius: 8px; 
             font-family: inherit;
             font-size: 13px;
@@ -456,7 +460,7 @@
         }
         .form-group input:focus, .form-group select:focus {
             border-color: var(--usa-verde-claro);
-            box-shadow: 0 0 0 3px rgba(178, 217, 105, 0.2);
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
         }
 
         .base-grid { 
@@ -467,12 +471,12 @@
             flex: 1; 
         }
         .base-col { 
-            background: #0f172a; 
+            background: #f8fafc; 
             padding: 18px; 
             border-radius: 12px; 
-            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border: 1px solid #e2e8f0; 
         }
-        .base-col label { display: block; font-weight: bold; color: var(--usa-verde-claro); margin-bottom: 10px; font-size: 12px; }
+        .base-col label { display: block; font-weight: bold; color: #004A2F; margin-bottom: 10px; font-size: 12px; }
 
         .input-group {
             display: flex;
@@ -484,9 +488,9 @@
             min-width: 0; 
             flex: 1;      
             padding: 8px 10px;
-            background: #1e293b;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #0f172a;
             border-radius: 6px;
             font-size: 12px;
             font-family: inherit;
@@ -514,18 +518,18 @@
         .list-container { 
             max-height: 300px; 
             overflow-y: auto; 
-            background: #0b1329; 
+            background: #ffffff; 
             border-radius: 8px; 
             padding: 6px; 
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid #e2e8f0;
         }
 
         .btn-novo-frete-linha {
-            min-width: 120px; height: 44px; background: rgba(255,255,255,0.03); color: #94a3b8;
-            border: 1px dashed rgba(255,255,255,0.2); border-radius: 8px; cursor: pointer; font-size: 11px;
+            min-width: 120px; height: 44px; background: #f8fafc; color: #64748b;
+            border: 1px dashed #cbd5e1; border-radius: 8px; cursor: pointer; font-size: 11px;
             font-weight: 700; font-family: inherit; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
         }
-        .btn-novo-frete-linha:hover { background: rgba(178, 217, 105, 0.1); color: var(--usa-verde-claro); border-color: var(--usa-verde-claro); }
+        .btn-novo-frete-linha:hover { background: #f0fdf4; color: #16a34a; border-color: #16a34a; }
 
         #print-area { display: none; }
 
@@ -533,19 +537,19 @@
             display: grid; 
             grid-template-columns: 1fr 1fr 1fr 1fr auto; 
             gap: 10px; 
-            background: #0f172a;
+            background: #f8fafc;
             padding: 18px;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid #e2e8f0;
         }
         .pranchas-form-grid input { 
             width: 100%; padding: 10px; 
-            background: #1e293b; color: white; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
+            background: #ffffff; color: #0f172a; 
+            border: 1px solid #cbd5e1; 
             border-radius: 6px; font-size: 12px; font-family: inherit; 
         }
         
-        .row-editavel:hover { background: rgba(178, 217, 105, 0.1) !important; cursor: pointer; }
+        .row-editavel:hover { background: #f1f5f9 !important; cursor: pointer; }
 
         /* RESPONSIVIDADE (TABLETS & DESKTOPS) */
         @media (max-width: 1100px) {
@@ -751,11 +755,9 @@
                 </div>
 
                 <button class="btn" style="width:100%; background:var(--usa-azul); color:white;" onclick="salvarFreteProg()">LANÇAR FRETE NESTE TURNO</button>
-            </div>
-
             <div class="prog-col">
                 <label>📋 Fretes Programados - <span id="lbl_turno_lista" style="color:var(--usa-amarelo)">-</span></label>
-                <div id="list-prog-fretes" class="list-container" style="max-height: 420px; background:#121212;"></div>
+                <div id="list-prog-fretes" class="list-container" style="max-height: 420px; background:#ffffff; border: 1px solid #cbd5e1;"></div>
             </div>
         </div>
         <button onclick="abrirEscalaUnificada()" class="btn" style="flex: 1; background: #004A2F; color: white; font-weight: bold;">🖼️ VISUALIZAR GRADE UNIFICADA (A, B, C)</button>
@@ -764,7 +766,7 @@
 </div>
 
 
-<div id="modalQRUPra" class="modal" style="z-index: 2000 !important; background: rgba(0,0,0,0.9);">
+<div id="modalQRUPra" class="modal" style="z-index: 2000 !important; background: rgba(15, 23, 42, 0.5);">
     <div class="modal-content" style="border-top-color: var(--usa-qru); max-width: 450px;">
         <h3>QRU Prancha / Implemento</h3>
         <input type="hidden" id="qru_pra_id">
@@ -792,7 +794,7 @@
         <div style="display:flex; align-items:center; gap:8px; background: rgba(0,0,0,0.3); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);">
             <span class="pulse-dot"></span>
             <span style="font-weight: 800; font-size: 12px; color: #ffffff; letter-spacing: 0.5px;">LOGÍSTICA</span>
-            <span id="clock" style="font-weight: 600; color: var(--usa-verde-claro); font-size: 13px; margin-left: 4px;">00:00:00</span>
+            <span id="clock" style="font-weight: 600; color: #b2d969; font-size: 13px; margin-left: 4px;">00:00:00</span>
         </div>
         <input type="text" id="ctrl_name" class="input-controlador" placeholder="NOME DO CONTROLADOR" oninput="db.controlador=this.value.toUpperCase(); save();">
     </div>
@@ -827,12 +829,12 @@
     </div>
 </header>
 <div class="monitor-container" style="padding-bottom: 0;">
-    <div style="background: #1e1e1e; padding: 15px; border-radius: 8px; border: 1px solid #333;">
-        <label style="color: var(--usa-verde-claro); font-weight: bold; font-size: 12px; display: block; margin-bottom: 8px;">
+    <div style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+        <label style="color: #004A2F; font-weight: bold; font-size: 12px; display: block; margin-bottom: 8px;">
             📝 ORIENTAÇÕES ADICIONAIS PARA O PRÓXIMO TURNO
         </label>
         <textarea id="obs_turno" 
-            style="width: 100%; height: 80px; background: #121212; color: white; border: 1px solid #444; border-radius: 4px; padding: 10px; font-family: sans-serif; resize: vertical;" 
+            style="width: 100%; height: 80px; background: #f8fafc; color: #0f172a; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-family: inherit; resize: vertical;" 
             placeholder="Ex: Cuidado com a neblina na Rodovia SP-333. Entregar as chaves do carro 01 para o turno B..." 
             oninput="db.obs_turno = this.value; localStorage.setItem('v6_obs_turno', this.value);" 
             onchange="save();"></textarea>
@@ -1811,11 +1813,11 @@ function salvarMotoristaLongo() {
 function renderTabelaMotoristas() {
     const corpo = document.getElementById('tabela-m-corpo');
     corpo.innerHTML = db.motos.map(m => `
-        <tr style="border-bottom:1px solid #333;">
+        <tr style="border-bottom:1px solid #e2e8f0; color:#0f172a;">
             <td style="padding:8px; font-weight:bold;">${m.nome}</td>
             <td>${m.cracha || '-'}</td>
             <td>${m.proxFolga || '-'}</td>
-            <td><button onclick="delBase('motos', ${m.id}); renderTabelaMotoristas();" style="background:none; border:none; color:red; cursor:pointer;">×</button></td>
+            <td><button onclick="delBase('motos', ${m.id}); renderTabelaMotoristas();" style="background:none; border:none; color:#dc2626; font-size:16px; cursor:pointer;">×</button></td>
         </tr>
     `).join('');
 }
@@ -2010,10 +2012,10 @@ function renderProgFretes() {
 
         // Inicia o Card único para o Veículo
         html += `
-        <div class="card-prog-mini" style="border-left: 4px solid var(--usa-azul); margin-bottom: 12px; padding: 12px; background: #252525;">
-            <div style="border-bottom: 1px solid #444; padding-bottom: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 14px; font-weight: bold; color: var(--usa-verde-claro);">🚛 FROTA ${veiculo}</span>
-                <span style="font-size: 10px; background: rgba(25, 118, 212, 0.2); color: var(--usa-azul); padding: 2px 6px; border-radius: 10px; font-weight: bold;">
+        <div class="card-prog-mini" style="border-left: 4px solid var(--usa-azul); margin-bottom: 12px; padding: 12px; background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+            <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 14px; font-weight: bold; color: #004A2F;">🚛 FROTA ${veiculo}</span>
+                <span style="font-size: 10px; background: #e0f2fe; color: #0284c7; padding: 2px 6px; border-radius: 10px; font-weight: bold;">
                     ${viagensDoCarro.length} ${viagensDoCarro.length === 1 ? 'VIAGEM' : 'VIAGENS'}
                 </span>
             </div>
@@ -2030,21 +2032,21 @@ function renderProgFretes() {
             }
 
             // Define uma linha separadora sutil caso haja mais de uma viagem no card
-            let estiloLinha = index > 0 ? 'border-top: 1px dashed #3a3a3a; padding-top: 8px;' : '';
+            let estiloLinha = index > 0 ? 'border-top: 1px dashed #cbd5e1; padding-top: 8px;' : '';
 
             html += `
             <div style="position: relative; padding-right: 55px; ${estiloLinha}">
-                <span style="color: #fff; font-weight: bold; font-size: 12px;">⏱️ ${f.horario || '--:--'}h</span> - 
-                <span style="color: var(--usa-amarelo); font-size: 11px; font-weight: 600;">${f.motorista || 'SEM MOTORISTA'}</span>
-                <div class="detalhes" style="margin-top: 3px; font-size: 11px; color: #b0b0b0; line-height: 1.3;">
+                <span style="color: #0f172a; font-weight: bold; font-size: 12px;">⏱️ ${f.horario || '--:--'}h</span> - 
+                <span style="color: #d97706; font-size: 11px; font-weight: 600;">${f.motorista || 'SEM MOTORISTA'}</span>
+                <div class="detalhes" style="margin-top: 3px; font-size: 11px; color: #475569; line-height: 1.3;">
                     <b>DESTINO:</b> ${f.cidade}<br>
                     <b>SERVIÇO:</b> ${f.servico}
-                    ${textoContatos ? `<br><span style="color: #ffa500; font-size: 10.5px;">📞 ${textoContatos}</span>` : ''}
+                    ${textoContatos ? `<br><span style="color: #d97706; font-size: 10.5px;">📞 ${textoContatos}</span>` : ''}
                 </div>
                 
                 <div style="position: absolute; top: 0px; right: 2px; display: flex; gap: 10px;">
-                    <span title="Alterar Programação" style="cursor: pointer; color: var(--usa-amarelo); font-weight: bold; font-size: 13px;" onclick="alterarFreteEscala(${f.id})">✏️</span>
-                    <span title="Excluir" style="cursor: pointer; color: #ff4444; font-weight: bold; font-size: 13px;" onclick="deletarFreteEscala(${f.id})">❌</span>
+                    <span title="Alterar Programação" style="cursor: pointer; color: #d97706; font-weight: bold; font-size: 13px;" onclick="alterarFreteEscala(${f.id})">✏️</span>
+                    <span title="Excluir" style="cursor: pointer; color: #dc2626; font-weight: bold; font-size: 13px;" onclick="deletarFreteEscala(${f.id})">❌</span>
                 </div>
             </div>`;
         });
@@ -2174,7 +2176,7 @@ function renderPranchas() {
     const body = document.getElementById('lista-pranchas-body');
     // Atualiza o cabeçalho se necessário (adicione uma <th> no seu HTML se quiser título na coluna)
     body.innerHTML = db.pranchas.map((p, index) => `
-        <tr class="row-editavel" onclick="editarPrancha(${p.id})" style="border-bottom: 1px solid #333; background: ${p.qru ? 'rgba(255,68,68,0.15)' : 'transparent'}">
+        <tr class="row-editavel" onclick="editarPrancha(${p.id})" style="border-bottom: 1px solid #e2e8f0; color: #0f172a; background: ${p.qru ? '#fee2e2' : 'transparent'}">
             <td style="padding:10px;" onclick="event.stopPropagation()">
                 <div style="display:flex; flex-direction:column; gap:2px;">
                     <button class="btn-mini" onclick="moverPrancha(${index}, -1)">▲</button>
@@ -2391,7 +2393,7 @@ function render() {
                     <button class="btn-mini btn-del-veic" onclick="excluirVeiculo(${vObj.id})" title="Remover Veículo">🗑️</button>
                     <button class="btn-mini" onclick="abrirManutencao('${f}')">${vObj.emManutencao ? '🛠️' : '🔧'}</button>
                 </div>
-                <span style="font-size: 10px; color: #888;">FROTA</span>
+                <span style="font-size: 10px; color: #64748b; font-weight: 800;">FROTA</span>
                 <h3 style="${vObj.emManutencao ? 'color:var(--usa-qru)' : ''}">${f}</h3>
                 
                 <select onchange="db.v_motos['${f}']=this.value; save();">
@@ -2401,7 +2403,7 @@ function render() {
 
                 <input type="text" placeholder="Local atual..." 
                     value="${vObj.local || ''}" 
-                    style="width: 100%; font-size: 11px; margin-top: 5px; background: #333; color: white; border: 1px solid #444; padding: 4px; border-radius: 4px;"
+                    style="width: 100%; font-size: 11px; margin-top: 5px; background: #ffffff; color: #0f172a; border: 1px solid #cbd5e1; padding: 6px; border-radius: 6px;"
                     onchange="const idx = db.veiculos.findIndex(v => v.nome === '${f}'); db.veiculos[idx].local = this.value.toUpperCase(); save();">
             </div>
 
