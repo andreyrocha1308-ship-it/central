@@ -547,26 +547,41 @@
         
         .row-editavel:hover { background: rgba(178, 217, 105, 0.1) !important; cursor: pointer; }
 
-        /* RESPONSIVIDADE (MOBILE & TABLETS) */
+        /* RESPONSIVIDADE (TABLETS & DESKTOPS) */
+        @media (max-width: 1100px) {
+            header {
+                padding: 10px 20px;
+                gap: 12px;
+            }
+            .input-controlador {
+                width: 160px;
+            }
+        }
+
         @media (max-width: 900px) {
             header {
                 flex-wrap: wrap;
-                padding: 10px 15px;
+                padding: 12px 15px;
                 gap: 10px;
                 justify-content: center;
             }
             header > div {
                 justify-content: center;
                 flex-wrap: wrap;
+                width: 100%;
             }
             .prog-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .base-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
             .monitor-container {
-                padding: 10px;
+                padding: 10px 8px;
             }
             .veiculo-row {
                 grid-template-columns: 1fr;
@@ -580,6 +595,7 @@
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: space-between;
+                align-items: center;
                 gap: 10px;
             }
             .controles-ordem {
@@ -594,58 +610,87 @@
             }
             .veiculo-info h3 {
                 margin: 0;
-                font-size: 20px;
+                font-size: 18px;
             }
             .veiculo-info select {
-                max-width: 200px;
+                max-width: 220px;
+            }
+            .viagens-timeline {
+                min-height: 110px;
+                padding: 10px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .trip-card {
+                min-width: 200px;
+                padding: 12px;
             }
             .pranchas-form-grid {
                 grid-template-columns: 1fr 1fr;
             }
             .modal-content {
-                padding: 18px;
-                width: 98%;
+                padding: 16px;
+                width: 96%;
+                max-height: 92vh;
+                margin: auto;
+                -webkit-overflow-scrolling: touch;
             }
             .btn {
-                padding: 8px 14px;
+                padding: 8px 12px;
                 font-size: 11px;
             }
             .input-controlador {
-                width: 140px;
+                width: 100%;
+                max-width: 220px;
             }
         }
 
         @media (max-width: 480px) {
+            header {
+                padding: 8px;
+            }
+            header .btn {
+                font-size: 10px;
+                padding: 6px 10px;
+                flex: 1 1 auto;
+                justify-content: center;
+            }
             .pranchas-form-grid {
                 grid-template-columns: 1fr;
             }
             .veiculo-info {
                 flex-direction: column;
                 align-items: center;
+                text-align: center;
             }
             .veiculo-info select {
                 max-width: 100%;
+            }
+            .trip-card {
+                min-width: 180px;
+            }
+            .list-container {
+                max-height: 250px;
+                -webkit-overflow-scrolling: touch;
             }
         }
 
         @media print {
             .monitor-container, header, .btn, #modalBase, #modalPranchas {
-        display: none !important;
-    }
+                display: none !important;
+            }
             @page { size: A4 portrait; margin: 0.8cm; }
             body * { visibility: hidden; }
             #print-area, #print-area * { visibility: visible; }
-            #print-area { display: block !important;overflow: hidden; position: absolute; left: 0; top: 0; width: 100%; background: white; color: black; }
+            #print-area { display: block !important; overflow: hidden; position: absolute; left: 0; top: 0; width: 100%; background: white; color: black; }
             .tabela-viva { width: 100%; border-collapse: collapse; margin-top: 5px; table-layout: fixed; border: 1px solid black; }
             .tabela-viva th, .tabela-viva td { border: 1px solid black; padding: 2px 4px; text-align: center; font-size: 9px; text-transform: uppercase; color: black; }
-            .header-viva { background: #CCCCCC !important; font-weight: bold; -webkit-print-color-adjust: exact; }
-            .qru-row td { background: #ffff00 !important; -webkit-print-color-adjust: exact; }
+            .header-viva { background: #CCCCCC !important; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .qru-row td { background: #ffff00 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .footer-print { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; border: 1px solid black; padding: 5px; font-size: 10px; }
         }
     </style>
 </head>
 <body>
-<header>
     <div id="modalEscalaUnificada" class="modal" style="z-index: 2000;">
     <div class="modal-content" style="max-width: 1100px;">
         <h3>Escala Unificada de Fretes - Todos os Turnos</h3>
@@ -1722,6 +1767,7 @@ function abrirCadastroMotoristas() {
     if (modalMoto) {
         // Move o modal para o final do corpo do HTML (garante que fique na frente)
         document.body.appendChild(modalMoto); 
+        modalMoto.style.zIndex = '3000';
         modalMoto.style.display = 'flex';
         renderTabelaMotoristas();
     }
@@ -1733,9 +1779,6 @@ function fecharCadastroMotoristas() {
     if (modalMoto) {
         // 2. Esconde o modal
         modalMoto.style.display = 'none';
-        
-        // 3. Remove a trava de z-index (opcional, mas seguro)
-        modalMoto.style.zIndex = "-1"; 
     }
     
     // 4. Garante que o modal de Base de Dados (que fica atrás) continue funcional
