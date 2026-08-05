@@ -755,6 +755,7 @@
                 </div>
 
                 <button class="btn" style="width:100%; background:var(--usa-azul); color:white;" onclick="salvarFreteProg()">LANÇAR FRETE NESTE TURNO</button>
+            </div>
             <div class="prog-col">
                 <label>📋 Fretes Programados - <span id="lbl_turno_lista" style="color:var(--usa-amarelo)">-</span></label>
                 <div id="list-prog-fretes" class="list-container" style="max-height: 420px; background:#ffffff; border: 1px solid #cbd5e1;"></div>
@@ -888,16 +889,16 @@
             <input type="text" id="f_custom">
         </div>
 
-        <div class="form-group" style="background: #1a1a1a; padding: 10px; border-radius: 6px; border: 1px solid #333;">
+        <div class="form-group" style="background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <label style="margin:0;">📞 CONTATOS E LOCALIZAÇÕES</label>
-                <button type="button" onclick="adicionarLinhaContato('container-contatos-novo')" style="background:var(--usa-azul); color:white; border:none; padding:2px 8px; font-size:11px; border-radius:4px; cursor:pointer;">+ Contato</button>
+                <label style="margin:0; color:#004A2F;">📞 CONTATOS E LOCALIZAÇÕES</label>
+                <button type="button" onclick="adicionarLinhaContato('container-contatos-novo')" style="background:var(--usa-azul); color:white; border:none; padding:3px 10px; font-size:11px; font-weight:bold; border-radius:6px; cursor:pointer;">+ Contato</button>
             </div>
             <div id="container-contatos-novo" style="display:flex; flex-direction:column; gap:6px;">
                 <div class="linha-contato" style="display:flex; gap:5px; align-items:center;">
-                    <input type="text" class="c_nome" placeholder="Nome/Telefone" style="flex:1; padding:6px; font-size:11px; background:#333; color:white; border:1px solid #444; border-radius:4px;">
-                    <input type="text" class="c_local" placeholder="Localização (Opcional)" style="flex:1; padding:6px; font-size:11px; background:#333; color:white; border:1px solid #444; border-radius:4px;">
-                    <span style="color:#666; font-weight:bold; padding:0 5px;">-</span>
+                    <input type="text" class="c_nome" placeholder="Nome/Telefone" style="flex:1; padding:6px; font-size:11px; background:#ffffff; color:#0f172a; border:1px solid #cbd5e1; border-radius:4px;">
+                    <input type="text" class="c_local" placeholder="Localização (Opcional)" style="flex:1; padding:6px; font-size:11px; background:#ffffff; color:#0f172a; border:1px solid #cbd5e1; border-radius:4px;">
+                    <span style="color:#dc2626; font-weight:bold; cursor:pointer; padding:0 5px;" onclick="this.parentElement.remove()">×</span>
                 </div>
             </div>
         </div>
@@ -924,10 +925,10 @@
         <div class="form-group"><label>CIDADE</label><input type="text" id="edit_f_cidade" style="text-transform: uppercase;"></div>
         <div class="form-group"><label>SERVIÇO</label><input type="text" id="edit_f_serv" style="text-transform: uppercase;"></div>
         
-        <div class="form-group" style="background: #1a1a1a; padding: 10px; border-radius: 6px; border: 1px solid #333;">
+        <div class="form-group" style="background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <label style="margin:0;">📞 CONTATOS E LOCALIZAÇÕES</label>
-                <button type="button" onclick="adicionarLinhaContato('container-contatos-editar')" style="background:var(--usa-azul); color:white; border:none; padding:2px 8px; font-size:11px; border-radius:4px; cursor:pointer;">+ Contato</button>
+                <label style="margin:0; color:#004A2F;">📞 CONTATOS E LOCALIZAÇÕES</label>
+                <button type="button" onclick="adicionarLinhaContato('container-contatos-editar')" style="background:var(--usa-azul); color:white; border:none; padding:3px 10px; font-size:11px; font-weight:bold; border-radius:6px; cursor:pointer;">+ Contato</button>
             </div>
             <div id="container-contatos-editar" style="display:flex; flex-direction:column; gap:6px;"></div>
         </div>
@@ -943,7 +944,7 @@
 
 <div id="modalBase" class="modal">
     <div class="modal-content" style="max-width: 950px;">
-        <h3 style="margin-top:0; color: var(--usa-verde-claro);">Base de Dados do Sistema</h3>
+        <h3 style="margin-top:0; color: var(--usa-verde-escuro);">Base de Dados do Sistema</h3>
         
         <div class="base-grid">
             <div class="base-col">
@@ -960,7 +961,7 @@
             <div class="base-col">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                     <label style="margin:0;">MOTOS / CONDUTORES</label>
-                    <button onclick="abrirCadastroMotoristas()" style="background:none; border:1px solid var(--usa-verde-claro); color:var(--usa-verde-claro); font-size:9px; cursor:pointer; padding:2px 5px; border-radius:4px;">+ DETALHES</button>
+                    <button onclick="abrirCadastroMotoristas()" style="background:none; border:1px solid var(--usa-verde-medio); color:var(--usa-verde-medio); font-size:9px; font-weight:bold; cursor:pointer; padding:2px 6px; border-radius:4px;">+ DETALHES</button>
                 </div>
                 <div class="input-group">
                     <input type="text" id="in_m" placeholder="Cadastro Rápido (Nome)...">
@@ -979,22 +980,22 @@
             </div>
             <div class="base-col" style="border-left: 2px solid var(--usa-azul);">
     <label>🕒 PRESETS DE TURNO</label>
-    <p style="font-size: 9px; color: #888; margin-bottom: 10px;">SALVE A ESCALA ATUAL (MOTORISTAS E FRETES PENDENTES) PARA CADA TURNO:</p>
+    <p style="font-size: 9px; color: #64748b; margin-bottom: 10px;">SALVE A ESCALA ATUAL (MOTORISTAS E FRETES PENDENTES) PARA CADA TURNO:</p>
     
     <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; background: #222; padding: 5px; border-radius: 4px;">
-            <b style="font-size: 11px;">TURNO A</b>
-            <button class="btn-mini" style="background: var(--usa-verde-medio); color: white; padding: 3px 8px; border-radius: 3px;" onclick="salvarConfigTurno('A')">SALVAR</button>
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #ffffff; border: 1px solid #cbd5e1; padding: 6px 10px; border-radius: 6px;">
+            <b style="font-size: 11px; color: #004A2F;">TURNO A</b>
+            <button class="btn-mini" style="background: var(--usa-verde-medio); color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold;" onclick="salvarConfigTurno('A')">SALVAR</button>
         </div>
         
-        <div style="display: flex; justify-content: space-between; align-items: center; background: #222; padding: 5px; border-radius: 4px;">
-            <b style="font-size: 11px;">TURNO B</b>
-            <button class="btn-mini" style="background: var(--usa-verde-medio); color: white; padding: 3px 8px; border-radius: 3px;" onclick="salvarConfigTurno('B')">SALVAR</button>
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #ffffff; border: 1px solid #cbd5e1; padding: 6px 10px; border-radius: 6px;">
+            <b style="font-size: 11px; color: #004A2F;">TURNO B</b>
+            <button class="btn-mini" style="background: var(--usa-verde-medio); color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold;" onclick="salvarConfigTurno('B')">SALVAR</button>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; background: #222; padding: 5px; border-radius: 4px;">
-            <b style="font-size: 11px;">TURNO C</b>
-            <button class="btn-mini" style="background: var(--usa-verde-medio); color: white; padding: 3px 8px; border-radius: 3px;" onclick="salvarConfigTurno('C')">SALVAR</button>
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #ffffff; border: 1px solid #cbd5e1; padding: 6px 10px; border-radius: 6px;">
+            <b style="font-size: 11px; color: #004A2F;">TURNO C</b>
+            <button class="btn-mini" style="background: var(--usa-verde-medio); color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold;" onclick="salvarConfigTurno('C')">SALVAR</button>
         </div>
     </div>
     
@@ -1005,11 +1006,11 @@
         <button onclick="fecharModal('modalBase')" class="btn" style="width:100%; margin-top:20px; background:#444; color:white;">FECHAR BASE DE DADOS</button>
     </div>
 </div>
-<div id="modalMotoristas" class="modal" style="z-index: 3000 !important; background: rgba(0,0,0,0.85);">
+<div id="modalMotoristas" class="modal" style="z-index: 3000 !important; background: rgba(15,23,42,0.5); backdrop-filter: blur(8px);">
     <div class="modal-content" style="max-width: 600px; border-top-color: var(--usa-azul);">
-        <h3 style="margin-top:0;">Gestão Detalhada de Motoristas</h3>
+        <h3 style="margin-top:0; color:#004A2F;">Gestão Detalhada de Motoristas</h3>
         
-        <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #333;">
+        <div style="background: #f8fafc; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #e2e8f0;">
             <div class="form-group">
                 <label>NOME COMPLETO</label>
                 <input type="text" id="m_nome_det" placeholder="Ex: JOÃO SILVA">
@@ -1020,15 +1021,15 @@
                     <label>ESCALA</label>
                     <select id="m_escala"><option value="5X1">5X1</option><option value="5X2">5X2</option><option value="6X1">6X1</option></select>
                 </div>
-                <div class="form-group"><label>PRÓXIMA FOLGA</label><input type="date" id="m_folga" style="color-scheme:dark;"></div>
+                <div class="form-group"><label>PRÓXIMA FOLGA</label><input type="date" id="m_folga"></div>
             </div>
             <button onclick="salvarMotoristaLongo()" class="btn" style="width:100%; background:var(--usa-verde-medio); color:white;">CADASTRAR</button>
         </div>
 
-        <div style="max-height: 250px; overflow-y: auto;">
+        <div style="max-height: 250px; overflow-y: auto; background: #ffffff; border-radius: 8px; border: 1px solid #e2e8f0;">
             <table style="width:100%; font-size:11px; text-align:left; border-collapse:collapse;">
-                <thead style="background:#333; color:var(--usa-verde-claro);">
-                    <tr><th style="padding:8px;">NOME</th><th>CRACHÁ</th><th>FOLGA</th><th></th></tr>
+                <thead style="background:#004A2F; color:#ffffff;">
+                    <tr><th style="padding:10px;">NOME</th><th>CRACHÁ</th><th>FOLGA</th><th></th></tr>
                 </thead>
                 <tbody id="tabela-m-corpo"></tbody>
             </table>
@@ -1038,17 +1039,18 @@
 </div>
 <div id="modalPranchas" class="modal">
     <div class="modal-content" style="max-width: 850px;">
-        <h3>Gestão de Pranchas e Implementos</h3>
-        <div style="max-height: 300px; overflow-y: auto; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px; border: 1px solid #333;">
-            <table style="width:100%; border-collapse: collapse; font-size: 11px; text-align: center;">
-                <thead style="background: #333; position: sticky; top:0; color: var(--usa-verde-claro);">
+        <h3 style="color:#004A2F;">Gestão de Pranchas e Implementos</h3>
+        <div style="max-height: 320px; overflow-y: auto; background: #ffffff; border-radius: 10px; margin-bottom: 15px; border: 1px solid #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+            <table style="width:100%; border-collapse: collapse; font-size: 12px; text-align: center;">
+                <thead style="background: #004A2F; position: sticky; top:0; color: #ffffff; z-index:10;">
     <tr>
-        <th style="padding: 10px;">ORDEM</th> <th style="padding: 10px;">CAVALO</th>
-        <th style="padding: 10px;">PRANCHA</th>
-        <th style="padding: 10px;">TIPO / SITUAÇÃO</th>
-        <th style="padding: 10px;">LOCAL</th>
-        <th style="padding: 10px;">QRU?</th>
-        <th style="padding: 10px;">AÇÕES</th>
+        <th style="padding: 12px 10px;">ORDEM</th>
+        <th style="padding: 12px 10px;">CAVALO</th>
+        <th style="padding: 12px 10px;">PRANCHA</th>
+        <th style="padding: 12px 10px;">TIPO / SITUAÇÃO</th>
+        <th style="padding: 12px 10px;">LOCAL</th>
+        <th style="padding: 12px 10px;">QRU?</th>
+        <th style="padding: 12px 10px;">AÇÕES</th>
     </tr>
 </thead>
                 <tbody id="lista-pranchas-body"></tbody>
@@ -1104,10 +1106,9 @@ function abrirEscalaUnificada() {
 
     // 1. MAPEIA E FILTRA OS DADOS DO BANCO
     todosFretes.forEach(f => {
-        if (!f.veiculo || !f.turno) return; 
-        
-        const frotaNome = f.veiculo;
-        const turnoNome = f.turno; // 'A', 'B' ou 'C'
+        const frotaNome = f.veiculo || f.veic;
+        const turnoNome = f.turno || 'A';
+        if (!frotaNome) return; 
 
         frotasComProgramacao.add(frotaNome);
 
@@ -1124,8 +1125,9 @@ function abrirEscalaUnificada() {
         
         const prog = estruturaEscala[frotaNome].programacoes[turnoNome];
         if (prog) {
-            if (!prog.motorista && f.motorista) {
-                prog.motorista = f.motorista;
+            let mNome = f.motorista || f.moto || db.v_motos[frotaNome];
+            if (!prog.motorista && mNome) {
+                prog.motorista = mNome;
             }
 
             let contatosTexto = '';
@@ -1136,9 +1138,9 @@ function abrirEscalaUnificada() {
             }
 
             prog.horarios.push({
-                horario: f.horario || '--:--',
+                horario: f.horario || f.hora_escala || f.sai || '--:--',
                 cidade: f.cidade || 'N/I',
-                servico: f.servico || 'LANÇAMENTO',
+                servico: f.servico || f.serv || 'LANÇAMENTO',
                 contatos: contatosTexto
             });
         }
@@ -1293,18 +1295,18 @@ function baixarEscalaUnificadaComoImagem() {
             if (divTemporaria.parentNode) document.body.removeChild(divTemporaria);
             if (btnSalvar) btnSalvar.innerHTML = textoOriginal;
         });
-    }, 250); // 250 milissegundos de espera são suficientes para o motor gráfico se alinhar
+    }, 250); 
 }
-    // Adiciona uma nova linha de Contato + Localização no modal informado
 function adicionarLinhaContato(containerId, nomeVal = '', localVal = '') {
     const container = document.getElementById(containerId);
+    if (!container) return;
     const div = document.createElement('div');
     div.className = 'linha-contato';
     div.style = 'display:flex; gap:5px; align-items:center;';
     div.innerHTML = `
-        <input type="text" class="c_nome" value="${nomeVal}" placeholder="Nome/Telefone" style="flex:1; padding:6px; font-size:11px; background:#333; color:white; border:1px solid #444; border-radius:4px;">
-        <input type="text" class="c_local" value="${localVal}" placeholder="Localização (Opcional)" style="flex:1; padding:6px; font-size:11px; background:#333; color:white; border:1px solid #444; border-radius:4px;">
-        <span style="color:#ff4444; font-weight:bold; cursor:pointer; padding:0 5px; font-size:14px;" onclick="this.parentElement.remove()">×</span>
+        <input type="text" class="c_nome" value="${nomeVal}" placeholder="Nome/Telefone" style="flex:1; padding:6px; font-size:11px; background:#ffffff; color:#0f172a; border:1px solid #cbd5e1; border-radius:4px;">
+        <input type="text" class="c_local" value="${localVal}" placeholder="Localização (Opcional)" style="flex:1; padding:6px; font-size:11px; background:#ffffff; color:#0f172a; border:1px solid #cbd5e1; border-radius:4px;">
+        <span style="color:#dc2626; font-weight:bold; cursor:pointer; padding:0 5px; font-size:14px;" onclick="this.parentElement.remove()">×</span>
     `;
     container.appendChild(div);
 }
@@ -1389,144 +1391,70 @@ function salvarFreteProg() {
         return;
     }
 
-    // Estrutura os contatos no padrão exato de Array exigido pelo monitor do sistema
     let listaContatos = [];
     if (contatosRaw) {
         listaContatos.push({ nome: contatosRaw, localizacao: "" });
     }
 
-    // Cria o objeto idêntico ao gerado pelo botão "+" do monitor principal
     let novoFrete = {
-        id: Date.now(), // ID numérico único do timestamp
+        id: Date.now(),
+        veic: veic,
         veiculo: veic,
+        moto: moto,
         motorista: moto,
         horario: hora,
+        hora_escala: hora,
+        sai: hora,
+        che: '--:--',
         cidade: cidade,
+        serv: serv,
         servico: serv,
         contatos: listaContatos,
+        status: 'PENDENTE',
         tipo: 'PENDENTE',
-        turno: turnoSelecionadoProg // Vincula ao Turno da aba selecionada (A, B ou C)
+        turno: turnoSelecionadoProg
     };
 
     if (!db.viagens) db.viagens = [];
     db.viagens.push(novoFrete);
     
-    // Dispara a gravação persistente no localStorage
     save();
 
-    // Limpa o formulário do popup para novos lançamentos
     document.getElementById('f_prog_hora').value = '';
     document.getElementById('f_prog_cidade').value = '';
     document.getElementById('f_prog_serv').value = '';
     document.getElementById('f_prog_contatos').value = '';
 
-    // Renderiza novamente a lista do popup e atualiza a timeline do monitor principal
     renderProgFretes();
     renderBase(); 
     alert("Frete programado e salvo com sucesso!");
 }
-// Renderiza a lista de fretes agrupando por Frota buscando da gaveta exclusiva do popup
+
 function renderListaFretesProg() {
-    const container = document.getElementById('list-prog-fretes');
-    if (!container) return; 
-
-    let html = '';
-
-    // Garante que a gaveta exista antes de tentar filtrar
-    if (!db.viagens_popup) {
-        db.viagens_popup = [];
-    }
-
-    // FILTRA DA GAVETA EXCLUSIVA DO POPUP
-    const viagensFiltradas = db.viagens_popup.filter(v => v.turno === turnoSelecionadoProg);
-
-    if (viagensFiltradas.length === 0) {
-        html = `<p style="font-size:11px; color:#666; text-align:center; padding-top:30px;">Nenhuma programação gravada para o Turno ${turnoSelecionadoProg}.</p>`;
-    } else {
-        const gruposPorVeiculo = {};
-
-        viagensFiltradas.forEach(v => {
-            if (!gruposPorVeiculo[v.veic]) {
-                gruposPorVeiculo[v.veic] = {
-                    veic: v.veic,
-                    moto: v.moto || 'NÃO INFORMADO',
-                    fretes: []
-                };
-            }
-            gruposPorVeiculo[v.veic].fretes.push(v);
-        });
-
-        for (let veicId in gruposPorVeiculo) {
-            const grupo = gruposPorVeiculo[veicId];
-
-            grupo.fretes.sort((a, b) => ((a.hora_escala || '') > (b.hora_escala || '') ? 1 : -1));
-
-            const temPendente = grupo.fretes.some(f => f.status !== 'OK');
-            const corBorda = temPendente ? 'var(--usa-amarelo)' : 'var(--usa-verde-medio)';
-
-            html += `
-                <div class="card-prog-mini" style="border-left: 4px solid ${corBorda}; margin-bottom: 12px; background: #252525; padding: 12px; border-radius: 6px; font-size:12px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid #333; padding-bottom: 6px; margin-bottom: 8px;">
-                        <span>🚚 <b style="font-size:13px; color:var(--usa-verde-claro);">FROTA ${grupo.veic}</b></span>
-                        <span style="font-size: 11px; color: #aaa;">👤 ${grupo.moto}</span>
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 8px;">`;
-
-            grupo.fretes.forEach(f => {
-                let htmlContatos = '';
-                if (Array.isArray(f.contatos)) {
-                    f.contatos.forEach(c => {
-                        htmlContatos += `<div style="font-size: 11px; color: var(--usa-azul); margin-top: 2px; line-height:1.2;">`;
-                        htmlContatos += `📞 <b>${c.nome}</b>`;
-                        if (c.localizacao) {
-                            htmlContatos += ` <span style="color:#aaa;">📍 (${c.localizacao})</span>`;
-                        }
-                        htmlContatos += `</div>`;
-                    });
-                } else if (f.contatos) {
-                    htmlContatos = `<div style="font-size: 11px; color: var(--usa-azul); margin-top: 2px;">📞 ${f.contatos}</div>`;
-                }
-
-                html += `
-                    <div style="background: #1c1c1c; padding: 6px 8px; border-radius: 4px; display: flex; justify-content: space-between; align-items: flex-start; border-left: 2px solid #555;">
-                        <div style="flex: 1; padding-right: 10px;">
-                            <span style="color: var(--usa-amarelo); font-weight: bold; font-size: 11px; display: inline-block; margin-bottom: 2px;">⏰ ${f.hora_escala || '--:--'}</span>
-                            <div style="font-weight: 600; color: #fff;">📍 ${f.cidade}</div>
-                            <div style="font-size: 11px; color: #bbb; margin-top: 1px;">🔧 ${f.serv}</div>
-                            ${htmlContatos}
-                        </div>
-                        <span style="color:#ff4444; font-weight:bold; cursor:pointer; font-size:14px; padding: 0 4px;" title="Remover este horário" onclick="excluirFreteProg(${f.id})">×</span>
-                    </div>`;
-            });
-
-            html += `</div></div>`;
-        }
-    }
-    renderProgFretes()
-    container.innerHTML = html;
+    renderProgFretes();
 }
-// Permite deletar programações removendo da gaveta correta do popup
+
 function excluirFreteProg(id) {
     if (confirm("Deseja realmente remover esta programação?")) {
-        if (!db.viagens_popup) db.viagens_popup = [];
-        
-        // Remove da gaveta exclusiva do popup
-        db.viagens_popup = db.viagens_popup.filter(v => v.id !== id);
+        db.viagens = db.viagens.filter(v => v.id != id);
+        if (db.viagens_popup) {
+            db.viagens_popup = db.viagens_popup.filter(v => v.id != id);
+        }
         save();
-        renderProgFretes()
-        render_renderListaFretesProg(); // Atualiza a visão lateral do popup
+        renderProgFretes();
+        render();
     }
 }
+
 function abrirEditarFrete(id) {
-    const v = db.viagens.find(x => x.id === id);
+    const v = db.viagens.find(x => x.id == id);
     if (!v) return;
 
     document.getElementById('edit_f_id').value = v.id;
-    document.getElementById('edit_f_hora_escala').value = v.hora_escala || "";
+    document.getElementById('edit_f_hora_escala').value = v.hora_escala || v.horario || v.sai || "";
     document.getElementById('edit_f_cidade').value = v.cidade || "";
-    document.getElementById('edit_f_serv').value = v.serv || "";
+    document.getElementById('edit_f_serv').value = v.serv || v.servico || "";
 
-    // Limpa e reconstrói as linhas de contatos salvas
     const container = document.getElementById('container-contatos-editar');
     container.innerHTML = '';
     
@@ -1535,7 +1463,6 @@ function abrirEditarFrete(id) {
             adicionarLinhaContato('container-contatos-editar', c.nome, c.localizacao);
         });
     } else {
-        // Fallback caso seja um frete antigo que era texto simples string
         const textoAntigo = typeof v.contatos === 'string' ? v.contatos : '';
         adicionarLinhaContato('container-contatos-editar', textoAntigo, '');
     }
@@ -1547,78 +1474,89 @@ function confirmarEdicaoFrete() {
     const idStr = document.getElementById('edit_f_id').value;
     if (!idStr) return;
     
-    const id = Number(idStr);
-    const item = db.viagens.find(x => x.id === id);
+    const item = db.viagens.find(x => x.id == idStr);
 
     if (item) {
-        item.hora_escala = document.getElementById('edit_f_hora_escala').value;
-        item.cidade = document.getElementById('edit_f_cidade').value.toUpperCase();
-        item.serv = document.getElementById('edit_f_serv').value.toUpperCase();
+        const hora = document.getElementById('edit_f_hora_escala').value;
+        const cidade = document.getElementById('edit_f_cidade').value.trim().toUpperCase();
+        const serv = document.getElementById('edit_f_serv').value.trim().toUpperCase();
+
+        item.hora_escala = hora;
+        item.horario = hora;
+        item.sai = hora || '--:--';
+        item.cidade = cidade;
+        item.serv = serv;
+        item.servico = serv;
         
-        // Coleta os novos contatos editados
         item.contatos = obterContatosDoContainer('container-contatos-editar');
 
         save(); 
         fecharModal('modalEditarFrete');
         render(); 
-        if (typeof renderListaFretesProg === 'function') renderListaFretesProg(); // Atualiza a lateral se existir
+        renderProgFretes();
+    } else {
+        alert("Erro ao localizar o frete para salvar.");
     }
 }
-
 
 function prepararDadosParaEscala() {
     let conteudoEscala = [];
 
-    // 1. Percorre os veículos na ordem exata que aparecem na tela
     db.veiculos.forEach(veic => {
-        // 2. Filtra as viagens deste veículo específico
-        const viagensDoVeiculo = db.viagens.filter(v => v.veic === veic.nome && v.turno === db.config.turno);
+        const viagensDoVeiculo = db.viagens.filter(v => (v.veic === veic.nome || v.veiculo === veic.nome) && v.turno === (db.config ? db.config.turno : 'A'));
         
-        // 3. Adiciona na lista do relatório mantendo a ordem dos cards
         viagensDoVeiculo.forEach(v => {
             conteudoEscala.push({
                 prefixo: veic.nome,
-                motorista: db.v_motos[veic.nome] || '---',
+                motorista: db.v_motos[veic.nome] || v.moto || v.motorista || '---',
                 cidade: v.cidade,
-                serv: v.serv,
-                horario: v.hora_escala || v.sai
+                serv: v.serv || v.servico,
+                horario: v.hora_escala || v.horario || v.sai
             });
         });
     });
 
     return conteudoEscala;
 }
+
 function salvarFrete() {
     const f_veic = document.getElementById('f_veic').value;
     const f_cidade = document.getElementById('f_cidade').value.toUpperCase();
     const f_serv = document.getElementById('f_custom').value.toUpperCase();
     const f_hora = document.getElementById('f_hora_escala').value;
     
-    // Captura a lista de contatos dinâmica
     const listaContatos = obterContatosDoContainer('container-contatos-novo');
 
     if (!f_veic) { alert("Selecione um veículo!"); return; }
 
+    const turnoAtual = (db.config && db.config.turno) ? db.config.turno : 'A';
+    const motoAtual = db.v_motos[f_veic] || 'N/A';
+
     const novo = {
         id: Date.now(),
         veic: f_veic,
-        turno: db.config.turno,
+        veiculo: f_veic,
+        moto: motoAtual,
+        motorista: motoAtual,
+        turno: turnoAtual,
         cidade: f_cidade,
-        moto: f_cidade, 
         serv: f_serv,
+        servico: f_serv,
         hora_escala: f_hora,
-        sai: f_hora,
-        che: '',
-        contatos: listaContatos, // Array de objetos gravada aqui
-        status: 'PENDENTE'
+        horario: f_hora,
+        sai: f_hora || '--:--',
+        che: '--:--',
+        contatos: listaContatos,
+        status: 'PENDENTE',
+        tipo: 'PENDENTE'
     };
 
     db.viagens.push(novo);
     save();
     render();
+    if (typeof renderProgFretes === 'function') renderProgFretes();
     fecharModal('modalFrete');
 
-    // Limpa formulário e reseta linhas de contato extras
     document.getElementById('f_cidade').value = '';
     document.getElementById('f_custom').value = '';
     document.getElementById('container-contatos-novo').innerHTML = `
@@ -1907,6 +1845,23 @@ function safeSetStorage(key, val) {
         obs_turno: safeGetStorage('v6_obs_turno', '')
     };
 
+    // Garante dados padrão caso a base local esteja vazia
+    if (!db.veiculos || db.veiculos.length === 0) {
+        db.veiculos = [
+            { id: 1, nome: "CARRO 01", local: "PÁTIO", emManutencao: false },
+            { id: 2, nome: "CARRO 02", local: "PÁTIO", emManutencao: false },
+            { id: 3, nome: "CARRO 03", local: "PÁTIO", emManutencao: false },
+            { id: 4, nome: "CARRO 04", local: "PÁTIO", emManutencao: false }
+        ];
+    }
+    if (!db.pranchas || db.pranchas.length === 0) {
+        db.pranchas = [
+            { id: 101, cavalo: "5010", prancha: "PRANCHA 01", tipo: "PRANCHA LARGA", local: "USINA", qru: false },
+            { id: 102, cavalo: "5012", prancha: "PRANCHA 02", tipo: "PRANCHA BAIXA", local: "USINA", qru: false },
+            { id: 103, cavalo: "5015", prancha: "PRANCHA 03", tipo: "PRANCHA MUNCK", local: "USINA", qru: false }
+        ];
+    }
+
     function save(skipFirebase = false) {
         safeSetStorage('v6_veics', db.veiculos);
         safeSetStorage('v6_motos', db.motos);
@@ -2000,34 +1955,30 @@ function renderProgFretes() {
 
     if (!db.viagens) db.viagens = [];
 
-    // 1. Filtra apenas os fretes pertencentes ao turno selecionado na Central
-    let fretesFiltrados = db.viagens.filter(f => f.turno === turnoSelecionadoProg);
+    let fretesFiltrados = db.viagens.filter(f => (f.turno || 'A') === turnoSelecionadoProg);
 
     if (fretesFiltrados.length === 0) {
         container.innerHTML = '<div style="padding:15px; color:#666; text-align:center; font-size:12px;">NENHUM FRETE PROGRAMADO PARA ESTE TURNO.</div>';
         return;
     }
 
-    // 2. Agrupa os fretes por Veículo usando um Objeto Map
     let fretesAgrupados = {};
     fretesFiltrados.forEach(f => {
-        if (!fretesAgrupados[f.veiculo]) {
-            fretesAgrupados[f.veiculo] = [];
+        let veicNome = f.veiculo || f.veic;
+        if (!veicNome) return;
+        if (!fretesAgrupados[veicNome]) {
+            fretesAgrupados[veicNome] = [];
         }
-        fretesAgrupados[f.veiculo].push(f);
+        fretesAgrupados[veicNome].push(f);
     });
 
-    // 3. Renderiza os Cards Agrupados por Veículo
     let html = '';
     
-    // Varre cada frota única que possui fretes agendados
     for (let veiculo in fretesAgrupados) {
         let viagensDoCarro = fretesAgrupados[veiculo];
         
-        // Ordena as viagens do carro por horário cronológico (opcional, melhora a visualização)
-        viagensDoCarro.sort((a, b) => (a.horario || '').localeCompare(b.horario || ''));
+        viagensDoCarro.sort((a, b) => ((a.horario || a.hora_escala || a.sai || '').localeCompare(b.horario || b.hora_escala || b.sai || '')));
 
-        // Inicia o Card único para o Veículo
         html += `
         <div class="card-prog-mini" style="border-left: 4px solid var(--usa-azul); margin-bottom: 12px; padding: 12px; background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
             <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
@@ -2038,9 +1989,7 @@ function renderProgFretes() {
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">`;
 
-        // Insere as linhas de trajetos/viagens dentro do card deste carro
         viagensDoCarro.forEach((f, index) => {
-            // Tratamento dinâmico para renderizar os contatos sem quebras
             let textoContatos = '';
             if (Array.isArray(f.contatos)) {
                 textoContatos = f.contatos.map(c => c.nome + (c.localizacao ? ' (' + c.localizacao + ')' : '')).join(' / ');
@@ -2048,27 +1997,29 @@ function renderProgFretes() {
                 textoContatos = f.contatos || '';
             }
 
-            // Define uma linha separadora sutil caso haja mais de uma viagem no card
             let estiloLinha = index > 0 ? 'border-top: 1px dashed #cbd5e1; padding-top: 8px;' : '';
+            let horaDisp = f.horario || f.hora_escala || f.sai || '--:--';
+            let motoDisp = f.motorista || f.moto || db.v_motos[veiculo] || 'SEM MOTORISTA';
+            let servDisp = f.servico || f.serv || '-';
+            let cidDisp = f.cidade || 'SEM DESTINO';
 
             html += `
             <div style="position: relative; padding-right: 55px; ${estiloLinha}">
-                <span style="color: #0f172a; font-weight: bold; font-size: 12px;">⏱️ ${f.horario || '--:--'}h</span> - 
-                <span style="color: #d97706; font-size: 11px; font-weight: 600;">${f.motorista || 'SEM MOTORISTA'}</span>
+                <span style="color: #0f172a; font-weight: bold; font-size: 12px;">⏱️ ${horaDisp}h</span> - 
+                <span style="color: #d97706; font-size: 11px; font-weight: 600;">${motoDisp}</span>
                 <div class="detalhes" style="margin-top: 3px; font-size: 11px; color: #475569; line-height: 1.3;">
-                    <b>DESTINO:</b> ${f.cidade}<br>
-                    <b>SERVIÇO:</b> ${f.servico}
+                    <b>DESTINO:</b> ${cidDisp}<br>
+                    <b>SERVIÇO:</b> ${servDisp}
                     ${textoContatos ? `<br><span style="color: #d97706; font-size: 10.5px;">📞 ${textoContatos}</span>` : ''}
                 </div>
                 
                 <div style="position: absolute; top: 0px; right: 2px; display: flex; gap: 10px;">
-                    <span title="Alterar Programação" style="cursor: pointer; color: #d97706; font-weight: bold; font-size: 13px;" onclick="alterarFreteEscala(${f.id})">✏️</span>
+                    <span title="Alterar Programação" style="cursor: pointer; color: #d97706; font-weight: bold; font-size: 13px;" onclick="abrirEditarFrete(${f.id})">✏️</span>
                     <span title="Excluir" style="cursor: pointer; color: #dc2626; font-weight: bold; font-size: 13px;" onclick="deletarFreteEscala(${f.id})">❌</span>
                 </div>
             </div>`;
         });
 
-        // Fecha a estrutura do Card do Veículo
         html += `
             </div>
         </div>`;
@@ -2076,142 +2027,38 @@ function renderProgFretes() {
 
     container.innerHTML = html;
 }
-// Abre o gerenciador para alterar dados do frete cadastrado
-// Captura e preenche o modal de edição padrão do sistema com os dados da Escala
-function alterarFreteEscala(id) {
-    let frete = db.viagens.find(f => f.id == id);
-    if (!frete) return;
 
-    // Vincula os dados nos inputs padrão de edição
-    document.getElementById('edit_f_id').value = frete.id;
-    document.getElementById('edit_f_hora_escala').value = frete.horario || '';
-    document.getElementById('edit_f_cidade').value = frete.cidade || '';
-    document.getElementById('edit_f_serv').value = frete.servico || '';
-    
-    // Reconstrói as linhas de contato dinâmicas dentro do modal de edição
-    let containerContatos = document.getElementById('container-contatos-editar');
-    if (containerContatos) {
-        containerContatos.innerHTML = '';
-        if (Array.isArray(frete.contatos) && frete.contatos.length > 0) {
-            frete.contatos.forEach(c => {
-                adicionarLinhaContato('container-contatos-editar', c.nome, c.localizacao);
-            });
-        } else if (typeof frete.contatos === 'string' && frete.contatos) {
-            adicionarLinhaContato('container-contatos-editar', frete.contatos, '');
-        }
-    }
-
-    // Exibe o modal de edição nativo na tela
-    document.getElementById('modalEditarFrete').style.display = 'flex';
-}
-
-// Executa a remoção completa do frete do banco de dados
 function deletarFreteEscala(id) {
     if (confirm("Deseja realmente remover este frete programado?")) {
         db.viagens = db.viagens.filter(f => f.id != id);
-        save();         // Atualiza o LocalStorage
-        renderProgFretes(); // Atualiza a lista da Central
-        renderBase();       // Atualiza a tela do Monitor principal
-    }
-}
-// Abre o modal de edição padrão do sistema com os dados do frete da escala
-function editarFreteEscala(id) {
-    let frete = db.viagens.find(f => f.id === id);
-    if (!frete) return;
-
-    // Define os valores nos campos do modal de edição
-    document.getElementById('edit_f_id').value = frete.id;
-    document.getElementById('edit_f_hora_escala').value = frete.horario || '';
-    document.getElementById('edit_f_cidade').value = frete.cidade || '';
-    document.getElementById('edit_f_serv').value = frete.servico || '';
-    
-    // Como o popup usa um campo de texto simples para contatos, limpamos o container estruturado 
-    // ou preenchemos o primeiro campo se necessário para evitar conflitos com o modal do painel principal
-    let containerContatos = document.getElementById('container-contatos-editar');
-    if (containerContatos) {
-        containerContatos.innerHTML = '';
-        if (frete.contatos) {
-            adicionarLinhaContato('container-contatos-editar', frete.contatos, '');
-        }
-    } else {
-        if (document.getElementById('edit_f_contatos')) {
-            document.getElementById('edit_f_contatos').value = frete.contatos || '';
-        }
-    }
-
-    // Abre o modal de edição
-    document.getElementById('modalEditarFrete').style.display = 'flex';
-}
-
-// Executada quando o usuário clica em "Salvar Alterações" no modal de edição
-function confirmarEdicaoFrete() {
-    let id = document.getElementById('edit_f_id').value;
-    let frete = db.viagens.find(f => f.id === id);
-    
-    if (!frete) {
-        // Se não achar pelo ID string da escala, pode ser uma viagem gerada pelo painel principal
-        alert("Erro ao localizar o frete para salvar.");
-        return;
-    }
-
-    // Atualiza os valores modificados
-    frete.horario = document.getElementById('edit_f_hora_escala').value;
-    frete.cidade = document.getElementById('edit_f_cidade').value.trim().toUpperCase();
-    frete.servico = document.getElementById('edit_f_serv').value.trim().toUpperCase();
-    
-    // Captura os contatos do container se ele existir, senão pega do input de texto simples
-    let containerContatos = document.getElementById('container-contatos-editar');
-    if (containerContatos && containerContatos.children.length > 0) {
-        let lista = obterContatosDoContainer('container-contatos-editar');
-        frete.contatos = lista.map(c => c.nome + (c.localizacao ? ' - ' + c.localizacao : '')).join(' / ');
-    } else if (document.getElementById('edit_f_contatos')) {
-        frete.contatos = document.getElementById('edit_f_contatos').value.trim().toUpperCase();
-    }
-
-    // Grava de forma permanente
-    if (typeof save === "function") save();
-    else localStorage.setItem('v6_db', JSON.stringify(db));
-
-    fecharModal('modalEditarFrete');
-    renderProgFretes();
-    if (typeof renderBase === "function") renderBase();
-}
-
-// Remove o frete permanentemente do banco de dados
-function excluirFreteEscala(id) {
-    if (confirm("Tem certeza que deseja remover este frete programado?")) {
-        db.viagens = db.viagens.filter(f => f.id !== id);
-        
-        if (typeof save === "function") save();
-        else localStorage.setItem('v6_db', JSON.stringify(db));
-
+        save();
         renderProgFretes();
-        if (typeof renderBase === "function") renderBase();
+        renderBase();
     }
 }
 function renderPranchas() {
     const body = document.getElementById('lista-pranchas-body');
-    // Atualiza o cabeçalho se necessário (adicione uma <th> no seu HTML se quiser título na coluna)
+    if (!body) return;
     body.innerHTML = db.pranchas.map((p, index) => `
-        <tr class="row-editavel" onclick="editarPrancha(${p.id})" style="border-bottom: 1px solid #e2e8f0; color: #0f172a; background: ${p.qru ? '#fee2e2' : 'transparent'}">
+        <tr class="row-editavel" onclick="editarPrancha(${p.id})" style="border-bottom: 1px solid #e2e8f0; color: #0f172a; background: ${p.qru ? '#fee2e2' : '#ffffff'}; font-weight: 500;">
             <td style="padding:10px;" onclick="event.stopPropagation()">
-                <div style="display:flex; flex-direction:column; gap:2px;">
-                    <button class="btn-mini" onclick="moverPrancha(${index}, -1)">▲</button>
-                    <button class="btn-mini" onclick="moverPrancha(${index}, 1)">▼</button>
+                <div style="display:flex; flex-direction:column; gap:2px; align-items:center;">
+                    <button class="btn-mini" onclick="moverPrancha(${index}, -1)" title="Subir" style="color:#004A2F; font-size:12px;">▲</button>
+                    <button class="btn-mini" onclick="moverPrancha(${index}, 1)" title="Descer" style="color:#004A2F; font-size:12px;">▼</button>
                 </div>
             </td>
-            <td style="padding:10px;">${p.cavalo || '-'}</td>
-            <td style="padding:10px; font-weight:bold; color:var(--usa-verde-claro)">${p.prancha || '-'}</td>
-            <td style="padding:10px;">${p.tipo}</td>
-            <td style="padding:10px;">${p.local}</td>
+            <td style="padding:10px; font-weight:700; color:#004A2F;">${p.cavalo || '-'}</td>
+            <td style="padding:10px; font-weight:800; color:#16a34a;">${p.prancha || '-'}</td>
+            <td style="padding:10px; color:#334155;">${p.tipo || '-'}</td>
+            <td style="padding:10px; color:#334155;">${p.local || '-'}</td>
             <td style="padding:10px;" onclick="event.stopPropagation()">
                 <button onclick="abrirModalQRUPra(${p.id})" 
-                        style="background:${p.qru ? 'var(--usa-qru)' : '#444'}; color:white; border:none; border-radius:4px; padding:4px 8px; cursor:pointer; font-size:10px;">
+                        style="background:${p.qru ? 'var(--usa-qru)' : '#64748b'}; color:white; border:none; border-radius:6px; padding:5px 10px; cursor:pointer; font-size:10px; font-weight:bold;">
                     ${p.qru ? 'EM QRU' : '🔧 QRU'}
                 </button>
             </td>
             <td style="padding:10px;" onclick="event.stopPropagation()">
-                <button onclick="delPrancha(${p.id})" style="color:var(--usa-qru); background:none; border:none; cursor:pointer; font-size:16px;">🗑️</button>
+                <button onclick="delPrancha(${p.id})" style="color:var(--usa-qru); background:none; border:none; cursor:pointer; font-size:16px;" title="Remover">🗑️</button>
             </td>
         </tr>
     `).join('');
@@ -2363,17 +2210,10 @@ function renderBase() {
         db.veiculos.map(x => `<option value="${x.nome}">${x.nome}</option>`).join('');
     document.getElementById('f_serv_pre').innerHTML = '<option value="">-- Personalizado --</option>' + 
         db.servicos.map(x => `<option value="${x.nome}">${x.nome}</option>`).join('');
-        render();
+    render();
 }
 
-    function salvarFrete() {
-        const v = document.getElementById('f_veic').value; const s = document.getElementById('f_custom').value.toUpperCase();
-        if(!v || !s) return alert("Preencha os dados!");
-        db.viagens.push({ id: Date.now(), veic: v, moto: db.v_motos[v] || "N/A", serv: s, status: 'PENDENTE', sai: '--:--', che: '--:--' });
-        save(); fecharModal('modalFrete');
-    }
-
-    function gerenciarStatus(id) {
+function gerenciarStatus(id) {
         const i = db.viagens.findIndex(x => x.id === id); const v = db.viagens[i];
         const agora = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
         if(v.status === 'PENDENTE') { v.status = 'RODANDO'; v.sai = agora; }
@@ -2384,7 +2224,9 @@ function renderBase() {
 
 function render() {
     // Atualiza nome do controlador e observações
-    document.getElementById('ctrl_name').value = db.controlador || '';
+    if(document.getElementById('ctrl_name')) {
+        document.getElementById('ctrl_name').value = db.controlador || '';
+    }
     if(document.getElementById('obs_turno')) { 
         document.getElementById('obs_turno').value = db.obs_turno || ''; 
     }
@@ -2426,24 +2268,29 @@ function render() {
 
             <div class="viagens-timeline">
                 ${viagens.map(v => {
-                    // Configuração do botão de status
-                    let btnCfg = v.status === 'PENDENTE' ? { class: 'btn-status-start', label: 'INICIAR', icon: '🛫' } : 
-                                 v.status === 'RODANDO' ? { class: 'btn-status-finish', label: 'CONCLUIR', icon: '🏁' } : 
+                    let statusVal = (v.status || v.tipo || 'PENDENTE').toUpperCase();
+                    let btnCfg = statusVal === 'PENDENTE' ? { class: 'btn-status-start', label: 'INICIAR', icon: '🛫' } : 
+                                 statusVal === 'RODANDO' ? { class: 'btn-status-finish', label: 'CONCLUIR', icon: '🏁' } : 
                                  { class: 'btn-status-clear', label: 'LIMPAR', icon: '🧹' };
                     
+                    let motoDisp = v.cidade || v.moto || v.motorista || 'S/ CIDADE';
+                    let servDisp = v.serv || v.servico || '';
+                    let saiDisp = v.sai || v.horario || v.hora_escala || '--:--';
+                    let cheDisp = v.che || '--:--';
+
                     return `
-                    <div class="trip-card status-${v.status.toLowerCase()}">
+                    <div class="trip-card status-${statusVal.toLowerCase()}">
                         <div class="card-header-actions">
                             <button class="btn-mini" onclick="abrirEditarFrete(${v.id})" title="Editar">✏️</button>
                             <button class="btn-mini" onclick="moverFrete(${v.id}, -1)">◀</button>
                             <button class="btn-mini" onclick="moverFrete(${v.id}, 1)">▶</button>
                             <button class="btn-mini" onclick="excluirFrete(${v.id})" style="color:#ff4444">✖</button>
                         </div>
-                        <div class="moto">${v.cidade || v.moto || 'S/ CIDADE'}</div>
-                        <div class="serv">${v.serv || ''}</div>
+                        <div class="moto">${motoDisp}</div>
+                        <div class="serv">${servDisp}</div>
                         <div class="times">
-                            <span>🛫 ${v.sai || '--:--'}</span>
-                            <span>🏁 ${v.che || '--:--'}</span>
+                            <span>🛫 ${saiDisp}</span>
+                            <span>🏁 ${cheDisp}</span>
                         </div>
                         <button class="btn-status-dynamic ${btnCfg.class}" onclick="gerenciarStatus(${v.id})">
                             ${btnCfg.icon} ${btnCfg.label}
@@ -2459,26 +2306,21 @@ function render() {
 async function baixarPastaVivaComoImagem() {
     const relatorio = document.getElementById('corpo-relatorio');
 
-    // Verifica se há conteúdo. Se estiver vazio, gera o relatório primeiro.
     if (!relatorio || relatorio.innerText.trim() === "") {
-        // Se você tiver a função que preenche o HTML, chame-a aqui:
-        // gerarPastaViva(); 
         alert("Gere o relatório na tela antes de salvar!");
         return;
     }
 
-    // Pequena pausa para garantir que o DOM processou o HTML e o CSS
     await new Promise(resolve => setTimeout(resolve, 500));
 
     html2canvas(relatorio, {
-        scale: 2,           // Melhora a nitidez
-        useCORS: true,      // Evita bloqueios de segurança
+        scale: 2,
+        useCORS: true,
         backgroundColor: "#ffffff",
         width: relatorio.offsetWidth,
         height: relatorio.offsetHeight,
         logging: false
     }).then(canvas => {
-        // Verifica se o canvas gerado tem conteúdo
         const context = canvas.getContext('2d');
         const data = context.getImageData(0, 0, canvas.width, canvas.height).data;
         const isBlank = !Object.values(data).some(color => color !== 0 && color !== 255);
@@ -2499,12 +2341,11 @@ function gerarPastaViva() {
         document.getElementById('rel-data').innerText = new Date().toLocaleDateString();
         document.getElementById('rel-user').innerText = db.controlador || 'NÃO INFORMADO';
         
-        // --- TABELA ATIVOS ---
         let html = `<table class="tabela-viva">
             <tr class="header-viva"><td colspan="5">ATIVOS (SPINS / ARGOS / STRADAS)</td></tr>
             <tr style="background:#eee"><th>MODELO</th><th width="80">FROTA</th><th>CONDUTOR</th><th>FRETES REALIZADOS</th><th>LOCAL</th></tr>`;
 db.veiculos.forEach(v => {
-    const fretesOk = db.viagens.filter(x => x.veic === v.nome && x.status === 'OK').map(x => x.serv).join(' / ') || '-';
+    const fretesOk = db.viagens.filter(x => (x.veic === v.nome || x.veiculo === v.nome) && (x.status === 'OK' || x.tipo === 'OK')).map(x => x.serv || x.servico).join(' / ') || '-';
     
     html += `<tr class="${v.emManutencao?'qru-row':''}">
                 <td>${v.modelo || '-'}</td> <td style="font-weight:bold;">${v.nome}</td>
@@ -2516,7 +2357,6 @@ db.veiculos.forEach(v => {
              </tr>`;
 });
         html += `</table>`;
-        // --- TABELA PRANCHAS ---
         html += `<table class="tabela-viva" style="margin-top:5px;">
             <tr class="header-viva"><td colspan="4">PRANCHAS E IMPLEMENTOS</td></tr>
             <tr style="background:#eee"><th>CAVALO</th><th>PRANCHA</th><th>TIPO E SITUAÇÃO</th><th>LOCAL</th></tr>`;
@@ -2529,23 +2369,18 @@ db.veiculos.forEach(v => {
         }
         html += `</table>`;
 
-// --- SEÇÃO DE SERVIÇOS (APENAS AGENDADOS / PENDENTES NAS PRÓXIMAS 8 HORAS) ---
-// --- SEÇÃO DE SERVIÇOS (COM PULO DE LINHA ENTRE ITENS) ---
 html += `<table class="tabela-viva" style="margin-top:5px;"><tr class="header-viva"><td>SERVIÇOS E ORIENTAÇÕES PARA O PRÓXIMO TURNO</td></tr>`;
 
-// 1. Observações digitadas
 if (db.obs_turno && db.obs_turno.trim() !== "") {
     const linhas = db.obs_turno.split('\n');
     linhas.forEach(linha => {
         if(linha.trim() !== "") {
             html += `<tr><td style="text-align:left; padding-left:15px; height:15px; font-weight: bold; color: #000; font-size: 8.5px;">• ${linha.toUpperCase()}</td></tr>`;
-            // PULA LINHA APÓS OBSERVAÇÃO
             html += `<tr><td style="height:10px; border:none;">&nbsp;</td></tr>`;
         }
     });
 }
 
-// 2. Filtro de tempo (Próximas 8 horas)
 const agora = new Date();
 const limiteFuturo = new Date(agora.getTime() + (8 * 60 * 60 * 1000));
 
@@ -2558,7 +2393,6 @@ let agExternos = obterAgendamentosExternos().filter(ag => {
     return false;
 });
 
-// 3. Ordenação e Renderização dos Fretes
 agExternos.sort((a, b) => new Date(a.hora_frete) - new Date(b.hora_frete));
 
 if (agExternos.length > 0) {
@@ -2575,12 +2409,10 @@ if (agExternos.length > 0) {
         }
         
         html += `<tr><td style="text-align:left; padding-left:15px; height:15px; font-weight: bold; font-size: 8.5px;">• ${solicitante.toUpperCase()} = ${equipamento.toUpperCase()}: ${embarque.toUpperCase()} -> ${desembarque.toUpperCase()} = ${horario} HRS</td></tr>`;
-        // PULA LINHA APÓS CADA FRETE
         html += `<tr><td style="height:10px; border:none;">&nbsp;</td></tr>`;
     });
 }
 
-// 4. Preenchimento de linhas vazias (também com 15px)
 let linhasVaziasDinamicas = 7 - agExternos.length; 
 if (linhasVaziasDinamicas > 0) {
     for(let i=0; i < linhasVaziasDinamicas; i++) {
@@ -2589,7 +2421,6 @@ if (linhasVaziasDinamicas > 0) {
 }
 html += `</table>`;
 
-        // --- SEÇÃO DE QRU ---
         html += `<table class="tabela-viva" style="margin-top:5px;"><tr class="header-viva"><td colspan="2">QRU - EQUIPAMENTOS PARADOS (MANUTENÇÃO)</td></tr><tr style="background:#eee"><th width="75%">EQUIPAMENTO / MOTIVO</th><th>PREVISÃO</th></tr>`;
         let qrusVeic = db.veiculos.filter(v => v.emManutencao);
         let qrusPra = db.pranchas.filter(p => p.qru);
@@ -2615,13 +2446,20 @@ qrusPra.forEach(p => {
 function fecharModal(id) {
     document.getElementById(id).style.display = 'none';
 }
-    setInterval(() => document.getElementById('clock').innerText = new Date().toLocaleTimeString(), 1000);
+    setInterval(() => {
+        const clk = document.getElementById('clock');
+        if (clk) clk.innerText = new Date().toLocaleTimeString();
+    }, 1000);
+
+    let firebaseInicializado = false;
     function inicializarFirebase() {
+        if (firebaseInicializado) return;
+        firebaseInicializado = true;
+
         renderBase();
         render();
 
         if (typeof firestoreDb !== 'undefined') {
-            // Escutar alterações do sistema de pranchas
             firestoreDb.collection('sistemas').doc('pranchas').onSnapshot((doc) => {
                 if (doc.exists) {
                     const data = doc.data();
@@ -2644,7 +2482,6 @@ function fecharModal(id) {
                 console.error("Erro ao escutar pranchas do Firebase:", err);
             });
 
-            // Escutar alterações do dashboard para manter agendamentos sincronizados
             firestoreDb.collection('sistemas').doc('dashboard').onSnapshot((doc) => {
                 if (doc.exists) {
                     const data = doc.data();
@@ -2661,7 +2498,11 @@ function fecharModal(id) {
         }
     }
 
-    window.onload = inicializarFirebase;
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        inicializarFirebase();
+    } else {
+        document.addEventListener('DOMContentLoaded', inicializarFirebase);
+    }
 </script>
 
 </body>

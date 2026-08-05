@@ -26,11 +26,6 @@ try {
     
     if (typeof firebase.firestore === 'function') {
         firestoreDb = firebase.firestore();
-        
-        // Tenta ativar a persistência offline sem interromper o sistema em caso de incompatibilidade de versão ou abas simultâneas
-        firestoreDb.enablePersistence({ synchronizeTabs: true }).catch(() => {
-            // Silencioso: O Firestore opera 100% normalmente em modo online/memória sem afetar o sistema
-        });
     }
 } catch (e) {
     console.error("Erro ao inicializar o Firebase:", e);
