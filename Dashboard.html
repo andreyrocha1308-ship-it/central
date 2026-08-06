@@ -251,9 +251,9 @@
         }
 
         .btn-add-equip {
-            background: linear-gradient(135deg, #1b5e39, #004A2F);
+            background: linear-gradient(135deg, #004A2F 0%, #1b5e39 100%);
             color: white;
-            border: 1px solid rgba(0, 74, 47, 0.4);
+            border: 1px solid rgba(139, 195, 74, 0.5);
             padding: 10px 20px;
             border-radius: 10px;
             cursor: pointer;
@@ -263,11 +263,12 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 14px rgba(0, 74, 47, 0.35);
         }
         .btn-add-equip:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #1b5e39 0%, #16a34a 100%);
+            box-shadow: 0 6px 20px rgba(0, 74, 47, 0.5);
         }
 
         .input-data-boletim {
@@ -563,21 +564,35 @@
             transform: translateY(0);
         }
 
-        .btn-verde-escuro { background: linear-gradient(135deg, #1b5e39, #004A2F); border: 1px solid rgba(178, 217, 105, 0.3); }
-        .btn-verde-medio { background: linear-gradient(135deg, #237a4a, #1b5e39); }
+        .btn-verde-escuro { 
+            background: linear-gradient(135deg, #004A2F 0%, #1b5e39 100%); 
+            color: #ffffff;
+            border: 1px solid rgba(139, 195, 74, 0.5) !important; 
+            box-shadow: 0 4px 14px rgba(0, 74, 47, 0.35);
+        }
+        .btn-verde-medio { 
+            background: linear-gradient(135deg, #004A2F 0%, #1b5e39 100%); 
+            color: #ffffff;
+            border: 1px solid rgba(139, 195, 74, 0.5) !important; 
+            box-shadow: 0 4px 14px rgba(0, 74, 47, 0.35);
+        }
+        .btn-verde-escuro:hover, .btn-verde-medio:hover {
+            background: linear-gradient(135deg, #1b5e39 0%, #16a34a 100%);
+            box-shadow: 0 6px 20px rgba(0, 74, 47, 0.5);
+        }
         .btn-cinza { background: #475569; color: #ffffff; }
         .btn-danger { background: linear-gradient(135deg, #ef4444, #dc2626); }
         .btn-config { 
-            background: rgba(255, 255, 255, 0.2); 
+            background: linear-gradient(135deg, #004A2F 0%, #1b5e39 100%) !important; 
             color: #ffffff !important; 
-            border: 1px solid rgba(255, 255, 255, 0.4) !important;
-            backdrop-filter: blur(5px);
+            border: 1px solid rgba(139, 195, 74, 0.5) !important;
+            box-shadow: 0 4px 14px rgba(0, 74, 47, 0.35) !important;
         }
         .btn-config:hover {
-            background: rgba(255, 255, 255, 0.35);
-            border-color: #ffffff !important;
+            background: linear-gradient(135deg, #1b5e39 0%, #16a34a 100%) !important;
+            border-color: #8bc34a !important;
             color: #ffffff !important;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 74, 47, 0.5) !important;
         }
 
         .content {
@@ -805,7 +820,7 @@
         </nav>
 
         <div class="nav-buttons">
-            <button class="btn btn-danger" onclick="gerarPrintZap()">
+            <button class="btn btn-verde-escuro" onclick="gerarPrintZap()">
                 <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
                 <span>PRINT P/ WHATSAPP</span>
             </button>
@@ -815,7 +830,7 @@
                 <span>HISTÓRICO</span>
             </button>
 
-            <button class="btn btn-cinza" onclick="abrirModalBase()">
+            <button class="btn btn-verde-escuro" onclick="abrirModalBase()">
                 <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M21 19c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14"></path><path d="M21 5v14"></path></svg>
                 <span>BASE DE DADOS</span>
             </button>
@@ -1031,9 +1046,9 @@
                         <tr>
                             <th rowspan="2" style="width: 180px;">FROTA</th>
                             <th rowspan="2" style="width: 180px; text-align: center;">DESCRIÇÃO</th>
-                            <th colspan="2" style="background: rgba(0, 74, 47, 0.6); color: var(--usa-verde-claro);">TURNO A</th>
-                            <th colspan="2" style="background: rgba(0, 74, 47, 0.6); color: var(--usa-verde-claro);">TURNO B</th>
-                            <th colspan="2" style="background: rgba(0, 74, 47, 0.6); color: var(--usa-verde-claro);">TURNO C</th>
+                            <th colspan="2" style="background: linear-gradient(180deg, #004A2F 0%, #1b5e39 100%); color: #ffffff; font-weight: 800; font-size: 12px; border-bottom: 2px solid #8bc34a;">TURNO A</th>
+                            <th colspan="2" style="background: linear-gradient(180deg, #004A2F 0%, #1b5e39 100%); color: #ffffff; font-weight: 800; font-size: 12px; border-bottom: 2px solid #8bc34a;">TURNO B</th>
+                            <th colspan="2" style="background: linear-gradient(180deg, #004A2F 0%, #1b5e39 100%); color: #ffffff; font-weight: 800; font-size: 12px; border-bottom: 2px solid #8bc34a;">TURNO C</th>
                         </tr>
                         <tr>
                             <th style="width: 100px;">STATUS</th><th style="width: 100px;">Nº BOL.</th>
@@ -1049,7 +1064,7 @@
             <div class="section-header header-docs" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 22px;">
                 <span>🛠️ REVISÕES E MANUTENÇÃO</span>
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <button onclick="printRevisoes()" class="btn btn-danger" style="padding: 6px 12px; font-size: 11px;">
+                    <button onclick="printRevisoes()" class="btn btn-verde-escuro" style="padding: 6px 12px; font-size: 11px;">
                         📸 PRINT P/ WHATSAPP
                     </button>
                     <label style="font-size: 11px; color: #94a3b8; font-weight: 700;">SELECIONAR CARROS:</label>

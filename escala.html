@@ -1,0 +1,2330 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escala de Fretes & Transporte - Santa Adélia</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --usa-verde-escuro: #004A2F;
+            --usa-verde-medio: #1b5e39;
+            --usa-verde-claro: #16a34a;
+            --usa-verde-glow: #8bc34a;
+            --usa-amarelo: #f59e0b;
+            --usa-amarelo-bg: #fef9c3;
+            --usa-vermelho: #dc2626;
+            --usa-azul: #0284c7;
+            --bg-body: #f1f5f9;
+            --card-bg: #ffffff;
+            --border-color: #cbd5e1;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            overflow-x: auto;
+        }
+
+        /* BANNER E RODAPÉ DE IMPRESSÃO (EXIBIDOS APENAS NA IMPRESSÃO) */
+        .print-header-banner, .print-footer-folguistas {
+            display: none;
+        }
+
+        /* HEADER PREMIUM SANTA ADÉLIA NA TELA */
+        .escala-header {
+            background: linear-gradient(135deg, #021c12 0%, #004A2F 50%, #083321 100%);
+            color: #ffffff;
+            padding: 16px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            border-bottom: 4px solid var(--usa-verde-glow);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-section img {
+            height: 40px;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4));
+        }
+
+        .brand-titles h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        .brand-titles p {
+            margin: 2px 0 0 0;
+            font-size: 11px;
+            color: var(--usa-verde-glow);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .stat-badge {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(8px);
+            padding: 7px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #ffffff;
+        }
+
+        .stat-badge span {
+            color: var(--usa-verde-glow);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .btn-action {
+            background: linear-gradient(135deg, #004A2F 0%, #1b5e39 100%);
+            color: #ffffff;
+            border: 1px solid var(--usa-verde-glow);
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px rgba(0, 74, 47, 0.35);
+            font-family: inherit;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 74, 47, 0.5);
+            background: linear-gradient(135deg, #1b5e39 0%, #16a34a 100%);
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #004A2F 0%, #15803d 100%);
+            border: 1px solid var(--usa-verde-glow);
+            box-shadow: 0 4px 14px rgba(0, 74, 47, 0.35);
+        }
+
+        /* PAINEL DE CONTROLE / FILTROS */
+        .controls-panel {
+            background: #ffffff;
+            padding: 14px 28px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .filters-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 260px;
+            flex: 1;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 14px 10px 38px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.2s;
+            font-family: inherit;
+            background: #f8fafc;
+        }
+
+        .search-box input:focus {
+            border-color: var(--usa-verde-medio);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.15);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            stroke: #94a3b8;
+        }
+
+        .select-filter {
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #334155;
+            background: #f8fafc;
+            outline: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: #e2e8f0;
+            padding: 4px;
+            border-radius: 10px;
+            gap: 4px;
+        }
+
+        .toggle-btn {
+            border: none;
+            background: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+
+        .toggle-btn.active {
+            background: #ffffff;
+            color: var(--usa-verde-escuro);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+
+        .edit-hint-bar {
+            background: #f0fdf4;
+            border-bottom: 1px solid #bbf7d0;
+            padding: 8px 28px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #166534;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* CONTEÚDO PRINCIPAL */
+        .content-area {
+            padding: 20px 24px;
+            max-width: 100%;
+        }
+
+        /* VISÃO MATRIZ EXECUTIVA */
+        .matrix-container {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            overflow-x: auto;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 12px;
+            table-layout: fixed;
+            min-width: 1200px;
+        }
+
+        .matrix-table th {
+            background: linear-gradient(180deg, #004A2F 0%, #1b5e39 100%);
+            color: #ffffff;
+            font-weight: 800;
+            text-align: center;
+            font-size: 12px;
+            padding: 12px 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #8bc34a;
+        }
+
+        .matrix-table th:first-child {
+            border-top-left-radius: 15px;
+            width: 120px;
+        }
+
+        .matrix-table th:last-child {
+            border-top-right-radius: 15px;
+        }
+
+        .matrix-table td {
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 8px;
+            vertical-align: top;
+            background: #ffffff;
+        }
+
+        .col-carro-cell {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9) !important;
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+        .car-badge-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .car-badge {
+            background: linear-gradient(135deg, #004A2F, #1b5e39);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 8px 12px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,74,47,0.25);
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-edit-car {
+            background: rgba(0, 74, 47, 0.1);
+            border: 1px solid rgba(0, 74, 47, 0.2);
+            color: #004A2F;
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .driver-banner-wrapper {
+            background: linear-gradient(135deg, #fef9c3, #fde047);
+            border: 1px solid #facc15;
+            border-radius: 10px;
+            padding: 6px 8px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 6px rgba(245,158,11,0.15);
+            cursor: pointer;
+        }
+
+        .driver-info {
+            font-weight: 800;
+            color: #854d0e;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .edit-btn-tiny {
+            background: rgba(255,255,255,0.85);
+            border: 1px solid rgba(133,77,14,0.3);
+            color: #854d0e;
+            border-radius: 6px;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .process-block {
+            background: #fafafa;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 6px 8px;
+            margin-bottom: 6px;
+        }
+
+        .process-title-text {
+            color: var(--usa-vermelho);
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .passenger-row {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 4px 6px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .p-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+        }
+
+        .p-name-line {
+            font-weight: 800;
+            color: var(--text-dark);
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .p-sub-line {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        /* TELEFONE COM LINK DIRETO PARA WHATSAPP AO CLICAR */
+        .p-phone-wsp-link {
+            color: #15803d;
+            font-weight: 800;
+            text-decoration: none;
+            background: #dcfce7;
+            border: 1px solid #bbf7d0;
+            padding: 1px 6px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 10px;
+            transition: all 0.15s;
+        }
+
+        .p-phone-wsp-link:hover {
+            background: #bbf7d0;
+            color: #052e16;
+            transform: scale(1.03);
+        }
+
+        .loc-badge {
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+            padding: 1px 6px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .p-row-actions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-icon-small {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        .btn-delete-small:hover {
+            background: #fef2f2;
+            color: #dc2626;
+            border-color: #fca5a5;
+        }
+
+        .btn-add-passenger-cell {
+            width: 100%;
+            padding: 5px;
+            background: rgba(22, 163, 74, 0.06);
+            border: 1px dashed rgba(22, 163, 74, 0.4);
+            border-radius: 6px;
+            color: var(--usa-verde-medio);
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin-top: 4px;
+            font-family: inherit;
+        }
+
+        /* CARDS COMPACTOS PARA A TELA */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 14px;
+        }
+
+        .vehicle-card {
+            background: #ffffff;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #004A2F, #1b5e39);
+            color: #ffffff;
+            padding: 10px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-body { padding: 10px; }
+
+        .mobile-shift-tabs {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 2px;
+            gap: 2px;
+            margin-bottom: 10px;
+        }
+
+        .m-shift-tab {
+            flex: 1;
+            padding: 5px;
+            border: none;
+            background: none;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            color: #64748b;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .m-shift-tab.active {
+            background: #004A2F;
+            color: #ffffff;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 14px;
+        }
+
+        .location-card {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            padding: 14px;
+        }
+
+        .location-card-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--usa-verde-escuro);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        /* MODAIS DE EDIÇÃO */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(6px);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-backdrop.active { display: flex; }
+
+        .modal-card {
+            background: #ffffff;
+            border-radius: 18px;
+            width: 100%;
+            max-width: 520px;
+            padding: 22px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid var(--usa-verde-glow);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .modal-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--usa-verde-escuro);
+        }
+
+        .modal-close {
+            background: #f1f5f9;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            color: #64748b;
+        }
+
+        .form-group { margin-bottom: 12px; }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 800;
+            color: #334155;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        /* LINHA DE FOLGUISTAS NO RODAPÉ - EXCLUSIVA DA IMPRESSÃO */
+        .folguista-print-row {
+            display: none;
+        }
+
+        /* REGRAS DE IMPRESSÃO - APLICADAS EXCLUSIVAMENTE AO IMPRIMIR */
+        @media print {
+            /* Ocultar elementos interativos e cabeçalho na impressão */
+            .escala-header, .controls-panel, .edit-hint-bar, .btn-action, 
+            .p-row-actions, .btn-add-passenger-cell, .btn-edit-car, 
+            .edit-btn-tiny, .view-toggle, .loc-badge, .modal-backdrop, .mobile-shift-tabs,
+            .print-header-banner {
+                display: none !important;
+            }
+
+            /* Exibir rodapé de folguistas EXCLUSIVAMENTE na impressão */
+            .folguista-print-row {
+                display: table-row !important;
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                font-family: Arial, Helvetica, sans-serif !important;
+                font-size: 6pt !important;
+                line-height: 1.05 !important;
+            }
+
+            .content-area, .matrix-container {
+                background: #ffffff !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+                width: 100% !important;
+                overflow: visible !important;
+            }
+
+            .matrix-table {
+                width: 100% !important;
+                min-width: 100% !important;
+                border-collapse: collapse !important;
+                border: 1.5px solid #000000 !important;
+                font-size: 6pt !important;
+                line-height: 1.05 !important;
+                table-layout: fixed !important;
+            }
+
+            .matrix-table th {
+                background: #ffff00 !important;
+                color: #000000 !important;
+                font-weight: bold !important;
+                text-align: center !important;
+                padding: 1.5px 1px !important;
+                border: 1px solid #000000 !important;
+                font-size: 7pt !important;
+                text-transform: uppercase !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .matrix-table td {
+                border: 1px solid #000000 !important;
+                padding: 0.5px 2px !important;
+                background: #ffffff !important;
+                vertical-align: top !important;
+            }
+
+            /* CENTRALIZAR E ALINHAR AO MEIO A COLUNA DE CARROS EXCLUSIVAMENTE NA IMPRESSÃO */
+            td.col-carro-cell, .col-carro-cell {
+                background: #ffffff !important;
+                vertical-align: middle !important;
+                text-align: center !important;
+                font-weight: bold !important;
+                font-size: 8.5pt !important;
+                width: 48px !important;
+            }
+
+            .col-carro-cell .car-badge-wrapper {
+                display: block !important;
+                text-align: center !important;
+                margin: auto !important;
+                width: 100% !important;
+            }
+
+            .col-carro-cell .car-badge {
+                background: transparent !important;
+                color: #000000 !important;
+                font-size: 8.5pt !important;
+                font-weight: bold !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                text-align: center !important;
+                margin: auto !important;
+                display: block !important;
+                width: 100% !important;
+            }
+
+            /* FAIXA DO MOTORISTA CONECTANDO TODA A LATERAL DO CARD (SEM BORDA, DE PONTA A PONTA) */
+            .driver-banner-wrapper {
+                background: #ffff00 !important;
+                color: #000000 !important;
+                font-weight: bold !important;
+                text-align: center !important;
+                padding: 2px 0 !important;
+                margin: -0.5px -2px 2px -2px !important;
+                border: none !important;
+                border-bottom: 1px solid #000000 !important;
+                border-radius: 0 !important;
+                width: calc(100% + 4px) !important;
+                box-shadow: none !important;
+                font-size: 5.8pt !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .driver-icon-screen {
+                display: none !important;
+            }
+
+            .driver-info {
+                color: #000000 !important;
+                font-weight: bold !important;
+                font-size: 5.8pt !important;
+                text-align: center !important;
+                width: 100% !important;
+            }
+
+            /* LARGURA RESTRITA AO FILTRAR POR TURNO NA IMPRESSÃO (NÃO EXPANDE A FOLHA TODA) */
+            .matrix-table.has-shift-filter {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+            }
+
+            /* CENTRALIZAR INFORMAÇÕES DOS FRETES (TITULOS, NOMES E TELEFONES) */
+            .process-block {
+                background: transparent !important;
+                border: none !important;
+                padding: 0 1px !important;
+                margin-bottom: 0.5px !important;
+                text-align: center !important;
+            }
+
+            /* EXIBIR DE 1 A 3 CONTATOS DE PASSAGEIRO POR PROCESSO NA IMPRESSÃO PARA CABER EM 1 FOLHA A4 RETRATO */
+            .process-block > div.passenger-row:nth-of-type(n+5) {
+                display: none !important;
+            }
+
+            .process-block > div:first-child {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                text-align: center !important;
+                width: 100% !important;
+                margin: 0 auto 1px auto !important;
+            }
+
+            .process-title-text {
+                color: #dc2626 !important;
+                font-weight: bold !important;
+                font-size: 5.6pt !important;
+                text-align: center !important;
+                display: block !important;
+                width: 100% !important;
+                margin: 0 auto !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .passenger-row {
+                background: transparent !important;
+                border: none !important;
+                border-bottom: 0.5px dashed #dddddd !important;
+                padding: 0.5px 0 !important;
+                margin: 0 auto !important;
+                line-height: 1.05 !important;
+                justify-content: center !important;
+                text-align: center !important;
+                width: 100% !important;
+            }
+
+            .p-details {
+                align-items: center !important;
+                text-align: center !important;
+                width: 100% !important;
+            }
+
+            .p-name-line {
+                font-size: 5.6pt !important;
+                font-weight: bold !important;
+                color: #000000 !important;
+                text-align: center !important;
+                width: 100% !important;
+            }
+
+            .p-sub-line {
+                font-size: 5pt !important;
+                color: #000000 !important;
+                justify-content: center !important;
+                text-align: center !important;
+                width: 100% !important;
+            }
+
+            .p-phone-wsp-link {
+                color: #000000 !important;
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+                font-size: 5pt !important;
+                font-weight: bold !important;
+            }
+
+            .folguista-print-row td {
+                background: #ffff00 !important;
+                color: #000000 !important;
+                font-weight: bold !important;
+                text-align: center !important;
+                padding: 2px !important;
+                border: 1px solid #000000 !important;
+                font-size: 5.8pt !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* CONFIRA A IMPRESSÃO EM MODO RETRATO (FOLHA EM PÉ) */
+            @page {
+                size: A4 portrait;
+                margin: 3mm;
+            }
+        }
+
+        /* ADAPTAÇÃO MOBILE */
+        @media (max-width: 768px) {
+            .escala-header {
+                padding: 8px 12px;
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 8px;
+            }
+
+            .brand-section img { height: 28px; }
+            .brand-titles h1 { font-size: 13px; }
+            .brand-titles p { display: none; }
+            .stats-bar { gap: 6px; }
+            .stat-badge { padding: 4px 8px; font-size: 10px; }
+            .btn-action { padding: 5px 10px; font-size: 10px; }
+            .edit-hint-bar { padding: 6px 12px; font-size: 10px; }
+            .controls-panel { padding: 8px 12px; gap: 8px; }
+            .filters-group { width: 100%; gap: 6px; }
+            .search-box { min-width: 100%; }
+            .search-box input { padding: 8px 12px 8px 34px; font-size: 12px; }
+            .select-filter { flex: 1; padding: 8px; font-size: 11px; }
+            .view-toggle { width: 100%; }
+            .toggle-btn { flex: 1; justify-content: center; padding: 6px 4px; font-size: 10px; }
+            .content-area { padding: 10px 8px; }
+            .cards-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BANNER DE IMPRESSÃO -->
+    <div class="print-header-banner">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <h2 style="margin:0; font-size:11pt; color:#000000; font-weight:bold; text-transform:uppercase;">USINA SANTA ADÉLIA — ESCALA DE FRETES & TRANSPORTE</h2>
+                <p style="margin:1px 0 0 0; font-size:7.5pt; color:#333333; font-weight:bold;">RELATÓRIO LOGÍSTICO DE TRANSPORTE DE COLABORADORES</p>
+            </div>
+            <div style="text-align:right; font-size:7.5pt; color:#000000; font-weight:bold;">
+                <div id="print-date-text">Data: 06/08/2026</div>
+                <div id="print-shift-text" style="color:#000000; font-weight:bold;">Filtro de Turno: Todos os Turnos</div>
+            </div>
+        </div>
+        <hr style="border:none; border-top:1.5px solid #000000; margin:3px 0 4px 0;">
+    </div>
+
+    <!-- CABEÇALHO COMPACTO DA ESCALA DA TELA -->
+    <header class="escala-header">
+        <div class="brand-section">
+            <img src="https://site.usinasantaadelia.com.br/wp-content/uploads/2018/05/img_logo.png" alt="Santa Adélia">
+            <div class="brand-titles">
+                <h1>ESCALA DE FRETES</h1>
+                <p>GESTÃO LOGÍSTICA DE COLABORADORES • USINA SANTA ADÉLIA</p>
+            </div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-badge">
+                🚌 <span id="stat-veiculos">7</span>
+            </div>
+            <div class="stat-badge">
+                👥 <span id="stat-passageiros">48</span>
+            </div>
+            <button class="btn-action btn-print" onclick="prepareAndPrint()" title="Imprimir em folha única A4">
+                🖨️ <span class="hide-mobile">Imprimir Escala</span>
+            </button>
+            <button class="btn-action" onclick="openAddModal()">
+                ➕ <span class="hide-mobile">Novo Frete</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- DICA DE EDIÇÃO -->
+    <div class="edit-hint-bar">
+        <div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline; vertical-align:middle;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <span>Toque no Carro 🚌, Motorista 👤 ou Frete ✏️ para editar. Clique no Telefone 💬 para abrir o WhatsApp!</span>
+        </div>
+        <button class="btn-edit-car" style="background:#fef08a; color:#854d0e; border-color:#facc15;" onclick="openFolguistaModal()">👥 Cadastrar Folguistas do Turno</button>
+    </div>
+
+    <!-- PAINEL DE CONTROLE / FILTROS -->
+    <div class="controls-panel">
+        <div class="filters-group">
+            <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="search-input" placeholder="Buscar por Nome, Telefone, Ponto..." onkeyup="filterEscala()">
+            </div>
+
+            <select id="filter-city" class="select-filter" onchange="filterEscala()">
+                <option value="">Cidades</option>
+                <option value="Guariba">Guariba</option>
+                <option value="Taquaritinga">Taquaritinga</option>
+                <option value="Jaboticabal">Jaboticabal</option>
+                <option value="Matão">Matão</option>
+            </select>
+
+            <select id="filter-shift" class="select-filter" onchange="filterEscala()">
+                <option value="">Todos os Turnos</option>
+                <option value="07:00">Turno 1 (07:00 - 15:00)</option>
+                <option value="15:00">Turno 2 (15:00 - 23:00)</option>
+                <option value="23:00">Turno 3 (23:00 - 07:00)</option>
+            </select>
+        </div>
+
+        <div class="view-toggle">
+            <button class="toggle-btn active" id="btn-view-matrix" onclick="switchView('matrix')">
+                📊 Matriz
+            </button>
+            <button class="toggle-btn" id="btn-view-cards" onclick="switchView('cards')">
+                🎴 Cards App
+            </button>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="content-area">
+        <div id="view-matrix" class="matrix-container">
+            <table class="matrix-table">
+                <thead>
+                    <tr id="matrix-thead-row">
+                        <th>CARRO</th>
+                        <th>TURNO 1 (07:00) • GUARIBA</th>
+                        <th>TURNO 2 (15:00) • TAQUARITINGA</th>
+                        <th>TURNO 3 (23:00) • JABOTICABAL</th>
+                    </tr>
+                </thead>
+                <tbody id="matrix-tbody">
+                    <!-- Gerado via JS -->
+                </tbody>
+                <tfoot id="matrix-tfoot">
+                    <!-- Linha de Folguistas Gerada via JS para a Impressão / Exibição -->
+                </tfoot>
+            </table>
+        </div>
+
+        <div id="view-cards" class="cards-grid" style="display: none;">
+            <!-- Gerado via JS -->
+        </div>
+    </div>
+
+    <!-- MODAL DE CADASTRO / EDIÇÃO DE FRETE -->
+    <div class="modal-backdrop" id="modal-escala">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title" id="modal-title-text">➕ Adicionar Novo Frete</div>
+                <button class="modal-close" onclick="closeAddModal()">&times;</button>
+            </div>
+            <form id="form-escala" onsubmit="saveEscala(event)">
+                <input type="hidden" id="edit-mode-id" value="">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Veículo / Carro</label>
+                        <input type="text" id="m-carro" placeholder="Ex: 131148" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Turno / Horário</label>
+                        <select id="m-horario" required>
+                            <option value="07:00">07:00 (1º Turno)</option>
+                            <option value="15:00">15:00 (2º Turno)</option>
+                            <option value="23:00">23:00 (3º Turno)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Motorista do Turno</label>
+                    <input type="text" id="m-motorista" placeholder="Ex: Wagner Aparecido Garcia - A1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Processo / Frente de Trabalho</label>
+                    <input type="text" id="m-processo" placeholder="Ex: PREPARO - GUARIBA (6X1)" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Cidade da Rota</label>
+                        <select id="m-cidade" required>
+                            <option value="Guariba">Guariba</option>
+                            <option value="Taquaritinga">Taquaritinga</option>
+                            <option value="Jaboticabal">Jaboticabal</option>
+                            <option value="Matão">Matão</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Horário Específico</label>
+                        <input type="text" id="m-hora-especifica" placeholder="Ex: 10:00">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Nome do Colaborador / Passageiro</label>
+                    <input type="text" id="m-nome" placeholder="Ex: José Paschoalino" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Telefone (DDD + Número)</label>
+                        <input type="text" id="m-telefone" placeholder="Ex: (16) 99744-7090">
+                    </div>
+                    <div class="form-group">
+                        <label>Ponto de Coleta / Embarque</label>
+                        <input type="text" id="m-localizacao" placeholder="Ex: Ponto Laurentiz, Nova Guariba, Usina">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                    <button type="button" class="btn-action btn-print" style="background:#64748b;" onclick="closeAddModal()">Cancelar</button>
+                    <button type="submit" class="btn-action">Salvar Frete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE EDIÇÃO DE VEÍCULO / CARRO -->
+    <div class="modal-backdrop" id="modal-car">
+        <div class="modal-card" style="max-width: 420px;">
+            <div class="modal-header">
+                <div class="modal-title">✏️ Alterar Número / Prefixo do Carro</div>
+                <button class="modal-close" onclick="closeCarModal()">&times;</button>
+            </div>
+            <form onsubmit="saveCarEdit(event)">
+                <input type="hidden" id="car-old-id">
+                <div class="form-group">
+                    <label>Novo Número / Prefixo do Veículo</label>
+                    <input type="text" id="car-new-id" placeholder="Ex: 131148" required>
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                    <button type="button" class="btn-action btn-print" style="background:#64748b;" onclick="closeCarModal()">Cancelar</button>
+                    <button type="submit" class="btn-action">Salvar Alteração</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE EDIÇÃO DE MOTORISTA -->
+    <div class="modal-backdrop" id="modal-driver">
+        <div class="modal-card" style="max-width: 420px;">
+            <div class="modal-header">
+                <div class="modal-title">✏️ Alterar Motorista do Turno</div>
+                <button class="modal-close" onclick="closeDriverModal()">&times;</button>
+            </div>
+            <form onsubmit="saveDriverEdit(event)">
+                <input type="hidden" id="d-carro">
+                <input type="hidden" id="d-turno">
+                <div class="form-group">
+                    <label>Nome do Motorista e Código</label>
+                    <input type="text" id="d-nome" placeholder="Ex: WAGNER APARECIDO GARCIA - A1" required>
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                    <button type="button" class="btn-action btn-print" style="background:#64748b;" onclick="closeDriverModal()">Cancelar</button>
+                    <button type="submit" class="btn-action">Atualizar Motorista</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE CADASTRO DE FOLGUISTAS DO TURNO -->
+    <div class="modal-backdrop" id="modal-folguista">
+        <div class="modal-card" style="max-width: 460px;">
+            <div class="modal-header">
+                <div class="modal-title">👥 Folguistas Cadastrados por Turno</div>
+                <button class="modal-close" onclick="closeFolguistaModal()">&times;</button>
+            </div>
+            <form onsubmit="saveFolguistas(event)">
+                <div class="form-group">
+                    <label>Folguista Turno 1 (07:00)</label>
+                    <input type="text" id="fg-t1" placeholder="Ex: WESLEY APARECIDO FERNANDES DIAS - A6">
+                </div>
+                <div class="form-group">
+                    <label>Folguista Turno 2 (15:00)</label>
+                    <input type="text" id="fg-t2" placeholder="Ex: ALEX MENDONÇA CHAVES (B-6) 16997402989">
+                </div>
+                <div class="form-group">
+                    <label>Folguista Turno 3 (23:00)</label>
+                    <input type="text" id="fg-t3" placeholder="Ex: JOÃO VITOR DE JESUS - C6">
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                    <button type="button" class="btn-action btn-print" style="background:#64748b;" onclick="closeFolguistaModal()">Cancelar</button>
+                    <button type="submit" class="btn-action">Salvar Folguistas</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const defaultEscalaData = [
+            {
+                carro: "131148",
+                turnos: {
+                    "07:00": {
+                        motorista: "WAGNER APARECIDO GARCIA - A1",
+                        saida: "SAIDA CANAVIEIRO - GUARIBA",
+                        processos: [
+                            {
+                                hora: "10:00",
+                                titulo: "PREPARO - GUARIBA (AGORA É 6X1)",
+                                passageiros: [
+                                    { id: "p1", nome: "JOSÉ PASCHOALINO (USINA)", tel: "16997447090", local: "B1" },
+                                    { id: "p2", nome: "BRUNO DONIZETE (MEC)", tel: "16997022602", local: "PONTO: LAURENTIZ" }
+                                ]
+                            },
+                            {
+                                hora: "13:00",
+                                titulo: "FERTIRRIGAÇÃO JJ - GUARIBA (5X1)",
+                                passageiros: [
+                                    { id: "p3", nome: "LUIS FELIPE", tel: "16991326321", local: "Guariba Centro" },
+                                    { id: "p4", nome: "LUAN AUGUSTO (FOLGUISTAS)", tel: "16993685438", local: "Guariba" },
+                                    { id: "p5", nome: "JOÃO BATISTA (FOLGUISTAS)", tel: "16906489183", local: "Guariba" },
+                                    { id: "p6", nome: "EDSON", tel: "16996259948", local: "Guariba" }
+                                ]
+                            }
+                        ]
+                    },
+                    "15:00": {
+                        motorista: "RODINEIA DE FATIMA JOAQUIM - B1",
+                        saida: "SAIDA CANAVIEIRO - TAQUARITINGA",
+                        processos: [
+                            {
+                                hora: "18:00",
+                                titulo: "PREPARO - TAQUARITINGA (AGORA É 6X1)",
+                                passageiros: [
+                                    { id: "p7", nome: "ISAIAS IZIDORIO DA SILVA", tel: "16990317793", local: "LOCALIZADA C1" },
+                                    { id: "p8", nome: "GILMAR (MEC)", tel: "16996224741", local: "Taquaritinga Centro" },
+                                    { id: "p9", nome: "DIVANEI RODRIGUES", tel: "", local: "C2" }
+                                ]
+                            },
+                            {
+                                hora: "21:00",
+                                titulo: "FERTIRRIGAÇÃO JJ - GUARIBA (5X1)",
+                                passageiros: [
+                                    { id: "p10", nome: "CAUA HENRIQUE", tel: "16997914335", local: "Taquaritinga" },
+                                    { id: "p11", nome: "MATEU AUGUSTO VOLTAREL", tel: "16999627073", local: "Taquaritinga" },
+                                    { id: "p12", nome: "HUGO MISIAS (FOLGUISTAS)", tel: "16988439480", local: "Taquaritinga" },
+                                    { id: "p13", nome: "GIVALDO BARRETO (FOLGUISTAS)", tel: "16997131965", local: "Taquaritinga" }
+                                ]
+                            }
+                        ]
+                    },
+                    "23:00": {
+                        motorista: "RODRIGO CESAR AMBROZINI - C1",
+                        saida: "SAIDA CANAVIEIRO - JABOTICABAL",
+                        processos: [
+                            {
+                                hora: "02:00",
+                                titulo: "PREPARO - JABOTICABAL (6X1)",
+                                passageiros: [
+                                    { id: "p14", nome: "ZILDO", tel: "16996257414", local: "(04/01) A1" },
+                                    { id: "p15", nome: "CESAR DOS SANTOS (MECANICO)", tel: "", local: "Jaboticabal" }
+                                ]
+                            },
+                            {
+                                hora: "05:00",
+                                titulo: "FERTIRRIGAÇÃO JJ - GUARIBA (5X1)",
+                                passageiros: [
+                                    { id: "p16", nome: "ANTONIO ALBIERI NETO", tel: "16988193716", local: "Jaboticabal" },
+                                    { id: "p17", nome: "IGOR DE SOUZA (FOLGUISTAS)", tel: "16997996392", local: "Jaboticabal" },
+                                    { id: "p18", nome: "JEFERSON NAVARRO (FOLGUISTAS)", tel: "16991400012", local: "Jaboticabal" },
+                                    { id: "p19", nome: "RODINEI", tel: "16996273415", local: "LOCALIZADA A2" },
+                                    { id: "p20", nome: "PAULO MORETTI", tel: "16996542982", local: "LOCALIZADA A1" }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                carro: "131149",
+                turnos: {
+                    "07:00": {
+                        motorista: "JESSICA CAMARGO RIBEIRO FERREIRA - A2",
+                        saida: "SAIDA CANAVIEIRO - GUARIBA",
+                        processos: [
+                            {
+                                hora: "10:00",
+                                titulo: "IRRIGAÇÃO LINHA MÃE - GUARIBA",
+                                passageiros: [
+                                    { id: "p21", nome: "EDSON BERNARDO FINCO", tel: "16996292179", local: "SETOR 13 B2" },
+                                    { id: "p22", nome: "ANTONIO DE DEUS COSTA", tel: "", local: "Guariba" }
+                                ]
+                            },
+                            {
+                                hora: "13:00",
+                                titulo: "FERTIRRIGAÇÃO SETOR 10 - GUARIBA (5X1)",
+                                passageiros: [
+                                    { id: "p23", nome: "TIÓFILO", tel: "16997753681", local: "LOCALIZADA B1" },
+                                    { id: "p24", nome: "JEAN DIAS PEREIRA", tel: "16996352053", local: "CARREGAMENTO S10 B6" },
+                                    { id: "p25", nome: "SAMUEL PEREIRA", tel: "16996292179", local: "SETOR 13 B2" },
+                                    { id: "p26", nome: "VITOR DE MORAES", tel: "16996493836", local: "SETOR 13 B2" },
+                                    { id: "p27", nome: "LUIS OTAVIO (FOLGUISTAS)", tel: "16997443584", local: "C5" }
+                                ]
+                            }
+                        ]
+                    },
+                    "15:00": {
+                        motorista: "MACHADINHO - B2",
+                        saida: "SAIDA CANAVIEIRO - TAQUARITINGA",
+                        processos: [
+                            {
+                                hora: "18:00",
+                                titulo: "IRRIGAÇÃO LINHA MÃE - TAQUARITINGA",
+                                passageiros: [
+                                    { id: "p28", nome: "LAZARO", tel: "16997655180", local: "Taquaritinga" }
+                                ]
+                            },
+                            {
+                                hora: "21:00",
+                                titulo: "FERTIRRIGAÇÃO SETOR 10 - GUARIBA (5X1)",
+                                passageiros: [
+                                    { id: "p29", nome: "CASSIO VIANA FERREIRA", tel: "16997047752", local: "LOCALIZADA C1" },
+                                    { id: "p30", nome: "BRENO WILLIAM", tel: "16997083286", local: "LOCALIZADA C2" },
+                                    { id: "p31", nome: "ISMAR BATISTA (FOLGUISTAS)", tel: "16999627073", local: "Taquaritinga" },
+                                    { id: "p32", nome: "ANDERSON MATOS", tel: "16992804158", local: "SETOR 13 C2" },
+                                    { id: "p33", nome: "MICAEL JUNIOR", tel: "16991896122", local: "SETOR 13 C2" },
+                                    { id: "p34", nome: "ALAN MARÇAL", tel: "16997076115", local: "Taquaritinga" }
+                                ]
+                            }
+                        ]
+                    },
+                    "23:00": {
+                        motorista: "PEDRO PAULO MAFFEI - C5",
+                        saida: "SAIDA CANAVIEIRO - JABOTICABAL",
+                        processos: [
+                            {
+                                hora: "02:00",
+                                titulo: "PV - TAQUARITINGA (6X1)",
+                                passageiros: [
+                                    { id: "p35", nome: "DENILSON", tel: "16996231022", local: "Jaboticabal" }
+                                ]
+                            },
+                            {
+                                hora: "05:00",
+                                titulo: "FERTIRRIGAÇÃO SETOR 10 - GUARIBA (5X1)",
+                                passageiros: [
+                                    { id: "p36", nome: "BRUNO SALES", tel: "16993063170", local: "Jaboticabal" },
+                                    { id: "p37", nome: "EDSON", tel: "16997076094", local: "Jaboticabal" },
+                                    { id: "p38", nome: "JOSE", tel: "16997298818", local: "Jaboticabal" },
+                                    { id: "p39", nome: "GABRIEL", tel: "16991585629", local: "Jaboticabal" },
+                                    { id: "p40", nome: "MATEUS", tel: "16997399033", local: "Jaboticabal" }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                carro: "130967",
+                turnos: {
+                    "07:00": {
+                        motorista: "SELMA (FOLGUISTA)",
+                        saida: "SAIDA CANAVIEIRO - GUARIBA",
+                        processos: [
+                            {
+                                hora: "10:00",
+                                titulo: "PATROL - STA ERNESTINA (5X1) ESCALA A6",
+                                passageiros: [
+                                    { id: "p41", nome: "DARCI", tel: "16997984153", local: "Sta Ernestina" }
+                                ]
+                            }
+                        ]
+                    },
+                    "15:00": {
+                        motorista: "SELMA (FOLGUISTA)",
+                        saida: "SAIDA CANAVIEIRO - TAQUARITINGA",
+                        processos: [
+                            {
+                                hora: "18:00",
+                                titulo: "PATROL - TAQUARITINGA",
+                                passageiros: [
+                                    { id: "p42", nome: "ALESSANDRO", tel: "16997542711", local: "Taquaritinga" }
+                                ]
+                            }
+                        ]
+                    },
+                    "23:00": {
+                        motorista: "CELIO IRRIGAÇÃO - 6X1 SAB",
+                        saida: "SAIDA CANAVIEIRO - JABOTICABAL",
+                        processos: [
+                            {
+                                hora: "02:00",
+                                titulo: "IRRIGAÇÃO LINHA MÃE - JABOTICABAL",
+                                passageiros: [
+                                    { id: "p43", nome: "LUCAS HENRIQUE DOS ANJOS", tel: "16997485755", local: "Jaboticabal" },
+                                    { id: "p44", nome: "ANDREA RACHEL DALOCIO", tel: "16997932748", local: "Jaboticabal" },
+                                    { id: "p45", nome: "JOÃO VITOR CAMARGO", tel: "", local: "Jaboticabal" },
+                                    { id: "p46", nome: "GUSTAVO FELIPE DE OLIVEIRA PIRES", tel: "16991011341", local: "Jaboticabal" }
+                                ]
+                            },
+                            {
+                                hora: "05:00",
+                                titulo: "CATAÇÃO QUÍMICA - JABOTICABAL",
+                                passageiros: [
+                                    { id: "p47", nome: "JOSE ARAUJO", tel: "16997787646", local: "Jaboticabal" },
+                                    { id: "p48", nome: "JOSE JOSENILSON", tel: "16996289356", local: "Jaboticabal" }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                carro: "131187",
+                turnos: {
+                    "07:00": {
+                        motorista: "ROSELENA AMANCIO BARBOSA - A4",
+                        saida: "SAIDA CANAVIEIRO - GUARIBA",
+                        processos: [
+                            {
+                                hora: "10:00",
+                                titulo: "ALMA - JABOTICABAL (6X1)",
+                                passageiros: [
+                                    { id: "p49", nome: "JOAO", tel: "16996356062", local: "Jaboticabal" },
+                                    { id: "p50", nome: "BRUNO", tel: "", local: "Guariba" },
+                                    { id: "p51", nome: "ROMÃO", tel: "", local: "Guariba" }
+                                ]
+                            },
+                            {
+                                hora: "13:00",
+                                titulo: "BOMBEIRO - GUARIBA (5X1 - A2)",
+                                passageiros: [
+                                    { id: "p52", nome: "LUIZ CARLOS RIBAS", tel: "16997495375", local: "Guariba" },
+                                    { id: "p53", nome: "IVONITO SANTOS CORTES", tel: "16996402452", local: "Guariba" }
+                                ]
+                            }
+                        ]
+                    },
+                    "15:00": {
+                        motorista: "ALEX MENDONÇA - B4",
+                        saida: "SAIDA CANAVIEIRO - TAQUARITINGA",
+                        processos: [
+                            {
+                                hora: "18:00",
+                                titulo: "ALMA - GUARIBA (6X1)",
+                                passageiros: [
+                                    { id: "p54", nome: "MARCOS", tel: "16997141350", local: "INICIOU 17/06" },
+                                    { id: "p55", nome: "ALEX", tel: "16996018698", local: "Taquaritinga" }
+                                ]
+                            },
+                            {
+                                hora: "21:00",
+                                titulo: "BOMBEIRO - GUARIBA / MATÃO (5X1 - B2)",
+                                passageiros: [
+                                    { id: "p56", nome: "EDIVALDO", tel: "16996448239", local: "Matão" },
+                                    { id: "p57", nome: "ARMANDO HILÁRIO", tel: "16997692996", local: "Matão" },
+                                    { id: "p58", nome: "PONTO", tel: "", local: "RUA RAMIRO SOARES RODRIGUES - 763 - NOVA GUARIBA" }
+                                ]
+                            }
+                        ]
+                    },
+                    "23:00": {
+                        motorista: "LUIS ANTONIO PIO - C2",
+                        saida: "SAIDA CANAVIEIRO - JABOTICABAL",
+                        processos: [
+                            {
+                                hora: "02:00",
+                                titulo: "ALMA - GUARIBA (6X1)",
+                                passageiros: [
+                                    { id: "p59", nome: "WELLINGTON", tel: "16996264698", local: "Guariba" },
+                                    { id: "p60", nome: "AISLAN", tel: "16997562052", local: "Jaboticabal" }
+                                ]
+                            },
+                            {
+                                hora: "05:00",
+                                titulo: "BOMBEIRO - GUARIBA (5X1 - C2)",
+                                passageiros: [
+                                    { id: "p61", nome: "LUIZ FAVERO", tel: "16997781743", local: "Jaboticabal" },
+                                    { id: "p62", nome: "CARLOS VINICIUS", tel: "16997168139", local: "Jaboticabal" },
+                                    { id: "p63", nome: "ZÉ RUANA", tel: "", local: "Jaboticabal" }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                carro: "130961",
+                turnos: {
+                    "07:00": {
+                        motorista: "SILVIO APARECIDO DOS SANTOS - A3",
+                        saida: "SAIDA CANAVIEIRO - GUARIBA",
+                        processos: [
+                            {
+                                hora: "10:00",
+                                titulo: "PV - GUARIBA (6X1)",
+                                passageiros: [
+                                    { id: "p64", nome: "POMBÃO", tel: "16997157507", local: "Guariba" },
+                                    { id: "p65", nome: "ELENILSON", tel: "16988373077", local: "Guariba" }
+                                ]
+                            },
+                            {
+                                hora: "13:00",
+                                titulo: "ELIMINADOR DE SOQUEIRA - JABOTICABAL",
+                                passageiros: [
+                                    { id: "p66", nome: "DAVID GOMES DOS SANTOS", tel: "16997322157", local: "USINA" },
+                                    { id: "p67", nome: "ZÉ DO MONTE (JABOTICABAL)", tel: "16997420322", local: "Jaboticabal" }
+                                ]
+                            }
+                        ]
+                    },
+                    "15:00": {
+                        motorista: "DOUGLAS HENRIQUE GONCALVES DA SILVA - B3",
+                        saida: "SAIDA CANAVIEIRO - TAQUARITINGA",
+                        processos: [
+                            {
+                                hora: "18:00",
+                                titulo: "PV - TAQUARITINGA (6X1)",
+                                passageiros: [
+                                    { id: "p68", nome: "JOÃO", tel: "16997496634", local: "Taquaritinga" },
+                                    { id: "p69", nome: "HELIO", tel: "16993283585", local: "Taquaritinga" }
+                                ]
+                            },
+                            {
+                                hora: "21:00",
+                                titulo: "ELIMINADOR DE SOQUEIRA - GUARIBA",
+                                passageiros: [
+                                    { id: "p70", nome: "GABRIEL DE CASTRO B3", tel: "16997755946", local: "Guariba" },
+                                    { id: "p71", nome: "JOSUÉ DOS SANTOS B4", tel: "16996272151", local: "Guariba" }
+                                ]
+                            }
+                        ]
+                    },
+                    "23:00": {
+                        motorista: "LUIS ANTONIO PIO / C3",
+                        saida: "SAIDA CANAVIEIRO - JABOTICABAL",
+                        processos: [
+                            {
+                                hora: "05:00",
+                                titulo: "ELIMINADOR DE SOQUEIRA - TAQUARITINGA (6X1)",
+                                passageiros: [
+                                    { id: "p72", nome: "ADEMIR", tel: "16997463773", local: "Taquaritinga" },
+                                    { id: "p73", nome: "ALESSANDRO", tel: "16997947896", local: "Taquaritinga" }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                carro: "131087",
+                turnos: {
+                    "07:00": {
+                        motorista: "MICHELY FERNANDA NEVES PELES - 6X1 DOM",
+                        saida: "SAIDA CANAVIEIRO - GUARIBA",
+                        processos: [
+                            {
+                                hora: "10:00",
+                                titulo: "DESENLEIRADOR - GUARIBA (6X1)",
+                                passageiros: [
+                                    { id: "p74", nome: "FRANCISCO GOMES", tel: "16996202313", local: "Guariba" },
+                                    { id: "p75", nome: "NAYARA DE ALUCENA", tel: "16997425865", local: "Guariba" },
+                                    { id: "p76", nome: "ALEX", tel: "16997423043", local: "PONTO NO HANGAR" }
+                                ]
+                            },
+                            {
+                                hora: "13:00",
+                                titulo: "CATAÇÃO QUÍMICA - USINA / GUARIBA",
+                                passageiros: [
+                                    { id: "p77", nome: "PAULO", tel: "", local: "USINA" },
+                                    { id: "p78", nome: "JOSENILDO", tel: "", local: "USINA" },
+                                    { id: "p79", nome: "LEANDRO", tel: "16999940877", local: "GUARBA" }
+                                ]
+                            }
+                        ]
+                    },
+                    "15:00": {
+                        motorista: "MILTON - 6X1 DOM",
+                        saida: "SAIDA CANAVIEIRO - TAQUARITINGA",
+                        processos: [
+                            {
+                                hora: "18:00",
+                                titulo: "DESENLEIRADOR - GUARIBA (6X1)",
+                                passageiros: [
+                                    { id: "p80", nome: "ISAIAS RODRIGUES", tel: "16997475255", local: "Guariba" },
+                                    { id: "p81", nome: "IARA ALUCENA", tel: "16997871787", local: "Guariba" },
+                                    { id: "p82", nome: "CLEBAO", tel: "", local: "USINA" }
+                                ]
+                            },
+                            {
+                                hora: "21:00",
+                                titulo: "CATAÇÃO QUÍMICA - JABOTICABAL",
+                                passageiros: [
+                                    { id: "p83", nome: "GUARDA - ANTÔNIO", tel: "16992775578", local: "JABOTICABAL" }
+                                ]
+                            }
+                        ]
+                    },
+                    "23:00": {
+                        motorista: "JOAO IRRIGAÇÃO - C4",
+                        saida: "SAIDA CANAVIEIRO - JABOTICABAL",
+                        processos: [
+                            {
+                                hora: "02:00",
+                                titulo: "DESENLEIRADOR - TAQUARITINGA (6X1)",
+                                passageiros: [
+                                    { id: "p84", nome: "ELIZEU", tel: "16988506403", local: "Taquaritinga" },
+                                    { id: "p85", nome: "DOUGLAS", tel: "16991946529", local: "Taquaritinga" },
+                                    { id: "p86", nome: "VANDELEI", tel: "16997887504", local: "Taquaritinga" },
+                                    { id: "p87", nome: "ALEX LEITE", tel: "16997423043", local: "Taquaritinga" }
+                                ]
+                            },
+                            {
+                                hora: "05:00",
+                                titulo: "ELIMINADOR DE SOQUEIRA - TAQUARITINGA (6X1)",
+                                passageiros: [
+                                    { id: "p88", nome: "ADEMIR", tel: "16997463773", local: "Taquaritinga" },
+                                    { id: "p89", nome: "ALESSANDRO", tel: "16997947896", local: "Taquaritinga" }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                carro: "131083",
+                turnos: {
+                    "07:00": {
+                        motorista: "BRUNO LIMA QUEIROZ - A5",
+                        saida: "ROTA INTERNA & PLANTIO",
+                        processos: [
+                            {
+                                hora: "07:00 - 15:00",
+                                titulo: "FRENTE 5 / ELIMINADOR SOQUEIRA / PLANTIO LINHA MÃE",
+                                passageiros: [
+                                    { id: "p90", nome: "EQUIPE FRENTE 5 & PLANTIO LINHA MÃE", tel: "", local: "Garagem / Usina" }
+                                ]
+                            }
+                        ]
+                    },
+                    "15:00": {
+                        motorista: "JONATAS - B5",
+                        saida: "MARMITAS & APOIO FRENTES",
+                        processos: [
+                            {
+                                hora: "15:00 - 23:00",
+                                titulo: "MARMITAS INTERNA - BALANÇA - GARAGEM - FRENTES 1 A 6",
+                                passageiros: [
+                                    { id: "p91", nome: "ALEX MENDONÇA CHAVES (B6)", tel: "16997402989", local: "Portaria Santo Antônio / Usina" }
+                                ]
+                            }
+                        ]
+                    },
+                    "23:00": {
+                        motorista: "JEAN IRRIGAÇÃO - C3",
+                        saida: "RECOLHER CAIXAS & MARMITAS",
+                        processos: [
+                            {
+                                hora: "23:00 - 07:00",
+                                titulo: "MARMITAS INTERNAS - BALANÇA / PCTS / ARMAZEM / PÁTIO",
+                                passageiros: [
+                                    { id: "p92", nome: "JOÃO VITOR DE JESUS - C6", tel: "", local: "Usina / Armazém" },
+                                    { id: "p93", nome: "MORETTO", tel: "16997973251", local: "Usina" }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        ];
+
+        const defaultFolguistas = {
+            "07:00": "WESLEY APARECIDO FERNANDES DIAS - A6",
+            "15:00": "ALEX MENDONÇA CHAVES (B-6) 16997402989",
+            "23:00": "JOÃO VITOR DE JESUS - C6"
+        };
+
+        let escalaData = JSON.parse(localStorage.getItem("santa_adelia_escala_v5")) || defaultEscalaData;
+        let folguistasData = JSON.parse(localStorage.getItem("santa_adelia_folguistas")) || defaultFolguistas;
+        let mobileSelectedShifts = {};
+
+        function saveToStorage() {
+            localStorage.setItem("santa_adelia_escala_v5", JSON.stringify(escalaData));
+            localStorage.setItem("santa_adelia_folguistas", JSON.stringify(folguistasData));
+        }
+
+        function formatPhone(phoneStr) {
+            if (!phoneStr) return "";
+            const clean = phoneStr.replace(/\D/g, "");
+            if (clean.length === 10) {
+                return `(${clean.substring(0,2)}) ${clean.substring(2,6)}-${clean.substring(6)}`;
+            } else if (clean.length === 11) {
+                return `(${clean.substring(0,2)}) ${clean.substring(2,7)}-${clean.substring(7)}`;
+            }
+            return phoneStr;
+        }
+
+        function getWspUrl(phoneStr) {
+            if (!phoneStr) return "#";
+            const clean = phoneStr.replace(/\D/g, "");
+            return `https://wa.me/55${clean}`;
+        }
+
+        function getMapUrl(passenger) {
+            if (passenger.mapsUrl && passenger.mapsUrl.trim() !== "") {
+                return passenger.mapsUrl.trim();
+            }
+            if (!passenger.local) return "#";
+            const query = encodeURIComponent(`${passenger.local}, Usina Santa Adélia, SP`);
+            return `https://www.google.com/maps/search/?api=1&query=${query}`;
+        }
+
+        // PREPARA DADOS DO BANNER E ACIONA A IMPRESSÃO DA TELA
+        function prepareAndPrint() {
+            const shiftSelect = document.getElementById("filter-shift");
+            const selectedShiftText = shiftSelect.options[shiftSelect.selectedIndex].text;
+            const now = new Date();
+            const dateStr = now.toLocaleDateString("pt-BR") + " - " + now.toLocaleTimeString("pt-BR", { hour: '2-digit', minute: '2-digit' });
+
+            document.getElementById("print-date-text").innerText = "Data: " + dateStr;
+            document.getElementById("print-shift-text").innerText = "Filtro de Turno: " + selectedShiftText;
+
+            window.print();
+        }
+
+        // RENDERIZA A MATRIZ EXECUTIVA EDITÁVEL COM CENTRALIZAÇÃO DE CARRO E RODAPÉ DE FOLGUISTAS
+        function renderMatrix(data) {
+            const tbody = document.getElementById("matrix-tbody");
+            const tfoot = document.getElementById("matrix-tfoot");
+            tbody.innerHTML = "";
+            tfoot.innerHTML = "";
+
+            const activeShiftFilter = document.getElementById("filter-shift").value;
+            const theadRow = document.getElementById("matrix-thead-row");
+            const tableEl = document.querySelector(".matrix-table");
+
+            if (tableEl) {
+                if (activeShiftFilter) {
+                    tableEl.classList.add("has-shift-filter");
+                } else {
+                    tableEl.classList.remove("has-shift-filter");
+                }
+            }
+
+            if (activeShiftFilter === "07:00") {
+                theadRow.innerHTML = `<th>CARRO</th><th>TURNO 1 (07:00) • GUARIBA</th>`;
+            } else if (activeShiftFilter === "15:00") {
+                theadRow.innerHTML = `<th>CARRO</th><th>TURNO 2 (15:00) • TAQUARITINGA</th>`;
+            } else if (activeShiftFilter === "23:00") {
+                theadRow.innerHTML = `<th>CARRO</th><th>TURNO 3 (23:00) • JABOTICABAL</th>`;
+            } else {
+                theadRow.innerHTML = `
+                    <th>CARRO</th>
+                    <th>TURNO 1 (07:00) • GUARIBA</th>
+                    <th>TURNO 2 (15:00) • TAQUARITINGA</th>
+                    <th>TURNO 3 (23:00) • JABOTICABAL</th>
+                `;
+            }
+
+            data.forEach(v => {
+                const tr = document.createElement("tr");
+
+                const tdCarro = document.createElement("td");
+                tdCarro.className = "col-carro-cell";
+                tdCarro.innerHTML = `
+                    <div class="car-badge-wrapper">
+                        <div class="car-badge" onclick="openCarModal('${v.carro}')" title="Clique para alterar número do veículo">
+                            ${v.carro}
+                        </div>
+                        <button class="btn-edit-car" onclick="openCarModal('${v.carro}')" title="Editar Carro">✏️</button>
+                    </div>
+                `;
+                tr.appendChild(tdCarro);
+
+                const times = activeShiftFilter ? [activeShiftFilter] : ["07:00", "15:00", "23:00"];
+
+                times.forEach(t => {
+                    const shift = v.turnos[t];
+                    const tdShift = document.createElement("td");
+
+                    if (!shift) {
+                        tdShift.innerHTML = `
+                            <div style="color:#94a3b8; font-style:italic; font-size:11px; padding:10px 0;">Sem escala definida</div>
+                            <button class="btn-add-passenger-cell" onclick="openAddModal('${v.carro}', '${t}')">+ Criar Turno</button>
+                        `;
+                    } else {
+                        let html = `
+                            <div class="driver-banner-wrapper" onclick="openDriverModal('${v.carro}', '${t}', '${shift.motorista.replace(/'/g, "\\'")}')" title="Clique para alterar motorista">
+                                <div class="driver-info">
+                                    <span class="driver-icon-screen">👤 </span><span>${shift.motorista}</span>
+                                </div>
+                                <button class="edit-btn-tiny">✏️ Editar</button>
+                            </div>
+                        `;
+
+                        shift.processos.forEach(proc => {
+                            html += `<div class="process-block">`;
+                            html += `
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                                    <span class="process-title-text">${proc.titulo} ${proc.hora ? '(' + proc.hora + ')' : ''}</span>
+                                </div>
+                            `;
+
+                            proc.passageiros.forEach(p => {
+                                const phoneFormatted = formatPhone(p.tel);
+                                const wspUrl = getWspUrl(p.tel);
+                                const mapUrl = getMapUrl(p);
+
+                                html += `
+                                    <div class="passenger-row" id="row-${p.id}">
+                                        <div class="p-details">
+                                            <div class="p-name-line">• ${p.nome}</div>
+                                            <div class="p-sub-line">
+                                                ${p.tel ? `<a href="${wspUrl}" target="_blank" class="p-phone-wsp-link" title="Clique para abrir conversa no WhatsApp">💬 ${phoneFormatted}</a>` : ''}
+                                                ${p.local ? `<a href="${mapUrl}" target="_blank" class="loc-badge">📍 ${p.local}</a>` : ''}
+                                            </div>
+                                        </div>
+                                        <div class="p-row-actions">
+                                            <button class="btn-icon-small" onclick="openEditPassengerModal('${v.carro}', '${t}', '${proc.titulo.replace(/'/g, "\\'")}', '${p.id}')" title="Editar Frete">✏️</button>
+                                            <button class="btn-icon-small btn-delete-small" onclick="deletePassenger('${p.id}')" title="Excluir Frete">🗑️</button>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+
+                            html += `</div>`;
+                        });
+
+                        html += `
+                            <button class="btn-add-passenger-cell" onclick="openAddModal('${v.carro}', '${t}')">+ Novo Frete</button>
+                        `;
+
+                        tdShift.innerHTML = html;
+                    }
+
+                    tr.appendChild(tdShift);
+                });
+
+                tbody.appendChild(tr);
+            });
+
+            // RODAPÉ DA MATRIZ COM FOLGUISTAS CADASTRADOS (IMPRESSÃO FIEL)
+            const footTr = document.createElement("tr");
+            footTr.className = "folguista-print-row";
+
+            let footHtml = `<td>FOLGUISTA</td>`;
+            const times = activeShiftFilter ? [activeShiftFilter] : ["07:00", "15:00", "23:00"];
+
+            times.forEach(t => {
+                const fg = folguistasData[t] || "Sem folguista cadastrado";
+                footHtml += `<td>FOLGUISTA: ${fg}</td>`;
+            });
+
+            footTr.innerHTML = footHtml;
+            tfoot.appendChild(footTr);
+        }
+
+        // RENDERIZA VISÃO CARDS COMPACTOS (CLIQUE NO TELEFONE ABRE WHATSAPP)
+        function renderCards(data) {
+            const container = document.getElementById("view-cards");
+            container.innerHTML = "";
+
+            const activeShiftFilter = document.getElementById("filter-shift").value;
+
+            data.forEach(v => {
+                const card = document.createElement("div");
+                card.className = "vehicle-card";
+
+                if (!mobileSelectedShifts[v.carro]) {
+                    mobileSelectedShifts[v.carro] = activeShiftFilter || "07:00";
+                }
+                const selectedShift = activeShiftFilter || mobileSelectedShifts[v.carro];
+
+                let html = `
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>🚍 CARRO ${v.carro}</span>
+                            <button class="btn-edit-car" style="background:rgba(255,255,255,0.2); color:white; border-color:white;" onclick="openCarModal('${v.carro}')" title="Editar Carro">✏️</button>
+                        </div>
+                        <button class="btn-action btn-print" style="padding:3px 8px; font-size:10px;" onclick="openAddModal('${v.carro}', '${selectedShift}')">+ Novo Frete</button>
+                    </div>
+                    <div class="card-body">
+                `;
+
+                if (!activeShiftFilter) {
+                    html += `
+                        <div class="mobile-shift-tabs">
+                            <button class="m-shift-tab ${selectedShift === '07:00' ? 'active' : ''}" onclick="selectMobileShift('${v.carro}', '07:00')">Turno 1 (07h)</button>
+                            <button class="m-shift-tab ${selectedShift === '15:00' ? 'active' : ''}" onclick="selectMobileShift('${v.carro}', '15:00')">Turno 2 (15h)</button>
+                            <button class="m-shift-tab ${selectedShift === '23:00' ? 'active' : ''}" onclick="selectMobileShift('${v.carro}', '23:00')">Turno 3 (23h)</button>
+                        </div>
+                    `;
+                }
+
+                const shift = v.turnos[selectedShift];
+                if (!shift) {
+                    html += `
+                        <div style="text-align:center; padding:16px; color:#94a3b8; font-style:italic; font-size:11px;">
+                            Sem agendamento neste turno.
+                            <br><br>
+                            <button class="btn-action" style="padding:4px 10px; font-size:10px;" onclick="openAddModal('${v.carro}', '${selectedShift}')">+ Criar Escala</button>
+                        </div>
+                    `;
+                } else {
+                    html += `
+                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #cbd5e1;">
+                                <span style="font-weight:800; font-size:11px; background:#fef08a; color:#854d0e; padding:3px 8px; border-radius:6px; cursor:pointer;" onclick="openDriverModal('${v.carro}', '${selectedShift}', '${shift.motorista.replace(/'/g, "\\'")}')">👤 ${shift.motorista} ✏️</span>
+                                <span style="font-weight:800; font-size:10px; color:#059669;">${shift.saida || ''}</span>
+                            </div>
+                    `;
+
+                    shift.processos.forEach(proc => {
+                        html += `<div style="color:#dc2626; font-weight:800; font-size:10px; margin:6px 0 4px 0; text-transform:uppercase;">📌 ${proc.titulo} ${proc.hora ? '(' + proc.hora + ')' : ''}</div>`;
+                        proc.passageiros.forEach(p => {
+                            const wspUrl = getWspUrl(p.tel);
+                            const mapUrl = getMapUrl(p);
+
+                            html += `
+                                <div class="passenger-row" style="margin-bottom:6px; padding:6px 8px; border-radius:8px; border-left:3px solid #004A2F;">
+                                    <div class="p-details">
+                                        <div class="p-name-line" style="font-size:11px;">${p.nome}</div>
+                                        <div class="p-sub-line" style="margin-top:2px;">
+                                            ${p.tel ? `<a href="${wspUrl}" target="_blank" class="p-phone-wsp-link" title="Clique para abrir WhatsApp">💬 ${formatPhone(p.tel)}</a>` : ''}
+                                            ${p.local ? `<a href="${mapUrl}" target="_blank" class="loc-badge">📍 ${p.local}</a>` : ''}
+                                        </div>
+                                    </div>
+                                    <div class="p-row-actions">
+                                        <button class="btn-icon-small" onclick="openEditPassengerModal('${v.carro}', '${selectedShift}', '${proc.titulo.replace(/'/g, "\\'")}', '${p.id}')">✏️</button>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    });
+
+                    html += `</div>`;
+                }
+
+                html += `</div>`;
+                card.innerHTML = html;
+                container.appendChild(card);
+            });
+        }
+
+        function selectMobileShift(carro, shift) {
+            mobileSelectedShifts[carro] = shift;
+            filterEscala();
+        }
+
+        // RENDERIZA VISÃO PONTOS DE BUSCA
+        function renderLocations(data) {
+            const container = document.getElementById("view-locations");
+            container.innerHTML = "";
+
+            const activeShiftFilter = document.getElementById("filter-shift").value;
+            const locationMap = {};
+
+            data.forEach(v => {
+                const times = activeShiftFilter ? [activeShiftFilter] : ["07:00", "15:00", "23:00"];
+                times.forEach(t => {
+                    const shift = v.turnos[t];
+                    if (shift) {
+                        shift.processos.forEach(proc => {
+                            proc.passageiros.forEach(p => {
+                                const locKey = p.local || "Usina / Não especificado";
+                                if (!locationMap[locKey]) locationMap[locKey] = [];
+                                locationMap[locKey].push({
+                                    id: p.id,
+                                    nome: p.nome,
+                                    tel: p.tel,
+                                    carro: v.carro,
+                                    turno: t,
+                                    motorista: shift.motorista,
+                                    passengerObj: p
+                                });
+                            });
+                        });
+                    }
+                });
+            });
+
+            for (const [loc, pList] of Object.entries(locationMap)) {
+                const card = document.createElement("div");
+                card.className = "location-card";
+
+                const firstMapUrl = getMapUrl(pList[0].passengerObj);
+
+                let html = `
+                    <div class="location-card-title">
+                        <div>
+                            <span>📍 <a href="${firstMapUrl}" target="_blank" style="color:inherit; text-decoration:none;">${loc}</a></span>
+                        </div>
+                        <span style="background:#004A2F; color:white; padding:2px 8px; border-radius:12px; font-size:11px;">${pList.length}</span>
+                    </div>
+                    <div>
+                `;
+
+                pList.forEach(p => {
+                    const wspUrl = getWspUrl(p.tel);
+
+                    html += `
+                        <div class="passenger-row" style="margin-bottom:6px;">
+                            <div class="p-details">
+                                <div class="p-name-line">${p.nome}</div>
+                                <div class="p-sub-line">
+                                    <span>🚍 Carro ${p.carro}</span>
+                                    <span>⏰ ${p.turno}</span>
+                                    ${p.tel ? `<a href="${wspUrl}" target="_blank" class="p-phone-wsp-link">💬 ${formatPhone(p.tel)}</a>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+                card.innerHTML = html;
+                container.appendChild(card);
+            }
+        }
+
+        function updateStats(data) {
+            let totalPassageiros = 0;
+            const activeShiftFilter = document.getElementById("filter-shift").value;
+
+            data.forEach(v => {
+                const times = activeShiftFilter ? [activeShiftFilter] : ["07:00", "15:00", "23:00"];
+                times.forEach(t => {
+                    if (v.turnos[t]) {
+                        v.turnos[t].processos.forEach(p => {
+                            totalPassageiros += p.passageiros.length;
+                        });
+                    }
+                });
+            });
+            document.getElementById("stat-veiculos").innerText = data.length;
+            document.getElementById("stat-passageiros").innerText = totalPassageiros;
+        }
+
+        function switchView(viewName) {
+            document.getElementById("view-matrix").style.display = viewName === "matrix" ? "block" : "none";
+            document.getElementById("view-cards").style.display = viewName === "cards" ? "grid" : "none";
+            document.getElementById("view-locations").style.display = viewName === "locations" ? "grid" : "none";
+
+            document.querySelectorAll(".toggle-btn").forEach(btn => btn.classList.remove("active"));
+            document.getElementById("btn-view-" + viewName).classList.add("active");
+        }
+
+        function filterEscala() {
+            const query = document.getElementById("search-input").value.toLowerCase();
+            const city = document.getElementById("filter-city").value.toLowerCase();
+            const shift = document.getElementById("filter-shift").value;
+
+            const filtered = escalaData.map(v => {
+                let carObj = JSON.parse(JSON.stringify(v));
+                
+                if (shift) {
+                    ["07:00", "15:00", "23:00"].forEach(t => {
+                        if (t !== shift) {
+                            delete carObj.turnos[t];
+                        }
+                    });
+                }
+
+                let matchesCar = carObj.carro.toLowerCase().includes(query);
+                let matchesPass = false;
+                let matchesCity = city === "";
+
+                const activeTimes = Object.keys(carObj.turnos);
+
+                activeTimes.forEach(t => {
+                    const s = carObj.turnos[t];
+                    if (s) {
+                        if (s.motorista.toLowerCase().includes(query) || s.saida.toLowerCase().includes(query)) {
+                            matchesPass = true;
+                        }
+
+                        if (city && (s.saida.toLowerCase().includes(city) || JSON.stringify(s).toLowerCase().includes(city))) {
+                            matchesCity = true;
+                        }
+
+                        s.processos.forEach(proc => {
+                            if (proc.titulo.toLowerCase().includes(query)) matchesPass = true;
+                            proc.passageiros.forEach(p => {
+                                if (p.nome.toLowerCase().includes(query) || (p.tel && p.tel.includes(query)) || (p.local && p.local.toLowerCase().includes(query))) {
+                                    matchesPass = true;
+                                }
+                            });
+                        });
+                    }
+                });
+
+                const hasTurnos = activeTimes.length > 0;
+                if (hasTurnos && (matchesCar || matchesPass || query === "") && matchesCity) {
+                    return carObj;
+                }
+                return null;
+            }).filter(v => v !== null);
+
+            renderMatrix(filtered);
+            renderCards(filtered);
+            renderLocations(filtered);
+            updateStats(filtered);
+        }
+
+        // CADASTRO DE FOLGUISTAS
+        function openFolguistaModal() {
+            document.getElementById("fg-t1").value = folguistasData["07:00"] || "";
+            document.getElementById("fg-t2").value = folguistasData["15:00"] || "";
+            document.getElementById("fg-t3").value = folguistasData["23:00"] || "";
+            document.getElementById("modal-folguista").classList.add("active");
+        }
+
+        function closeFolguistaModal() {
+            document.getElementById("modal-folguista").classList.remove("active");
+        }
+
+        function saveFolguistas(event) {
+            event.preventDefault();
+            folguistasData["07:00"] = document.getElementById("fg-t1").value.trim();
+            folguistasData["15:00"] = document.getElementById("fg-t2").value.trim();
+            folguistasData["23:00"] = document.getElementById("fg-t3").value.trim();
+            saveToStorage();
+            filterEscala();
+            closeFolguistaModal();
+        }
+
+        // EDIÇÃO DO CARRO
+        function openCarModal(oldCarId) {
+            document.getElementById("car-old-id").value = oldCarId;
+            document.getElementById("car-new-id").value = oldCarId;
+            document.getElementById("modal-car").classList.add("active");
+        }
+
+        function closeCarModal() {
+            document.getElementById("modal-car").classList.remove("active");
+        }
+
+        function saveCarEdit(event) {
+            event.preventDefault();
+            const oldId = document.getElementById("car-old-id").value;
+            const newId = document.getElementById("car-new-id").value.trim();
+
+            if (!newId) return;
+
+            let carObj = escalaData.find(v => v.carro === oldId);
+            if (carObj) {
+                carObj.carro = newId;
+                saveToStorage();
+                filterEscala();
+            }
+            closeCarModal();
+        }
+
+        // EDIÇÃO DE MOTORISTA
+        function openDriverModal(carro, turno, motoristaAtual) {
+            document.getElementById("d-carro").value = carro;
+            document.getElementById("d-turno").value = turno;
+            document.getElementById("d-nome").value = motoristaAtual;
+            document.getElementById("modal-driver").classList.add("active");
+        }
+
+        function closeDriverModal() {
+            document.getElementById("modal-driver").classList.remove("active");
+        }
+
+        function saveDriverEdit(event) {
+            event.preventDefault();
+            const carro = document.getElementById("d-carro").value;
+            const turno = document.getElementById("d-turno").value;
+            const novoNome = document.getElementById("d-nome").value.trim();
+
+            let targetCar = escalaData.find(v => v.carro === carro);
+            if (targetCar && targetCar.turnos[turno]) {
+                targetCar.turnos[turno].motorista = novoNome;
+                saveToStorage();
+                filterEscala();
+            }
+            closeDriverModal();
+        }
+
+        // EXCLUIR PASSAGEIRO
+        function deletePassenger(passengerId) {
+            if (!confirm("Deseja realmente remover este frete da escala?")) return;
+
+            escalaData.forEach(v => {
+                ["07:00", "15:00", "23:00"].forEach(t => {
+                    if (v.turnos[t]) {
+                        v.turnos[t].processos.forEach(proc => {
+                            proc.passageiros = proc.passageiros.filter(p => p.id !== passengerId);
+                        });
+                    }
+                });
+            });
+
+            saveToStorage();
+            filterEscala();
+        }
+
+        // ABRIR MODAL PASSAGEIRO / FRETE
+        function openAddModal(defaultCarro = '', defaultTurno = '07:00') {
+            document.getElementById("modal-title-text").innerText = "➕ Adicionar Novo Frete";
+            document.getElementById("edit-mode-id").value = "";
+            document.getElementById("m-carro").value = defaultCarro;
+            document.getElementById("m-horario").value = defaultTurno;
+            document.getElementById("m-motorista").value = "";
+            document.getElementById("m-processo").value = "";
+            document.getElementById("m-cidade").value = "Guariba";
+            document.getElementById("m-hora-especifica").value = "";
+            document.getElementById("m-nome").value = "";
+            document.getElementById("m-telefone").value = "";
+            document.getElementById("m-localizacao").value = "";
+
+            if (defaultCarro) {
+                let carObj = escalaData.find(v => v.carro === defaultCarro);
+                if (carObj && carObj.turnos[defaultTurno]) {
+                    document.getElementById("m-motorista").value = carObj.turnos[defaultTurno].motorista;
+                    if (carObj.turnos[defaultTurno].processos.length > 0) {
+                        document.getElementById("m-processo").value = carObj.turnos[defaultTurno].processos[0].titulo;
+                    }
+                }
+            }
+
+            document.getElementById("modal-escala").classList.add("active");
+        }
+
+        function openEditPassengerModal(carro, turno, processoTitulo, passengerId) {
+            let passObj = null;
+            let carObj = escalaData.find(v => v.carro === carro);
+
+            if (carObj && carObj.turnos[turno]) {
+                let procObj = carObj.turnos[turno].processos.find(p => p.titulo === processoTitulo);
+                if (procObj) {
+                    passObj = procObj.passageiros.find(p => p.id === passengerId);
+                }
+            }
+
+            if (!passObj) return;
+
+            document.getElementById("modal-title-text").innerText = "✏️ Editar Dados do Frete";
+            document.getElementById("edit-mode-id").value = passengerId;
+            document.getElementById("m-carro").value = carro;
+            document.getElementById("m-horario").value = turno;
+            document.getElementById("m-motorista").value = carObj.turnos[turno].motorista;
+            document.getElementById("m-processo").value = processoTitulo;
+            document.getElementById("m-nome").value = passObj.nome;
+            document.getElementById("m-telefone").value = passObj.tel;
+            document.getElementById("m-localizacao").value = passObj.local;
+
+            document.getElementById("modal-escala").classList.add("active");
+        }
+
+        function closeAddModal() {
+            document.getElementById("modal-escala").classList.remove("active");
+        }
+
+        function saveEscala(event) {
+            event.preventDefault();
+            const editId = document.getElementById("edit-mode-id").value;
+            const carroStr = document.getElementById("m-carro").value.trim();
+            const horarioStr = document.getElementById("m-horario").value;
+            const motoristaStr = document.getElementById("m-motorista").value.trim();
+            const processoStr = document.getElementById("m-processo").value.trim();
+            const cidadeStr = document.getElementById("m-cidade").value;
+            const horaEspStr = document.getElementById("m-hora-especifica").value.trim() || horarioStr;
+            const nomeStr = document.getElementById("m-nome").value.trim();
+            const telStr = document.getElementById("m-telefone").value.trim();
+            const locStr = document.getElementById("m-localizacao").value.trim();
+
+            if (editId) {
+                escalaData.forEach(v => {
+                    ["07:00", "15:00", "23:00"].forEach(t => {
+                        if (v.turnos[t]) {
+                            v.turnos[t].processos.forEach(proc => {
+                                proc.passageiros = proc.passageiros.filter(p => p.id !== editId);
+                            });
+                        }
+                    });
+                });
+            }
+
+            let targetCar = escalaData.find(v => v.carro === carroStr);
+            if (!targetCar) {
+                targetCar = { carro: carroStr, turnos: {} };
+                escalaData.unshift(targetCar);
+            }
+
+            if (!targetCar.turnos[horarioStr]) {
+                targetCar.turnos[horarioStr] = {
+                    motorista: motoristaStr,
+                    saida: `SAIDA CANAVIEIRO - ${cidadeStr.toUpperCase()}`,
+                    processos: []
+                };
+            } else {
+                targetCar.turnos[horarioStr].motorista = motoristaStr;
+            }
+
+            let targetProc = targetCar.turnos[horarioStr].processos.find(p => p.titulo === processoStr);
+            if (!targetProc) {
+                targetProc = {
+                    hora: horaEspStr,
+                    titulo: processoStr,
+                    passageiros: []
+                };
+                targetCar.turnos[horarioStr].processos.push(targetProc);
+            }
+
+            targetProc.passageiros.push({
+                id: editId || ("p_" + Date.now() + "_" + Math.floor(Math.random() * 1000)),
+                nome: nomeStr,
+                tel: telStr,
+                local: locStr
+            });
+
+            saveToStorage();
+            filterEscala();
+            closeAddModal();
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            renderMatrix(escalaData);
+            renderCards(escalaData);
+            renderLocations(escalaData);
+            updateStats(escalaData);
+        });
+    </script>
+</body>
+</html>
