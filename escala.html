@@ -685,6 +685,10 @@
 
         /* REGRAS DE IMPRESSÃO - APLICADAS EXCLUSIVAMENTE AO IMPRIMIR */
         @media print {
+            * {
+                box-sizing: border-box !important;
+            }
+
             /* Ocultar elementos interativos e cabeçalho na impressão */
             .escala-header, .controls-panel, .edit-hint-bar, .btn-action, 
             .p-row-actions, .btn-add-passenger-cell, .btn-edit-car, 
@@ -704,8 +708,10 @@
                 margin: 0 !important;
                 padding: 0 !important;
                 font-family: Arial, Helvetica, sans-serif !important;
-                font-size: 6pt !important;
-                line-height: 1.05 !important;
+                font-size: 6.5pt !important;
+                line-height: 1.1 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
 
             .content-area, .matrix-container {
@@ -715,17 +721,21 @@
                 box-shadow: none !important;
                 border: none !important;
                 width: 100% !important;
+                max-width: 100% !important;
                 overflow: visible !important;
+                box-sizing: border-box !important;
             }
 
             .matrix-table {
                 width: 100% !important;
                 min-width: 100% !important;
+                max-width: 100% !important;
                 border-collapse: collapse !important;
                 border: 1.5px solid #000000 !important;
-                font-size: 6pt !important;
-                line-height: 1.05 !important;
+                font-size: 6.5pt !important;
+                line-height: 1.1 !important;
                 table-layout: fixed !important;
+                box-sizing: border-box !important;
             }
 
             .matrix-table th {
@@ -733,9 +743,9 @@
                 color: #000000 !important;
                 font-weight: bold !important;
                 text-align: center !important;
-                padding: 1.5px 1px !important;
+                padding: 2px 1px !important;
                 border: 1px solid #000000 !important;
-                font-size: 7pt !important;
+                font-size: 7.5pt !important;
                 text-transform: uppercase !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
@@ -743,19 +753,25 @@
 
             .matrix-table td {
                 border: 1px solid #000000 !important;
-                padding: 0.5px 2px !important;
+                padding: 1px 2px !important;
                 background: #ffffff !important;
                 vertical-align: top !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                word-break: break-word !important;
+                box-sizing: border-box !important;
             }
 
-            /* CENTRALIZAR E ALINHAR AO MEIO A COLUNA DE CARROS EXCLUSIVAMENTE NA IMPRESSÃO */
+            /* REDUZIR LARGURA DA COLUNA DE CARROS NA IMPRESSÃO */
+            .matrix-table th:first-child,
             td.col-carro-cell, .col-carro-cell {
                 background: #ffffff !important;
                 vertical-align: middle !important;
                 text-align: center !important;
                 font-weight: bold !important;
-                font-size: 8.5pt !important;
-                width: 48px !important;
+                font-size: 8pt !important;
+                width: 44px !important;
+                white-space: nowrap !important;
             }
 
             .col-carro-cell .car-badge-wrapper {
@@ -768,7 +784,7 @@
             .col-carro-cell .car-badge {
                 background: transparent !important;
                 color: #000000 !important;
-                font-size: 8.5pt !important;
+                font-size: 8pt !important;
                 font-weight: bold !important;
                 box-shadow: none !important;
                 padding: 0 !important;
@@ -776,22 +792,23 @@
                 margin: auto !important;
                 display: block !important;
                 width: 100% !important;
+                white-space: nowrap !important;
             }
 
-            /* FAIXA DO MOTORISTA CONECTANDO TODA A LATERAL DO CARD (SEM BORDA, DE PONTA A PONTA) */
+            /* FAIXA DO MOTORISTA NO CARD */
             .driver-banner-wrapper {
                 background: #ffff00 !important;
                 color: #000000 !important;
                 font-weight: bold !important;
                 text-align: center !important;
                 padding: 2px 0 !important;
-                margin: -0.5px -2px 2px -2px !important;
+                margin: -1px -2px 2px -2px !important;
                 border: none !important;
                 border-bottom: 1px solid #000000 !important;
                 border-radius: 0 !important;
                 width: calc(100% + 4px) !important;
                 box-shadow: none !important;
-                font-size: 5.8pt !important;
+                font-size: 6.8pt !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
@@ -803,28 +820,27 @@
             .driver-info {
                 color: #000000 !important;
                 font-weight: bold !important;
-                font-size: 5.8pt !important;
+                font-size: 6.8pt !important;
                 text-align: center !important;
                 width: 100% !important;
             }
 
-            /* LARGURA RESTRITA AO FILTRAR POR TURNO NA IMPRESSÃO (NÃO EXPANDE A FOLHA TODA) */
+            /* LARGURA RESTRITA AO FILTRAR POR TURNO NA IMPRESSÃO (NÃO ESTICA NA FOLHA TODA) */
             .matrix-table.has-shift-filter {
-                width: 100% !important;
-                max-width: 100% !important;
+                width: 40% !important;
+                max-width: 320px !important;
                 margin: 0 !important;
             }
 
-            /* CENTRALIZAR INFORMAÇÕES DOS FRETES (TITULOS, NOMES E TELEFONES) */
+            /* CENTRALIZAR E AUMENTAR TEXTOS DOS CARDS DOS FRETES */
             .process-block {
                 background: transparent !important;
                 border: none !important;
                 padding: 0 1px !important;
-                margin-bottom: 0.5px !important;
+                margin-bottom: 1px !important;
                 text-align: center !important;
             }
 
-            /* EXIBIR DE 1 A 3 CONTATOS DE PASSAGEIRO POR PROCESSO NA IMPRESSÃO PARA CABER EM 1 FOLHA A4 RETRATO */
             .process-block > div.passenger-row:nth-of-type(n+5) {
                 display: none !important;
             }
@@ -841,7 +857,7 @@
             .process-title-text {
                 color: #dc2626 !important;
                 font-weight: bold !important;
-                font-size: 5.6pt !important;
+                font-size: 6.8pt !important;
                 text-align: center !important;
                 display: block !important;
                 width: 100% !important;
@@ -854,9 +870,9 @@
                 background: transparent !important;
                 border: none !important;
                 border-bottom: 0.5px dashed #dddddd !important;
-                padding: 0.5px 0 !important;
+                padding: 1px 0 !important;
                 margin: 0 auto !important;
-                line-height: 1.05 !important;
+                line-height: 1.1 !important;
                 justify-content: center !important;
                 text-align: center !important;
                 width: 100% !important;
@@ -869,7 +885,7 @@
             }
 
             .p-name-line {
-                font-size: 5.6pt !important;
+                font-size: 6.8pt !important;
                 font-weight: bold !important;
                 color: #000000 !important;
                 text-align: center !important;
@@ -877,7 +893,7 @@
             }
 
             .p-sub-line {
-                font-size: 5pt !important;
+                font-size: 6pt !important;
                 color: #000000 !important;
                 justify-content: center !important;
                 text-align: center !important;
@@ -889,7 +905,7 @@
                 background: transparent !important;
                 border: none !important;
                 padding: 0 !important;
-                font-size: 5pt !important;
+                font-size: 6pt !important;
                 font-weight: bold !important;
             }
 
@@ -900,15 +916,15 @@
                 text-align: center !important;
                 padding: 2px !important;
                 border: 1px solid #000000 !important;
-                font-size: 5.8pt !important;
+                font-size: 6.8pt !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
 
-            /* CONFIRA A IMPRESSÃO EM MODO RETRATO (FOLHA EM PÉ) */
+            /* AJUSTE DE MARGEM DE IMPRESSÃO PARA EVITAR CORTAR BORDAS E TEXTOS NAS EXTREMIDADES */
             @page {
                 size: A4 portrait;
-                margin: 3mm;
+                margin: 5mm;
             }
         }
 
@@ -1033,9 +1049,9 @@
                 <thead>
                     <tr id="matrix-thead-row">
                         <th>CARRO</th>
-                        <th>TURNO 1 (07:00) • GUARIBA</th>
-                        <th>TURNO 2 (15:00) • TAQUARITINGA</th>
-                        <th>TURNO 3 (23:00) • JABOTICABAL</th>
+                        <th>TURNO 1 (07:00) • SAIDA GUARIBA</th>
+                        <th>TURNO 2 (15:00) • SAIDA TAQUARITINGA</th>
+                        <th>TURNO 3 (23:00) • SAIDA JABOTICABAL</th>
                     </tr>
                 </thead>
                 <tbody id="matrix-tbody">
@@ -1746,17 +1762,17 @@
             }
 
             if (activeShiftFilter === "07:00") {
-                theadRow.innerHTML = `<th>CARRO</th><th>TURNO 1 (07:00) • GUARIBA</th>`;
+                theadRow.innerHTML = `<th>CARRO</th><th>TURNO 1 (07:00) • SAIDA GUARIBA</th>`;
             } else if (activeShiftFilter === "15:00") {
-                theadRow.innerHTML = `<th>CARRO</th><th>TURNO 2 (15:00) • TAQUARITINGA</th>`;
+                theadRow.innerHTML = `<th>CARRO</th><th>TURNO 2 (15:00) • SAIDA TAQUARITINGA</th>`;
             } else if (activeShiftFilter === "23:00") {
-                theadRow.innerHTML = `<th>CARRO</th><th>TURNO 3 (23:00) • JABOTICABAL</th>`;
+                theadRow.innerHTML = `<th>CARRO</th><th>TURNO 3 (23:00) • SAIDA JABOTICABAL</th>`;
             } else {
                 theadRow.innerHTML = `
                     <th>CARRO</th>
-                    <th>TURNO 1 (07:00) • GUARIBA</th>
-                    <th>TURNO 2 (15:00) • TAQUARITINGA</th>
-                    <th>TURNO 3 (23:00) • JABOTICABAL</th>
+                    <th>TURNO 1 (07:00) • SAIDA GUARIBA</th>
+                    <th>TURNO 2 (15:00) • SAIDA TAQUARITINGA</th>
+                    <th>TURNO 3 (23:00) • SAIDA JABOTICABAL</th>
                 `;
             }
 
@@ -1851,7 +1867,7 @@
 
             times.forEach(t => {
                 const fg = folguistasData[t] || "Sem folguista cadastrado";
-                footHtml += `<td>FOLGUISTA: ${fg}</td>`;
+                footHtml += `<td>${fg}</td>`;
             });
 
             footTr.innerHTML = footHtml;
